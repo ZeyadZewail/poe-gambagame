@@ -1,5 +1,5 @@
-import Inventory from "~/components/Inventory/Inventory";
+import StorageController from "~/components/StorageController/StorageController";
 
 export default function Index() {
-	return <Inventory count={25} rowMax={5} />;
+	return <StorageController />;
 }
