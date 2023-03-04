@@ -3,6 +3,8 @@ interface Item {
 	imgSrc: string;
 	width: number;
 	length: number;
+	x: number;
+	y: number;
 }
 
 export default Item;

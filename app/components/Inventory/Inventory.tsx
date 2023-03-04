@@ -1,21 +1,17 @@
-import type { FC } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { FC, useEffect } from "react";
 import SlotCell from "../SlotCell/SlotCell";
 import inventoryGrid from "../../assets/inventorygrid.png";
 import type Item from "~/Types/Item";
 
 interface InventoryInterface {
-	count: number;
 	rowMax: number;
 	items: Item[];
 }
 
-const Inventory: FC<InventoryInterface> = ({ count, rowMax, items }) => {
-	const [internalStorage, setInternalStorage] = useState<any>([]);
-	const [render, setRender] = useState(true);
+const Inventory: FC<InventoryInterface> = ({ rowMax, items }) => {
+	console.log("Inventory", items);
 
-	useEffect(() => {
+	const generateGrid = () => {
 		const temp: any = [];
 		for (let step = 0; step < rowMax; step++) {
 			temp.push([]);
@@ -23,44 +19,47 @@ const Inventory: FC<InventoryInterface> = ({ count, rowMax, items }) => {
 				temp.at(-1)?.push(null);
 			}
 		}
-		setInternalStorage(temp);
-	}, [items]);
 
-	console.log("Inventory", internalStorage);
+		for (let item of items) {
+			temp[item.y][item.x] = item;
+
+			for (let step = 1; step < item.length; step++) {
+				temp[item.y + step][item.x] = "blocked";
+			}
+			for (let step = 1; step < item.width; step++) {
+				temp[item.y][item.x + step] = "blocked";
+			}
+		}
+
+		const rows: any[] = [];
+		for (let i = 0; i < temp.length; i++) {
+			rows.push([]);
+			for (let j = 0; j < temp[i].length; j++) {
+				if (temp[i][j] != null) {
+					if (temp[i][j] == "blocked") {
+						rows[i].push(null);
+					} else {
+						rows[i].push(<SlotCell key={""} item={temp[i][j]} />);
+					}
+				} else rows[i].push(<SlotCell key={""} item={null} />);
+			}
+		}
+
+		return rows.map((r) => {
+			return (
+				<div className="flex flex-row" key="">
+					{...r}
+				</div>
+			);
+		});
+	};
+
 	return (
 		<div className="flex flex-col w-fit h-fit">
 			<img src={inventoryGrid} alt="grid" className="absolute" />
-			{generateGrid(internalStorage)}
-			<button
-				onClick={() => {
-					console.log("Added Item");
-					internalStorage[0][0] = items[0];
-					internalStorage[0][1] = items[1];
-
-					setRender(!render);
-				}}>
-				Add Item
-			</button>
+			{generateGrid()}
 		</div>
 	);
 };
 
 export default Inventory;
-
-const generateGrid = (internalStorage: any[]) => {
-	return internalStorage.map((i) => generateRow(i));
-};
-
-const generateRow = (row: Item[]) => {
-	return (
-		<div className="flex flex-row">
-			{row.map((i) => {
-				if (i == null) {
-					return <SlotCell key={""} item={null} />;
-				} else {
-					return <SlotCell key={""} item={i} />;
-				}
-			})}
-		</div>
-	);
-};
