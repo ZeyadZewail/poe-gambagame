@@ -37,7 +37,7 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
                     <div className="options"></div>
                     <div className="cards">
                         {divcards.map(divcard => (
-                            <DivCardGenerator divcard={divcard} />
+                            <DivCardGenerator divcard={divcard} key={divcard.itemName}/>
                         ))}
                     </div>
                 </div>
