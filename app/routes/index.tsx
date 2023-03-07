@@ -16,7 +16,6 @@ export default function Index() {
   const divcards = useLoaderData<typeof loader>();
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome to Gamba Game</h1>
       <TradeWindow currency={0} divcards={divcards} />
     </div>
   );

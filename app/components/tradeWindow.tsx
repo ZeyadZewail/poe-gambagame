@@ -22,7 +22,7 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
             </div>
             <div className="searchbar">
                 <div className="buttons">
-                    <button>Search</button> <button>Reset</button>
+                    <button>Search Listed Items</button> <button>Reset</button>
                 </div>
                 <div className="inputField">
                     <input></input>
@@ -41,6 +41,9 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
                         ))}
                     </div>
                 </div>
+            </div>
+            <div className="searchButton">
+                <button>Search</button>
             </div>
         </div>
     )
