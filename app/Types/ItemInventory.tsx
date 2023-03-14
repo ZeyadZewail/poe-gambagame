@@ -50,13 +50,13 @@ class ItemInventory {
 							item={temp[i][j].item}
 							x={j}
 							y={i}
-							parentInventory={this.items}
+							parentInventory={this}
 							isPrimary={temp[i][j].isPrimary}
 						/>
 					);
 				} else
 					rows[i].push(
-						<SlotCell key={`(${i},${j})`} item={null} x={j} y={i} parentInventory={this.items} isPrimary={true} />
+						<SlotCell key={`(${i},${j})`} item={null} x={j} y={i} parentInventory={this} isPrimary={true} />
 					);
 			}
 		}

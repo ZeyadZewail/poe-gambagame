@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 import type { FC } from "react";
 import { useState } from "react";
 import type Item from "~/Types/Item";
+import ItemInventory from "~/Types/ItemInventory";
 import { hoveredSlot, mouseItem } from "../MouseFollower/MouseFollower";
 import { renderVar } from "../StorageController/StorageController";
 
@@ -9,7 +10,7 @@ const cellSideLength = 47.4;
 
 interface SlotInterface {
 	item: Item | null;
-	parentInventory: Item[];
+	parentInventory: ItemInventory;
 	x: number;
 	y: number;
 	isPrimary: boolean;
@@ -49,15 +50,23 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 	const SwapWithMouse = () => {
 		if (item != null && currentMouseItem === null) {
 			setCurrentMouseItem(item);
-			let index = parentInventory.indexOf(item);
+			let index = parentInventory.items.indexOf(item);
 			if (index !== -1) {
-				parentInventory.splice(index, 1);
+				parentInventory.items.splice(index, 1);
 			}
 		} else if (currentMouseItem != null && item === null) {
-			currentMouseItem.x = x;
-			currentMouseItem.y = y;
-			parentInventory.push(currentMouseItem);
-			setCurrentMouseItem(null);
+			// const parentSlotX = x + Math.floor(currentMouseItem.width / 2);
+			const parentSloty = y - Math.floor(currentMouseItem.length / 2);
+
+			const rightSpace = parentInventory.width - x;
+			const leftSpace = parentInventory.length - parentSloty;
+
+			if (rightSpace >= currentMouseItem.width && leftSpace >= currentMouseItem.length) {
+				currentMouseItem.x = x;
+				currentMouseItem.y = parentSloty;
+				parentInventory.items.push(currentMouseItem);
+				setCurrentMouseItem(null);
+			}
 		}
 		ForceRender();
 	};
