@@ -56,19 +56,79 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 			}
 		} else if (currentMouseItem != null && item === null) {
 			// const parentSlotX = x + Math.floor(currentMouseItem.width / 2);
+			if (CheckViableForItem(x, y, currentMouseItem)) {
+				currentMouseItem.x = x;
+				currentMouseItem.y = y - Math.floor(currentMouseItem.length / 2);
+				parentInventory.items.push(currentMouseItem);
+				setCurrentMouseItem(null);
+			}
+		} else if (currentMouseItem != null && item != null) {
+			if (CheckViableForItem(x, y, currentMouseItem)) {
+				//temp for holding current item
+				const temp: Item = item;
+				//add mouseitem to inv
+				currentMouseItem.x = x;
+				currentMouseItem.y = y - Math.floor(currentMouseItem.length / 2);
+				parentInventory.items.push(currentMouseItem);
+				//add item to mouse and remove from inv
+				setCurrentMouseItem(item);
+				let index = parentInventory.items.indexOf(item);
+				if (index !== -1) {
+					parentInventory.items.splice(index, 1);
+				}
+			}
+		}
+		ForceRender();
+	};
+
+	const CheckSpaceForItem = (x: number, y: number, item: Item) => {
+		if (currentMouseItem != null) {
 			const parentSloty = y - Math.floor(currentMouseItem.length / 2);
 
 			const rightSpace = parentInventory.width - x;
 			const leftSpace = parentInventory.length - parentSloty;
-
 			if (rightSpace >= currentMouseItem.width && leftSpace >= currentMouseItem.length) {
-				currentMouseItem.x = x;
-				currentMouseItem.y = parentSloty;
-				parentInventory.items.push(currentMouseItem);
-				setCurrentMouseItem(null);
+				return true;
 			}
 		}
-		ForceRender();
+		return false;
+	};
+
+	const CheckViableForItem = (x: number, y: number, item2: Item | null) => {
+		// if (item == null && item2 != null && CheckSpaceForItem(x, y, item2)) {
+		// 	return true;
+		// }
+
+		if (item === null && item2 != null && CheckSpaceForItem(x, y, item2)) {
+			const parentSloty = y - Math.floor(item2.length / 2);
+			const viabilityMatrix = parentInventory.generateItemGrid();
+			for (let i = 0; i < item2.length; i++) {
+				for (let j = 0; j < item2.width; j++) {
+					if (viabilityMatrix[parentSloty + i][x + j] != null) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+
+		// if (item != null && item2 != null && CheckSpaceForItem(x, y, item2)) {
+		// 	const parentSloty = y - Math.floor(item2.length / 2);
+		// 	const virtualInv = new ItemInventory(parentInventory.length, parentInventory.width, [...parentInventory.items]);
+		// 	let index = virtualInv.items.indexOf(item);
+		// 	if (index !== -1) {
+		// 		virtualInv.items.splice(index, 1);
+		// 	}
+		// 	const viabilityMatrix = virtualInv.generateItemGrid();
+		// 	for (let i = 0; i < item2.length; i++) {
+		// 		for (let j = 0; j < item2.width; j++) {
+		// 			if (viabilityMatrix[parentSloty + i][x + j] != null) {
+		// 				return false;
+		// 			}
+		// 		}
+		// 	}
+		// 	return true;
+		// }
 	};
 
 	const checkHovered = () => {
