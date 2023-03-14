@@ -5,6 +5,7 @@ interface Item {
 	length: number;
 	x: number;
 	y: number;
+	hovered: boolean;
 }
 
 export default Item;

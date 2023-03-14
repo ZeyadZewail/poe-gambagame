@@ -16,6 +16,7 @@ const TestItem: Item = {
 	length: 1,
 	x: 0,
 	y: 0,
+	hovered: false,
 };
 
 const mageblood: Item = {
@@ -25,6 +26,7 @@ const mageblood: Item = {
 	length: 1,
 	x: 1,
 	y: 0,
+	hovered: false,
 };
 
 const Inventory = () => {

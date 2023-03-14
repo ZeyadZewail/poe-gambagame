@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import type { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import type Item from "~/Types/Item";
 import { mouseItem } from "../MouseFollower/MouseFollower";
 import { renderVar } from "../StorageController/StorageController";
@@ -16,7 +16,8 @@ interface SlotInterface {
 
 const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary }) => {
 	const [currentMouseItem, setCurrentMouseItem] = useAtom(mouseItem);
-	const [forceRender, SetForceRender] = useAtom(renderVar);
+	const [renderBool, SetForceRender] = useAtom(renderVar);
+	const [hovered, setHovered] = useState(false);
 
 	const calcWidth = () => {
 		if (item) {
@@ -34,12 +35,13 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 		}
 	};
 
-	const refresh = () => {
-		SetForceRender(!forceRender);
+	const ForceRender = () => {
+		SetForceRender(!renderBool);
 	};
 
 	const ReportPosition = () => {
 		console.log(`You clicked slot @ (${x},${y}),Item: ${item?.name}`);
+		console.log(item);
 	};
 
 	const SwapWithMouse = () => {
@@ -55,19 +57,31 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 			parentInventory.push(currentMouseItem);
 			setCurrentMouseItem(null);
 		}
-		refresh();
+		ForceRender();
 	};
 
 	return (
 		<div
-			className={`hover:bg-gray-300 hover:bg-opacity-10 ${isPrimary ? "z-20" : "z-10"}`}
+			className={`${hovered || item?.hovered ? "bg-gray-300 bg-opacity-10" : null} ${isPrimary ? "z-20" : "z-10"}`}
 			style={{ width: `${cellSideLength}px`, height: `${cellSideLength}px` }}
 			onClick={() => {
 				ReportPosition();
 				SwapWithMouse();
 			}}
 			onMouseEnter={() => {
+				if (item) {
+					item.hovered = true;
+				}
+				setHovered(true);
 				ReportPosition();
+				ForceRender();
+			}}
+			onMouseLeave={() => {
+				if (item) {
+					item.hovered = false;
+				}
+				setHovered(false);
+				ForceRender();
 			}}>
 			{item ? (
 				<div
