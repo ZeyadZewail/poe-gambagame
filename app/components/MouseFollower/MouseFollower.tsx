@@ -34,14 +34,14 @@ const MouseFollower = () => {
 
 	return (
 		<div
-			className="z-10"
+			className="z-30 pointer-events-none"
 			style={{
 				width: `${calcWidth()}px`,
 				height: `${calcLength()}px`,
 				position: "fixed",
 				transform: `translate(${mousePosition.x - 0.5 * calcWidth()}px,${mousePosition.y - 0.5 * calcLength()}px)`,
 			}}>
-			{currentItem != null ? <img src={currentItem.imgSrc} alt="grid" /> : null}
+			{currentItem != null ? <img src={currentItem.imgSrc} className="z-30" alt="grid" /> : null}
 		</div>
 	);
 };

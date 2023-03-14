@@ -24,13 +24,13 @@ class ItemInventory {
 		}
 
 		for (let item of this.items) {
-			temp[item.y][item.x] = item;
+			temp[item.y][item.x] = { item: item, isPrimary: true };
 
 			for (let step = 1; step < item.length; step++) {
-				temp[item.y + step][item.x] = "blocked";
+				temp[item.y + step][item.x] = { item: item, isPrimary: false };
 			}
 			for (let step = 1; step < item.width; step++) {
-				temp[item.y][item.x + step] = "blocked";
+				temp[item.y][item.x + step] = { item: item, isPrimary: false };
 			}
 		}
 		return temp;
@@ -43,29 +43,16 @@ class ItemInventory {
 			rows.push([]);
 			for (let j = 0; j < temp[i].length; j++) {
 				if (temp[i][j] != null) {
-					if (temp[i][j] == "blocked") {
-						rows[i].push(
-							<SlotCell
-								key={`(${i},${j})`}
-								item={temp[i][j]}
-								x={j}
-								y={i}
-								parentInventory={this.items}
-								isPrimary={false}
-							/>
-						);
-					} else {
-						rows[i].push(
-							<SlotCell
-								key={`(${i},${j})`}
-								item={temp[i][j]}
-								x={j}
-								y={i}
-								parentInventory={this.items}
-								isPrimary={true}
-							/>
-						);
-					}
+					rows[i].push(
+						<SlotCell
+							key={`(${i},${j})`}
+							item={temp[i][j].item}
+							x={j}
+							y={i}
+							parentInventory={this.items}
+							isPrimary={temp[i][j].isPrimary}
+						/>
+					);
 				} else
 					rows[i].push(
 						<SlotCell key={`(${i},${j})`} item={null} x={j} y={i} parentInventory={this.items} isPrimary={true} />

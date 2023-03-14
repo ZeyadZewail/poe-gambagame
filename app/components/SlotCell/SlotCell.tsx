@@ -39,7 +39,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 	};
 
 	const ReportPosition = () => {
-		console.log(`You clicked slot @ (${x},${y})`);
+		console.log(`You clicked slot @ (${x},${y}),Item: ${item?.name}`);
 	};
 
 	const SwapWithMouse = () => {
@@ -61,12 +61,23 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 	return (
 		<div
 			className={`hover:bg-gray-300 hover:bg-opacity-10 ${isPrimary ? "z-20" : "z-10"}`}
-			style={isPrimary ? { width: `${calcWidth()}px`, height: `${calcLength()}px` } : { width: "0px", height: "0px" }}
+			style={{ width: `${cellSideLength}px`, height: `${cellSideLength}px` }}
 			onClick={() => {
 				ReportPosition();
 				SwapWithMouse();
+			}}
+			onMouseEnter={() => {
+				ReportPosition();
 			}}>
-			{item ? <div className="flex flex-col">{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}</div> : null}
+			{item ? (
+				<div
+					className="pointer-events-none"
+					style={
+						isPrimary ? { width: `${calcWidth()}px`, height: `${calcLength()}px` } : { width: "0px", height: "0px" }
+					}>
+					{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
+				</div>
+			) : null}
 		</div>
 	);
 };

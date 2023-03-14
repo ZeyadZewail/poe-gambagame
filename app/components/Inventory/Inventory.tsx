@@ -50,7 +50,7 @@ const Inventory = () => {
 				+X
 			</button>
 			<button
-				className="z-20"
+				className="z-40"
 				onClick={() => {
 					console.log("Refreshed");
 					SetForceRender(!forceRender);
