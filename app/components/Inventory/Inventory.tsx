@@ -3,10 +3,8 @@ import type Item from "~/Types/Item";
 import divCardImage from "../../assets/item_divcard.png";
 import mageBloodImage from "../../assets/item_mageblood.png";
 import farrulsFurImage from "../../assets/item_farrulfur.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ItemInventory from "~/Types/ItemInventory";
-import { useAtom } from "jotai";
-import { renderVar } from "../StorageController/StorageController";
 
 const TestItem: Item = {
 	imgSrc: divCardImage,
@@ -40,11 +38,6 @@ const farrulsfur: Item = {
 
 const Inventory = () => {
 	const [mainInventory] = useState<ItemInventory>(new ItemInventory(12, 12, [TestItem, mageblood, farrulsfur]));
-	const [forceRender, SetForceRender] = useAtom(renderVar);
-
-	useEffect(() => {
-		console.log(mainInventory);
-	}, [mainInventory, forceRender]);
 
 	const rows = mainInventory.generateElementGrid();
 
@@ -52,22 +45,6 @@ const Inventory = () => {
 		<div className="flex flex-col w-fit h-fit">
 			<img src={inventoryGrid} alt="grid" className="absolute" />
 			{rows}
-
-			<button
-				onClick={() => {
-					mainInventory.items[1].x = mainInventory.items[1].x + 1;
-					SetForceRender(!forceRender);
-				}}>
-				+X
-			</button>
-			<button
-				className="z-40"
-				onClick={() => {
-					console.log("Refreshed");
-					SetForceRender(!forceRender);
-				}}>
-				refresh
-			</button>
 		</div>
 	);
 };

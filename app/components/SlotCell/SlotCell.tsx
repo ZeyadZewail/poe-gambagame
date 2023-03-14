@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import type { FC } from "react";
 import { useState } from "react";
 import type Item from "~/Types/Item";
-import ItemInventory from "~/Types/ItemInventory";
+import type ItemInventory from "~/Types/ItemInventory";
 import { hoveredSlot, mouseItem } from "../MouseFollower/MouseFollower";
 import { renderVar } from "../StorageController/StorageController";
 
@@ -63,20 +63,20 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 				setCurrentMouseItem(null);
 			}
 		} else if (currentMouseItem != null && item != null) {
-			if (CheckViableForItem(x, y, currentMouseItem)) {
-				//temp for holding current item
-				const temp: Item = item;
-				//add mouseitem to inv
-				currentMouseItem.x = x;
-				currentMouseItem.y = y - Math.floor(currentMouseItem.length / 2);
-				parentInventory.items.push(currentMouseItem);
-				//add item to mouse and remove from inv
-				setCurrentMouseItem(item);
-				let index = parentInventory.items.indexOf(item);
-				if (index !== -1) {
-					parentInventory.items.splice(index, 1);
-				}
-			}
+			// if (CheckViableForItem(x, y, currentMouseItem)) {
+			// 	//temp for holding current item
+			// 	const temp: Item = item;
+			// 	//add mouseitem to inv
+			// 	currentMouseItem.x = x;
+			// 	currentMouseItem.y = y - Math.floor(currentMouseItem.length / 2);
+			// 	parentInventory.items.push(currentMouseItem);
+			// 	//add item to mouse and remove from inv
+			// 	setCurrentMouseItem(item);
+			// 	let index = parentInventory.items.indexOf(item);
+			// 	if (index !== -1) {
+			// 		parentInventory.items.splice(index, 1);
+			// 	}
+			// }
 		}
 		ForceRender();
 	};
