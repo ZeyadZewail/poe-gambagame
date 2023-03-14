@@ -48,6 +48,10 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 	};
 
 	const SwapWithMouse = () => {
+		if (item === null && currentMouseItem === null) {
+			return;
+		}
+
 		if (item != null && currentMouseItem === null) {
 			setCurrentMouseItem(item);
 			let index = parentInventory.items.indexOf(item);
