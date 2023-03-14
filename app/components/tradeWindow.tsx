@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import tradeLogo from "~/assets/tradelogo.png"
 import vividlf from "~/assets/vividlf.png"
 import DivCardGenerator from "./divCardGenerator";
@@ -10,6 +11,32 @@ export interface TradeWindowProps {
 
 
 const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
+    const [selectedCard, setSelectedCard] = useState("");
+    const [searchValue, setSearchValue] = useState("");
+
+    const handleCardClick = (itemName: string) => {
+        if (itemName === selectedCard) {
+            // If the clicked card is already selected, deselect it
+            setSelectedCard("");
+        } else {
+            // If a different card is clicked, select it
+            setSelectedCard(itemName);
+        }
+    };
+    const resetSearch = () => {
+        setSelectedCard("");
+        setSearchValue("");
+    }
+    const filteredDivCards = divcards.filter((divcard: any) =>
+        divcard.itemName.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    const inputRef = useRef<HTMLInputElement>(null);
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
+
     return (
         <div className="tradewindow">
             <div className="header">
@@ -21,29 +48,44 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
                 </div>
             </div>
             <div className="searchbar">
-                <div className="buttons">
-                    <button>Search Listed Items</button> <button>Reset</button>
-                </div>
-                <div className="inputField">
-                    <input></input>
+                <ul className="buttons">
+                    <li className="searchTextLi">
+                        <span className="searchText">Search Listed Items</span>
+                    </li>
+                    <li className="resetButtonLi">
+                        <span className="resetButton" onClick={resetSearch}>Reset</span>
+                    </li>
+                </ul>
+                <div className="searchbarInput">
+                    <div className="inputField">
+                        <input
+                            className="searchField"
+                            ref={inputRef}
+                            value={searchValue}
+                            placeholder={"Search Items..."}
+                            onChange={(e) => setSearchValue(e.target.value)}
+                        />
+                    </div>
                 </div>
             </div>
             <div className="itemSelection">
-                <div className="lifeforce">
+                <div className={`lifeforce ${selectedCard === "lifeforce" ? "selectedItem" : ""}`} onClick={() => handleCardClick("lifeforce")}>
                     <img src={vividlf} />
                     Vivid Crystallised Lifeforce
                 </div>
                 <div className="divcards">
                     <div className="options"></div>
                     <div className="cards">
-                        {divcards.map(divcard => (
-                            <DivCardGenerator divcard={divcard} key={divcard.itemName}/>
+                        {filteredDivCards.map(divcard => (
+                            <div className={`card ${selectedCard === divcard.itemName ? "selectedItem" : ""}`} onClick={() => handleCardClick(divcard.itemName)} key={divcard.itemName}>
+                                <DivCardGenerator divcard={divcard} />
+                            </div>
                         ))}
                     </div>
                 </div>
             </div>
             <div className="searchButton">
-                <button>Search</button>
+                <button className="search-btn">Search</button>
             </div>
         </div>
     )
