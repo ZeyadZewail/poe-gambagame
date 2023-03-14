@@ -1,63 +1,62 @@
-import { FC, useEffect } from "react";
 import SlotCell from "../SlotCell/SlotCell";
 import inventoryGrid from "../../assets/inventorygrid.png";
 import type Item from "~/Types/Item";
+import divCardImage from "../../assets/item_divcard.png";
+import mageBloodImage from "../../assets/item_mageblood.png";
 
-interface InventoryInterface {
-	rowMax: number;
-	items: Item[];
-}
+import { useEffect, useState } from "react";
+import ItemInventory from "~/Types/ItemInventory";
+import { useAtom } from "jotai";
+import { renderVar } from "../StorageController/StorageController";
 
-const Inventory: FC<InventoryInterface> = ({ rowMax, items }) => {
-	console.log("Inventory", items);
+const TestItem: Item = {
+	imgSrc: divCardImage,
+	name: "Test Div Card",
+	width: 1,
+	length: 1,
+	x: 0,
+	y: 0,
+};
 
-	const generateGrid = () => {
-		const temp: any = [];
-		for (let step = 0; step < rowMax; step++) {
-			temp.push([]);
-			for (let step = 0; step < rowMax; step++) {
-				temp.at(-1)?.push(null);
-			}
-		}
+const mageblood: Item = {
+	imgSrc: mageBloodImage,
+	name: "mageblood",
+	width: 2,
+	length: 1,
+	x: 1,
+	y: 0,
+};
 
-		for (let item of items) {
-			temp[item.y][item.x] = item;
+const Inventory = () => {
+	const [classTest] = useState<ItemInventory>(new ItemInventory(12, 12, [TestItem, mageblood]));
+	const [forceRender, SetForceRender] = useAtom(renderVar);
 
-			for (let step = 1; step < item.length; step++) {
-				temp[item.y + step][item.x] = "blocked";
-			}
-			for (let step = 1; step < item.width; step++) {
-				temp[item.y][item.x + step] = "blocked";
-			}
-		}
+	useEffect(() => {
+		console.log(classTest);
+	}, [classTest, forceRender]);
 
-		const rows: any[] = [];
-		for (let i = 0; i < temp.length; i++) {
-			rows.push([]);
-			for (let j = 0; j < temp[i].length; j++) {
-				if (temp[i][j] != null) {
-					if (temp[i][j] == "blocked") {
-						rows[i].push(null);
-					} else {
-						rows[i].push(<SlotCell key={""} item={temp[i][j]} />);
-					}
-				} else rows[i].push(<SlotCell key={""} item={null} />);
-			}
-		}
-
-		return rows.map((r) => {
-			return (
-				<div className="flex flex-row" key="">
-					{...r}
-				</div>
-			);
-		});
-	};
+	const rows = classTest.generateElementGrid();
 
 	return (
 		<div className="flex flex-col w-fit h-fit">
 			<img src={inventoryGrid} alt="grid" className="absolute" />
-			{generateGrid()}
+			{rows}
+
+			<button
+				onClick={() => {
+					classTest.items[1].x = classTest.items[1].x + 1;
+					SetForceRender(!forceRender);
+				}}>
+				+X
+			</button>
+			<button
+				className="z-20"
+				onClick={() => {
+					console.log("Refreshed");
+					SetForceRender(!forceRender);
+				}}>
+				refresh
+			</button>
 		</div>
 	);
 };
