@@ -1,9 +1,8 @@
-import SlotCell from "../SlotCell/SlotCell";
 import inventoryGrid from "../../assets/inventorygrid.png";
 import type Item from "~/Types/Item";
 import divCardImage from "../../assets/item_divcard.png";
 import mageBloodImage from "../../assets/item_mageblood.png";
-
+import farrulsFurImage from "../../assets/item_farrulfur.png";
 import { useEffect, useState } from "react";
 import ItemInventory from "~/Types/ItemInventory";
 import { useAtom } from "jotai";
@@ -29,15 +28,25 @@ const mageblood: Item = {
 	hovered: false,
 };
 
+const farrulsfur: Item = {
+	imgSrc: farrulsFurImage,
+	name: "farrulsfur",
+	width: 2,
+	length: 3,
+	x: 3,
+	y: 0,
+	hovered: false,
+};
+
 const Inventory = () => {
-	const [classTest] = useState<ItemInventory>(new ItemInventory(12, 12, [TestItem, mageblood]));
+	const [mainInventory] = useState<ItemInventory>(new ItemInventory(12, 12, [TestItem, mageblood, farrulsfur]));
 	const [forceRender, SetForceRender] = useAtom(renderVar);
 
 	useEffect(() => {
-		console.log(classTest);
-	}, [classTest, forceRender]);
+		console.log(mainInventory);
+	}, [mainInventory, forceRender]);
 
-	const rows = classTest.generateElementGrid();
+	const rows = mainInventory.generateElementGrid();
 
 	return (
 		<div className="flex flex-col w-fit h-fit">
@@ -46,7 +55,7 @@ const Inventory = () => {
 
 			<button
 				onClick={() => {
-					classTest.items[1].x = classTest.items[1].x + 1;
+					mainInventory.items[1].x = mainInventory.items[1].x + 1;
 					SetForceRender(!forceRender);
 				}}>
 				+X

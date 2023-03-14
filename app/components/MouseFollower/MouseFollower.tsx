@@ -5,8 +5,14 @@ import type Item from "~/Types/Item";
 import { cellSideLength } from "../SlotCell/SlotCell";
 import useMousePosition from "./UseMousePosition";
 
+interface slotLocation {
+	x: number;
+	y: number;
+}
+
 const mouseItem = atom<Item | null>(null);
-export { mouseItem };
+const hoveredSlot = atom<slotLocation | null>(null);
+export { mouseItem, hoveredSlot };
 
 const MouseFollower = () => {
 	const [currentItem] = useAtom(mouseItem);

@@ -24,13 +24,14 @@ class ItemInventory {
 		}
 
 		for (let item of this.items) {
-			temp[item.y][item.x] = { item: item, isPrimary: true };
-
-			for (let step = 1; step < item.length; step++) {
-				temp[item.y + step][item.x] = { item: item, isPrimary: false };
-			}
-			for (let step = 1; step < item.width; step++) {
-				temp[item.y][item.x + step] = { item: item, isPrimary: false };
+			for (let i = 0; i < item.length; i++) {
+				for (let j = 0; j < item.width; j++) {
+					if (i == 0 && j == 0) {
+						temp[item.y + i][item.x + j] = { item: item, isPrimary: true };
+					} else {
+						temp[item.y + i][item.x + j] = { item: item, isPrimary: false };
+					}
+				}
 			}
 		}
 		return temp;

@@ -1,7 +1,8 @@
 import { useAtom } from "jotai";
-import { FC, useEffect, useState } from "react";
+import type { FC } from "react";
+import { useState } from "react";
 import type Item from "~/Types/Item";
-import { mouseItem } from "../MouseFollower/MouseFollower";
+import { hoveredSlot, mouseItem } from "../MouseFollower/MouseFollower";
 import { renderVar } from "../StorageController/StorageController";
 
 const cellSideLength = 47.4;
@@ -18,6 +19,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 	const [currentMouseItem, setCurrentMouseItem] = useAtom(mouseItem);
 	const [renderBool, SetForceRender] = useAtom(renderVar);
 	const [hovered, setHovered] = useState(false);
+	const [mouseHoveredSlot, setMouseHoveredSlot] = useAtom(hoveredSlot);
 
 	const calcWidth = () => {
 		if (item) {
@@ -40,8 +42,8 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 	};
 
 	const ReportPosition = () => {
-		console.log(`You clicked slot @ (${x},${y}),Item: ${item?.name}`);
-		console.log(item);
+		console.log(`You clicked slot @ (${x},${y}),Item: ${item?.name},Primary: ${isPrimary}`);
+		setMouseHoveredSlot({ x: x, y: y });
 	};
 
 	const SwapWithMouse = () => {
@@ -60,9 +62,23 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 		ForceRender();
 	};
 
+	const checkHovered = () => {
+		if (currentMouseItem === null) {
+			return hovered || item?.hovered;
+		} else if (mouseHoveredSlot) {
+			const dx = x - mouseHoveredSlot.x;
+			const withinX = x >= mouseHoveredSlot.x && dx <= currentMouseItem.width - 1;
+
+			const withinY =
+				y <= mouseHoveredSlot.y + Math.floor(currentMouseItem.length / 2) &&
+				y >= mouseHoveredSlot.y - Math.floor(currentMouseItem.length / 2);
+			return withinX && withinY;
+		}
+	};
+
 	return (
 		<div
-			className={`${hovered || item?.hovered ? "bg-gray-300 bg-opacity-10" : null} ${isPrimary ? "z-20" : "z-10"}`}
+			className={`${checkHovered() ? "bg-gray-300 bg-opacity-10" : null} ${isPrimary ? "z-20" : "z-10"}`}
 			style={{ width: `${cellSideLength}px`, height: `${cellSideLength}px` }}
 			onClick={() => {
 				ReportPosition();
