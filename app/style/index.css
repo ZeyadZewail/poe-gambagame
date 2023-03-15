@@ -61,11 +61,19 @@
     font-size: 0.8em;
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     overflow-y: auto;
-    height: 77vh;
+    height: 75vh;
 }
 
 .lifeforce {
     padding-left: 20px;
+}
+
+.tradewindow .searchbarInputWrapper {
+    min-height: 40px;
+    min-width: 100%;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
 }
 
 .tradewindow .searchbar .buttons {
@@ -135,7 +143,7 @@
     padding: 5px 18px;
     margin-left: 40px;
     margin-bottom: 5px;
-    width: 98%;
+    width: 97%;
     border: 1px solid #000;
     border-radius: 0;
     background: #1e2124;
@@ -216,6 +224,7 @@
     line-height: 1em;
     display: flex;
     flex-wrap: wrap;
+    gap: 50px;
 }
 
 .tradewindow .itemSelection .lifeforce {
@@ -251,16 +260,19 @@
 @media screen and (max-width: 600px) {
     .tradewindow .itemSelection .divcards .cards {
         zoom: 0.55;
-        grid-template-columns: 50% 50%;
+        display: flex;
+        flex-wrap: wrap;
     }
 }
+
 .tradewindow .searchButton {
-    padding: 15px 0 0;
+    padding: 15px 0 15px;
     width: 20%;
     margin: 0 auto;
     display: block;
     box-sizing: border-box;
 }
+
 .tradewindow .searchButton .search-btn {
     position: relative;
     padding: 6px;
@@ -420,4 +432,26 @@
 
 .divination {
     color: #0ebaff;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #8d8689 #000000;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #8d8689;
+    border-radius: 10px;
+    border: 3px solid #000000;
 }

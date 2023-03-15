@@ -56,15 +56,17 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
                         <span className="resetButton" onClick={resetSearch}>Reset</span>
                     </li>
                 </ul>
-                <div className="searchbarInput">
-                    <div className="inputField">
-                        <input
-                            className="searchField"
-                            ref={inputRef}
-                            value={searchValue}
-                            placeholder={"Search Items..."}
-                            onChange={(e) => setSearchValue(e.target.value)}
-                        />
+                <div className="searchbarInputWrapper">
+                    <div className="searchbarInput">
+                        <div className="inputField">
+                            <input
+                                className="searchField"
+                                ref={inputRef}
+                                value={searchValue}
+                                placeholder={"Search Items..."}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
