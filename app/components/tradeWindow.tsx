@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import tradeLogo from "~/assets/tradelogo.png"
 import vividlf from "~/assets/vividlf.png"
+import { Region } from "~/Types/Region";
+import TradeItem from "~/Types/TradeItem";
 import DivCardGenerator from "./divCardGenerator";
+import TradeListing from "./tradeListing";
 
 
 export interface TradeWindowProps {
@@ -13,6 +16,15 @@ export interface TradeWindowProps {
 const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
     const [selectedCard, setSelectedCard] = useState("");
     const [searchValue, setSearchValue] = useState("");
+    const searched = true;
+    const defaultTradeItem: TradeItem = {
+        itemName: "Example Item",
+        price: 8.5,
+        stock: 2,
+        sellerName: "John Doe",
+        region: Region.English,
+        afk: false
+    }
 
     const handleCardClick = (itemName: string) => {
         if (itemName === selectedCard) {
@@ -40,6 +52,9 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
     return (
         <div className="tradewindow">
             <div className="header">
+                <div className="menuButtons">
+                    <button>Back to Game</button>
+                </div>
                 <div className="logo">
                     <img src={tradeLogo} />
                 </div>
@@ -70,25 +85,30 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
                     </div>
                 </div>
             </div>
-            <div className="itemSelection">
-                <div className={`lifeforce ${selectedCard === "lifeforce" ? "selectedItem" : ""}`} onClick={() => handleCardClick("lifeforce")}>
-                    <img src={vividlf} />
-                    Vivid Crystallised Lifeforce
-                </div>
-                <div className="divcards">
-                    <div className="options"></div>
-                    <div className="cards">
-                        {filteredDivCards.map(divcard => (
-                            <div className={`card ${selectedCard === divcard.itemName ? "selectedItem" : ""}`} onClick={() => handleCardClick(divcard.itemName)} key={divcard.itemName}>
-                                <DivCardGenerator divcard={divcard} />
+            {!searched && (
+                <div>
+                    <div className="itemSelection">
+                        <div className={`lifeforce ${selectedCard === "lifeforce" ? "selectedItem" : ""}`} onClick={() => handleCardClick("lifeforce")}>
+                            <img src={vividlf} />
+                            Vivid Crystallised Lifeforce
+                        </div>
+                        <div className="divcards">
+                            <div className="options"></div>
+                            <div className="cards">
+                                {filteredDivCards.map(divcard => (
+                                    <div className={`card ${selectedCard === divcard.itemName ? "selectedItem" : ""}`} onClick={() => handleCardClick(divcard.itemName)} key={divcard.itemName}>
+                                        <DivCardGenerator divcard={divcard} />
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                        </div>
+                    </div>
+                    <div className="searchButton">
+                        <button className="search-btn">Search</button>
                     </div>
                 </div>
-            </div>
-            <div className="searchButton">
-                <button className="search-btn">Search</button>
-            </div>
+            )}
+            <TradeListing tradeItem={defaultTradeItem} />
         </div>
     )
 }
