@@ -89,7 +89,9 @@ const TradeListing: React.FC<TradeListingProps> = ({ tradeItem }) => {
                         </div>
                     </div>
                     <div className="Contact Options">
-                        <span className="status status-online">Online</span>
+                        {tradeItem.afk ? (<span className="status status-online">Online</span>) :
+                            (<span className="status status-afk">AFK</span>)}
+
                         <button className="directWhisper">Direct Whisper</button>
                     </div>
                 </div>

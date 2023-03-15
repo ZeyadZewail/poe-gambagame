@@ -16,14 +16,14 @@ export interface TradeWindowProps {
 const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
     const [selectedCard, setSelectedCard] = useState("");
     const [searchValue, setSearchValue] = useState("");
-    const searched = true;
+    const [searched, setSearched] = useState(true);
     const defaultTradeItem: TradeItem = {
         itemName: "The Doctor",
         price: 17,
         stock: 2,
         sellerName: "User1",
         region: Region.English,
-        afk: false,
+        afk: true,
         lifeForce: false
     }
     const defaultTradeItemLifeForce: TradeItem = {
@@ -48,6 +48,7 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
     const resetSearch = () => {
         setSelectedCard("");
         setSearchValue("");
+        setSearched(false);
     }
     const filteredDivCards = divcards.filter((divcard: any) =>
         divcard.itemName.toLowerCase().includes(searchValue.toLowerCase())
@@ -95,7 +96,7 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
                     </div>
                 </div>
             </div>
-            {!searched && (
+            {!searched ? (
                 <div>
                     <div className="itemSelection">
                         <div className={`lifeforce ${selectedCard === "lifeforce" ? "selectedItem" : ""}`} onClick={() => handleCardClick("lifeforce")}>
@@ -117,14 +118,24 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
                         <button className="search-btn">Search</button>
                     </div>
                 </div>
+            ) : (
+                <div className="searchListings">
+                    <TradeListing tradeItem={defaultTradeItem} />
+                    <TradeListing tradeItem={defaultTradeItemLifeForce} />
+                    <TradeListing tradeItem={defaultTradeItem} />
+                    <TradeListing tradeItem={defaultTradeItemLifeForce} />
+                    <TradeListing tradeItem={defaultTradeItem} />
+                    <TradeListing tradeItem={defaultTradeItemLifeForce} />
+                    <TradeListing tradeItem={defaultTradeItem} />
+                    <TradeListing tradeItem={defaultTradeItem} />
+                    <TradeListing tradeItem={defaultTradeItem} />
+                    <TradeListing tradeItem={defaultTradeItem} />
+                    <TradeListing tradeItem={defaultTradeItem} />
+                    <TradeListing tradeItem={defaultTradeItem} />
+                    <TradeListing tradeItem={defaultTradeItem} />
+                    <TradeListing tradeItem={defaultTradeItem} />
+                </div>
             )}
-            <TradeListing tradeItem={defaultTradeItem} />
-            <TradeListing tradeItem={defaultTradeItemLifeForce} />
-            <TradeListing tradeItem={defaultTradeItem} />
-            <TradeListing tradeItem={defaultTradeItemLifeForce} />
-            <TradeListing tradeItem={defaultTradeItem} />
-            <TradeListing tradeItem={defaultTradeItemLifeForce} />
-            <TradeListing tradeItem={defaultTradeItem} />
         </div>
     )
 }

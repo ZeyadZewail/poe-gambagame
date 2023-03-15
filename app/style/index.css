@@ -14,6 +14,7 @@
     position: relative;
     min-width: 512px;
     max-width: 1520px;
+    min-height: 98vh;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 1.3em;
     line-height: 1.3;
@@ -71,6 +72,10 @@
     height: 70vh;
 }
 
+.tradewindow .searchListings{
+    overflow-y: auto;
+    height: 77vh;
+}
 
 .tradewindow .searchbarInputWrapper {
     min-height: 40px;
@@ -647,7 +652,10 @@
     background-color: #309630;
     border: 1px solid #4dc64d;
 }
-
+.tradeListing .details .status-afk {
+    background-color: #c45f00;
+    border: 1px solid #ff8512;
+}
 .tradeListing .details .status {
     margin-right: auto;
     color: #e2e2e2;
@@ -660,7 +668,6 @@
     text-align: center;
     vertical-align: middle;
     touch-action: manipulation;
-    cursor: pointer;
     background-image: none;
     white-space: nowrap;
     user-select: none;
