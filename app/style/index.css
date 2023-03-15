@@ -13,6 +13,7 @@
     margin: 0;
     position: relative;
     min-width: 512px;
+    max-width: 1520px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 1.3em;
     line-height: 1.3;
@@ -70,9 +71,6 @@
     height: 70vh;
 }
 
-.lifeforce {
-    padding-left: 20px;
-}
 
 .tradewindow .searchbarInputWrapper {
     min-height: 40px;
@@ -221,7 +219,7 @@
 }
 
 .tradewindow .itemSelection .divcards {
-    padding-left: 20px;
+    margin-left: 35px;
     clear: left;
 }
 
@@ -236,6 +234,7 @@
 .tradewindow .itemSelection .lifeforce {
     border: 1px solid #1e2124;
     margin: 10px;
+    margin-left: 35px;
 }
 
 .tradewindow .itemSelection .lifeforce:hover {
@@ -302,6 +301,50 @@
     border-radius: 0px;
     user-select: none;
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.tradeListing i {
+    font-style: italic;
+}
+
+.tradeListing i.flag {
+    display: inline-block;
+    height: 15px;
+    width: 20px;
+    vertical-align: text-top;
+    background: url("~/assets/flags/GB.png");
+}
+
+.tradeListing i.flag.br {
+    background: url("~/assets/flags/BR.png");
+}
+
+.tradeListing i.flag.ru {
+    background: url("~/assets/flags/RU.png");
+}
+
+.tradeListing i.flag.th {
+    background: url("~/assets/flags/TH.png");
+}
+
+.tradeListing i.flag.de {
+    background: url("~/assets/flags/DE.png");
+}
+
+.tradeListing i.flag.fr {
+    background: url("~/assets/flags/FR.png");
+}
+
+.tradeListing i.flag.es {
+    background: url("~/assets/flags/ES.png");
+}
+
+.tradeListing i.flag.jp {
+    background: url("~/assets/flags/JP.png");
+}
+
+.tradeListing i.flag.kr {
+    background: url("~/assets/flags/KR.png");
 }
 
 .divCard {
@@ -437,6 +480,233 @@
 
 .divination {
     color: #0ebaff;
+}
+
+.tradeListing {
+    line-height: 1.3;
+    align-items: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    justify-content: center;
+    padding: 8px 0;
+    margin: 0;
+    opacity: 1;
+    display: flex;
+    position: relative;
+    transition: opacity .5s;
+    background: rgba(32, 32, 32, 0.8) !important;
+    box-sizing: border-box;
+    color: #a38d6d;
+    font-size: 0.8em;
+}
+
+.tradeListing .details {
+    margin-top: auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.tradeListing .left {
+    position: initial;
+    width: 25%;
+    float: left;
+    min-height: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.tradeListing .middle {
+    width: 45%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.tradeListing .right {
+    position: initial;
+    float: left;
+    width: 25%;
+    min-height: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.tradeListing .price {
+    margin: 0 10px;
+}
+
+.tradeListing .details .price {
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.2em;
+}
+
+.tradeListing .details .price .per-have {
+    height: 18px;
+    line-height: 18px;
+    font-size: .65em;
+    text-align: left;
+}
+
+.tradeListing .details .price .per-want {
+    height: 18px;
+    line-height: 18px;
+    font-size: .65em;
+    text-align: left;
+}
+
+.tradeListing .details .amount {
+    color: #a4a4a4;
+}
+
+.tradeListing .details .currency-text {
+    color: #aa9e82;
+}
+
+.tradeListing .middle.details .price {
+    display: flex;
+    align-items: center;
+}
+
+.tradeListing .details .price .price-left {
+    text-align: right;
+    padding: 0 8px;
+    flex: 1;
+}
+
+.tradeListing .details .price>span {
+    display: block;
+    text-decoration: none;
+    padding: 8px;
+}
+
+.tradeListing .details .price .price-left .price-block {
+    height: 32px;
+    line-height: 32px;
+}
+
+.tradeListing .details .price .price-block {
+    font-size: 0.8em;
+}
+
+.tradeListing .details .price img {
+    height: 32px;
+    vertical-align: middle;
+    border: none;
+}
+
+.tradeListing .details .price .price-right {
+    text-align: left;
+    flex: 1;
+    padding: 0 8px;
+}
+
+.tradeListing .details .info {
+    padding: 0;
+    margin: 0;
+    color: #fff2c7;
+}
+
+.tradeListing .profile-link {
+    display: inline-block;
+    line-height: 15px;
+    color: #e9cf9f;
+    font-size: 0.7em;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.tradeListing .pull-right {
+    float: right !important;
+}
+
+.tradeListing small {
+    font-size: 0.7em;
+}
+
+.tradeListing .details .info .stock {
+    width: fit-content;
+    margin: 0 2px;
+    padding: 2px 4px;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #a38d6d;
+    font-size: 0.7em;
+}
+
+.tradeListing .details .info .stock span {
+    color: #a4a4a4;
+}
+
+.tradeListing .details .status-online {
+    background-color: #309630;
+    border: 1px solid #4dc64d;
+}
+
+.tradeListing .details .status {
+    margin-right: auto;
+    color: #e2e2e2;
+    padding: 1px 5px;
+    font-size: 0.7em;
+    line-height: 1.6em;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    user-select: none;
+    font-family: inherit;
+    text-transform: none;
+    overflow: visible;
+    margin: 0;
+}
+
+.tradeListing .directWhisper {
+    margin-right: auto;
+    color: rgb(233, 207, 159);
+    padding: 1px 5px;
+    font-size: 0.7em;
+    line-height: 1.6em;
+    border-radius: 0px;
+    background-color: #222;
+    border-color: #444;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid #000;
+    white-space: nowrap;
+    user-select: none;
+    font-family: inherit;
+    text-transform: none;
+    overflow: visible;
+    margin: 0;
+}
+
+.tradeListing .directWhisper:hover {
+    background-color: #090909;
+    border-color: #252525;
+}
+
+.tradeListing .details .per-want img {
+    height: 16px;
+}
+
+.tradeListing .details .per-have img {
+    height: 16px;
 }
 
 /* ===== Scrollbar CSS ===== */

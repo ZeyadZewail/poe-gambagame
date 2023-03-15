@@ -6,5 +6,6 @@ interface TradeItem {
     sellerName: string;
     afk: boolean;
     region: Region;
+    lifeForce:boolean;
 }
 export default TradeItem;

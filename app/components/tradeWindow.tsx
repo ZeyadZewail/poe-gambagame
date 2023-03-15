@@ -18,12 +18,22 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
     const [searchValue, setSearchValue] = useState("");
     const searched = true;
     const defaultTradeItem: TradeItem = {
-        itemName: "Example Item",
-        price: 8.5,
+        itemName: "The Doctor",
+        price: 17,
         stock: 2,
-        sellerName: "John Doe",
+        sellerName: "User1",
         region: Region.English,
-        afk: false
+        afk: false,
+        lifeForce: false
+    }
+    const defaultTradeItemLifeForce: TradeItem = {
+        itemName: "Vivid Crystallised Lifeforce",
+        price: 1,
+        stock: 6500,
+        sellerName: "User2",
+        region: Region.Deutsch,
+        afk: false,
+        lifeForce: true
     }
 
     const handleCardClick = (itemName: string) => {
@@ -108,6 +118,12 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
                     </div>
                 </div>
             )}
+            <TradeListing tradeItem={defaultTradeItem} />
+            <TradeListing tradeItem={defaultTradeItemLifeForce} />
+            <TradeListing tradeItem={defaultTradeItem} />
+            <TradeListing tradeItem={defaultTradeItemLifeForce} />
+            <TradeListing tradeItem={defaultTradeItem} />
+            <TradeListing tradeItem={defaultTradeItemLifeForce} />
             <TradeListing tradeItem={defaultTradeItem} />
         </div>
     )
