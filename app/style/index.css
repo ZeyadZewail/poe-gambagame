@@ -224,7 +224,7 @@
     line-height: 1em;
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 20px 4.5%;
 }
 
 .tradewindow .itemSelection .lifeforce {
@@ -239,7 +239,6 @@
 
 .tradewindow .itemSelection .divcards .card {
     border: 1px solid #1e2124;
-    margin: 10px;
     max-width: 360px;
 }
 
