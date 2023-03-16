@@ -19,7 +19,7 @@ export default function generateTradeListings(item: string, traders: Trader[]): 
     return tradeListings;
 }
 
-function generateTradeItem(item: string, itemPrice:number, trader: Trader): TradeItem {
+function generateTradeItem(item: string, itemPrice: number, trader: Trader): TradeItem {
     let defaultTradeItem: TradeItem = {
         itemName: item,
         price: generateItemPrice(itemPrice, trader.type),
@@ -107,6 +107,8 @@ function generateItemStock(lifeforce: boolean, type: TraderType): number {
     } else {
         stock = 3;
     }
+    if (type == TraderType.PriceFixer || type == TraderType.Scammer)
+        stock = 1;
     if (type == TraderType.OilPrince)
         stock = Math.floor(Math.random() * 8) + 10;
     return stock;
