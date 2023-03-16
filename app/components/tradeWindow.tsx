@@ -38,8 +38,12 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
         setItemsFound([]);
     }
     const search = () => {
-        itemsFound.push(...generateTradeListings(selectedCard, traders));
-        setSearched(true);
+        if (selectedCard != "") {
+            itemsFound.push(...generateTradeListings(selectedCard, traders));
+            setSearched(true);
+        } else {
+            alert("Select something first!");
+        }
     }
 
     const filteredDivCards = divcards.filter((divcard: any) =>
@@ -91,7 +95,7 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
             {!searched ? (
                 <div>
                     <div className="itemSelection">
-                        <div className={`lifeforce ${selectedCard === "lifeforce" ? "selectedItem" : ""}`} onClick={() => handleCardClick("lifeforce")}>
+                        <div className={`lifeforce ${selectedCard === "Vivid Crystallised Lifeforce" ? "selectedItem" : ""}`} onClick={() => handleCardClick("Vivid Crystallised Lifeforce")}>
                             <img src={vividlf} />
                             Vivid Crystallised Lifeforce
                         </div>

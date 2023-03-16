@@ -12,25 +12,45 @@ export default function generateTradeListings(item: string, traders: Trader[]): 
     }
     const tradeListings: TradeItem[] = []
     randomTraders.forEach(trader => {
-        let defaultTradeItem = generateTradeItem(item, itemPrice, trader)
+        let defaultTradeItem: TradeItem;
+        if (item == "Vivid Crystallised Lifeforce")
+            defaultTradeItem = generateTradeItemLifeForce(item, trader)
+        else
+            defaultTradeItem = generateTradeItem(item, itemPrice, trader)
         tradeListings.push(defaultTradeItem);
     })
     tradeListings.sort((a, b) => (a.price / a.stock) - (b.price / b.stock));
     return tradeListings;
 }
 
+function generateTradeItemLifeForce(item: string, trader: Trader): TradeItem {
+    let defaultTradeItem: TradeItem = {
+        itemName: item,
+        price: generateLifeForcePrice(trader.type),
+        stock: generateLifeForceStock(trader.type),
+        trader: trader,
+        afk: false,
+        lifeForce: true
+    }
+    defaultTradeItem.stock = parseFloat((defaultTradeItem.price * defaultTradeItem.stock).toFixed(1));
+    if (trader.type == TraderType.PriceFixer) {
+        defaultTradeItem.afk = true;
+    }
+    return defaultTradeItem;
+}
+
 function generateTradeItem(item: string, itemPrice: number, trader: Trader): TradeItem {
     let defaultTradeItem: TradeItem = {
         itemName: item,
         price: generateItemPrice(itemPrice, trader.type),
-        stock: generateItemStock(false, trader.type),
+        stock: generateItemStock(trader.type),
         trader: trader,
-        afk: true,
+        afk: false,
         lifeForce: false
     }
     defaultTradeItem.price = parseFloat((defaultTradeItem.price * defaultTradeItem.stock).toFixed(1));
     if (trader.type == TraderType.PriceFixer) {
-        defaultTradeItem.afk = false;
+        defaultTradeItem.afk = true;
     }
     return defaultTradeItem;
 }
@@ -58,8 +78,57 @@ const priceList: { [key: string]: number } = {
     "The Patient": 0.1
 }
 
-function generateItemPrice(defaultPrice: number, type: TraderType): number {
+function generateLifeForcePrice(type: TraderType): number {
 
+    let price: number;
+    const randomNum = Math.random();
+    if (randomNum < 0.6) {
+        price = 1;
+    } else if (randomNum < 0.75) {
+        price = 2
+    } else if (randomNum < 0.8) {
+        price = 3;
+    } else if (randomNum < 0.85) {
+        price = 4;
+    } else {
+        price = 5;
+    }
+    if (type == TraderType.OilPrince)
+        price = 10;
+    if (type == TraderType.Scammer)
+        price = 1;
+    if (type == TraderType.PriceFixer)
+        price = 1;
+
+    return price;
+
+}
+function generateLifeForceStock(type: TraderType): number {
+    let stock: number;
+    const randomNum = Math.random();
+    if (randomNum < 0.3) {
+        stock = 6000;
+    } else if (randomNum < 0.45) {
+        stock = 5900;
+    }
+    else if (randomNum < 0.55) {
+        stock = 5800;
+    } else if (randomNum < 0.65) {
+        stock = 5700;
+    } else if (randomNum < 0.75) {
+        stock = 5600;
+    } else {
+        stock = 5500;
+    }
+    if (type == TraderType.PriceFixer)
+        stock = 6500;
+    if (type == TraderType.OilPrince || type == TraderType.Scammer)
+        stock = 6000;
+    return stock;
+}
+
+
+function generateItemPrice(defaultPrice: number, type: TraderType): number {
     let price: number = defaultPrice;
     const randomNum = Math.random();
     if (defaultPrice > 3) {
@@ -97,7 +166,7 @@ function generateItemPrice(defaultPrice: number, type: TraderType): number {
 
 }
 
-function generateItemStock(lifeforce: boolean, type: TraderType): number {
+function generateItemStock(type: TraderType): number {
     let stock: number;
     const randomNum = Math.random();
     if (randomNum < 0.7) {
