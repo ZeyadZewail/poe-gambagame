@@ -42,7 +42,8 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
             itemsFound.push(...generateTradeListings(selectedCard, traders));
             setSearched(true);
         } else {
-            alert("Select something first!");
+            itemsFound.push(...generateTradeListings("Vivid Crystallised Lifeforce", traders));
+            setSearched(true);
         }
     }
 
@@ -111,6 +112,7 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
                         </div>
                     </div>
                     <div className="searchButton">
+                        (Please select an item)
                         <button className="search-btn" onClick={search}>Search</button>
                     </div>
                 </div>
