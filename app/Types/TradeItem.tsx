@@ -1,11 +1,10 @@
-import { Region } from "./Region"
+import Trader from "./Trader";
 interface TradeItem {
     itemName: string;
     price: number;
     stock: number;
-    sellerName: string;
+    trader: Trader;
     afk: boolean;
-    region: Region;
     lifeForce:boolean;
 }
 export default TradeItem;

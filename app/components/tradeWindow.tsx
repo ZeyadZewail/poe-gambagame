@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import tradeLogo from "~/assets/tradelogo.png"
 import vividlf from "~/assets/vividlf.png"
+import generateTradeListings, { generateTraders } from "~/helpers/tradersGenerator";
 import { Region } from "~/Types/Region";
 import TradeItem from "~/Types/TradeItem";
+import Trader, { TraderType } from "~/Types/Trader";
+
 import DivCardGenerator from "./divCardGenerator";
 import TradeListing from "./tradeListing";
 
@@ -16,26 +19,9 @@ export interface TradeWindowProps {
 const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
     const [selectedCard, setSelectedCard] = useState("");
     const [searchValue, setSearchValue] = useState("");
-    const [searched, setSearched] = useState(true);
-    const defaultTradeItem: TradeItem = {
-        itemName: "The Doctor",
-        price: 17,
-        stock: 2,
-        sellerName: "User1",
-        region: Region.English,
-        afk: true,
-        lifeForce: false
-    }
-    const defaultTradeItemLifeForce: TradeItem = {
-        itemName: "Vivid Crystallised Lifeforce",
-        price: 1,
-        stock: 6500,
-        sellerName: "User2",
-        region: Region.Deutsch,
-        afk: false,
-        lifeForce: true
-    }
-
+    const [searched, setSearched] = useState(false);
+    const [itemsFound, setItemsFound] = useState<TradeItem[]>([]);
+    const traders: Trader[] = generateTraders();
     const handleCardClick = (itemName: string) => {
         if (itemName === selectedCard) {
             // If the clicked card is already selected, deselect it
@@ -49,7 +35,13 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
         setSelectedCard("");
         setSearchValue("");
         setSearched(false);
+        setItemsFound([]);
     }
+    const search = () => {
+        itemsFound.push(...generateTradeListings(selectedCard, traders));
+        setSearched(true);
+    }
+
     const filteredDivCards = divcards.filter((divcard: any) =>
         divcard.itemName.toLowerCase().includes(searchValue.toLowerCase())
     );
@@ -115,25 +107,12 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards }) => {
                         </div>
                     </div>
                     <div className="searchButton">
-                        <button className="search-btn">Search</button>
+                        <button className="search-btn" onClick={search}>Search</button>
                     </div>
                 </div>
             ) : (
                 <div className="searchListings">
-                    <TradeListing tradeItem={defaultTradeItem} />
-                    <TradeListing tradeItem={defaultTradeItemLifeForce} />
-                    <TradeListing tradeItem={defaultTradeItem} />
-                    <TradeListing tradeItem={defaultTradeItemLifeForce} />
-                    <TradeListing tradeItem={defaultTradeItem} />
-                    <TradeListing tradeItem={defaultTradeItemLifeForce} />
-                    <TradeListing tradeItem={defaultTradeItem} />
-                    <TradeListing tradeItem={defaultTradeItem} />
-                    <TradeListing tradeItem={defaultTradeItem} />
-                    <TradeListing tradeItem={defaultTradeItem} />
-                    <TradeListing tradeItem={defaultTradeItem} />
-                    <TradeListing tradeItem={defaultTradeItem} />
-                    <TradeListing tradeItem={defaultTradeItem} />
-                    <TradeListing tradeItem={defaultTradeItem} />
+                    {itemsFound.map(itemListing => (<TradeListing tradeItem={itemListing} key={itemListing.trader.accountName} />))}
                 </div>
             )}
         </div>

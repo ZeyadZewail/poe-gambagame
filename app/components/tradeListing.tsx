@@ -9,7 +9,10 @@ const TradeListing: React.FC<TradeListingProps> = ({ tradeItem }) => {
     var divOnePrice = parseFloat((1 / itemOnePrice).toFixed(3));
     if (tradeItem.stock > tradeItem.price) {
         itemOnePrice = parseFloat((tradeItem.price / tradeItem.stock).toFixed(5));
-        divOnePrice = tradeItem.stock / tradeItem.price;
+        if (tradeItem.lifeForce)
+            divOnePrice = tradeItem.stock / tradeItem.price;
+        else
+            divOnePrice = parseFloat((tradeItem.stock / tradeItem.price).toFixed(4));
     }
     return (
         <div className="tradeListing">
@@ -79,7 +82,7 @@ const TradeListing: React.FC<TradeListingProps> = ({ tradeItem }) => {
                 <div className="details">
                     <div className="info">
                         <span className="pull-right">
-                            <span className="profile-link">{tradeItem.sellerName}&nbsp;<i title={`flag ${tradeItem.region}`} className={`flag ${tradeItem.region}`}></i></span>
+                            <span className="profile-link">{tradeItem.trader.accountName}&nbsp;<i title={`flag ${tradeItem.trader.region}`} className={`flag ${tradeItem.trader.region}`}></i></span>
                         </span>
                         <div className="stock">
                             Stock:&nbsp;
