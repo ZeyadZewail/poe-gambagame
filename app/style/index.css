@@ -164,6 +164,7 @@
     height: 32px;
     vertical-align: middle;
     border: none;
+    display:inline;
 }
 
 .hortistation .crafts .craft:hover {
@@ -455,6 +456,35 @@
 
 .tradewindow .itemSelection .selectedItem:hover {
     background-color: #2d3136 !important;
+}
+
+@media screen and (max-width: 1920px) {
+    .hortistation {
+        transform: scale(0.85);
+    }
+
+    .inventoryWindow {
+        transform: scale(0.85);
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    .hortistation {
+        transform: scale(0.65);
+    }
+
+    .inventoryWindow {
+        transform: scale(0.65);
+    }
+}
+@media screen and (max-width: 1440px) {
+    .hortistation {
+        transform: scale(0.55);
+    }
+
+    .inventoryWindow {
+        transform: scale(0.55);
+    }
 }
 
 @media screen and (max-width: 600px) {
