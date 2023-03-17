@@ -53,7 +53,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 	};
 
 	const ReportPosition = () => {
-		console.log(`You clicked slot @ (${x},${y}),Item: ${item?.name},Primary: ${isPrimary}`);
+		// console.log(`You clicked slot @ (${x},${y}),Item: ${item?.name},Primary: ${isPrimary}`);
 		SetMouseHoveredSlot({ x: x, y: y, parentInventory: parentInventory });
 	};
 

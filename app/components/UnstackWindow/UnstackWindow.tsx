@@ -13,20 +13,23 @@ const unStackWindowItemParentVar = atom<ItemInventory | null>(null);
 const UnStackWindowLocationVar = atom({ x: 0, y: 0 });
 export { unStackWindowItemVar, UnStackWindowLocationVar, unStackWindowItemParentVar };
 
+const starterCount = 1;
+
 const UnstackWindow = () => {
 	const [item] = useAtom(unStackWindowItemVar);
 	const [parentInventory] = useAtom(unStackWindowItemParentVar);
 	const [location] = useAtom(UnStackWindowLocationVar);
-	const [value, SetValue] = useState<number>(0);
+	const [value, SetValue] = useState<number>(starterCount);
 	const [currentMouseItem, SetCurrentMouseItem] = useAtom(mouseItem);
 	const [spawnUnstack, SetSpawnUnstack] = useAtom(unStackVar);
 
 	useEffect(() => {
-		SetValue(0);
+		SetValue(starterCount);
 	}, [item]);
 
 	const HandleOk = () => {
-		if (item != null) {
+		SetSpawnUnstack(false);
+		if (item != null && value != 0) {
 			SetCurrentMouseItem({ ...item, count: value });
 			if (item.count - value === 0) {
 				if (parentInventory != null) {
@@ -38,7 +41,6 @@ const UnstackWindow = () => {
 			} else {
 				item.count -= value;
 			}
-			SetSpawnUnstack(false);
 		}
 	};
 
@@ -54,12 +56,12 @@ const UnstackWindow = () => {
 			}}
 			onWheel={(e) => {
 				if (e.deltaY < 0) {
-					console.log("Up");
+					// console.log("Up");
 					if (item) {
 						SetValue(Math.min(item.count, value + 1));
 					}
 				} else {
-					console.log("Down");
+					// console.log("Down");
 					if (item) {
 						SetValue(Math.max(0, value - 1));
 					}

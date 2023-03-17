@@ -20,10 +20,6 @@ const MouseFollower = () => {
 	const [currentItem] = useAtom(mouseItem);
 	const mousePosition = useMousePosition();
 
-	useEffect(() => {
-		console.log(currentItem);
-	}, [currentItem]);
-
 	const calcWidth = () => {
 		if (currentItem) {
 			return cellSideLength * currentItem.width;
