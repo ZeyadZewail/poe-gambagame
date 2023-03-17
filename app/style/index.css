@@ -12,12 +12,56 @@
     font-style: normal;
 }
 
+.hideoutWindow {
+    background: url('~/assets/hideout.png') no-repeat center center fixed;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    gap: 100px;
+    align-items: top;
+}
+
+.inventoryWindow {
+    text-align: center;
+    width: 635px;
+    height: 770px;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: relative;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.inventoryWindow .frame {
+    z-index: 0;
+    position: absolute;
+    top: 0px;
+    width: 635px;
+    height: 770px;
+    background-image: url("~/assets/inventoryframe.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .hortistation {
     text-align: center;
     width: 1160px;
     height: 857px;
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: relative;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
 }
 
 .hortistation .frame {
@@ -56,26 +100,80 @@
     height: 50px;
     width: 160px;
 }
-.hortistation .button .craftButton{
+
+.hortistation .button .craftButton {
     font-family: "Fontin Smallcaps";
-    background-color:rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
     background-image: url("~/assets/buttons/horti_active.png");
     background-size: cover;
     background-repeat: no-repeat;
     width: 160px;
     height: 50px;
     border: 0px;
-    padding:0px;
-    margin:0;
-    color:#9dadd2;
+    padding: 0px;
+    margin: 0;
+    color: #9dadd2;
     font-size: 24px;
 }
-.hortistation .button .craftButton:active{
+
+.hortistation .button .craftButton:active {
     background-image: url("~/assets/buttons/horti_disable.png");
 }
-.hortistation .button .craftButton:hover{
+
+.hortistation .button .craftButton:hover {
     background-image: url("~/assets/buttons/horti_hover.png");
 }
+
+.hortistation .crafts {
+    position: absolute;
+    left: 100px;
+    top: 200px;
+    height: 550px;
+    width: 625px;
+    overflow-y: auto;
+}
+
+.hortistation .crafts .craft {
+    background-image: url("~/assets/horti/horti_craftnormal.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 92px;
+    width: 625px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.hortistation .crafts .craft .text {
+    color: #7f7f7f;
+    font-size: 21px;
+    text-align: left;
+    font-family: "Fontin Regular";
+    padding: 5px;
+    width: 80%;
+}
+
+.hortistation .crafts .craft .cost {
+    padding-top: 50px;
+    color: #dedcfe;
+    font-size: 18px;
+}
+
+.hortistation .crafts .craft .cost img {
+    height: 32px;
+    vertical-align: middle;
+    border: none;
+}
+
+.hortistation .crafts .craft:hover {
+    background-image: url("~/assets/horti/horti_crafthover.png");
+}
+
+.hortistation .crafts .craft:active {
+    background-image: url("~/assets/horti/horti_craftactive.png");
+}
+
 
 .hortistation .itemSlot {
     position: absolute;
@@ -83,7 +181,6 @@
     top: 275px;
     height: 260px;
     width: 135px;
-    border: 1px solid yellow;
 }
 
 .hortistation .lifeforce {
