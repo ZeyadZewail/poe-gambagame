@@ -5,6 +5,101 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Fontin Regular';
+    src: url('../fonts/FontinRegular/fontin-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.hortistation {
+    text-align: center;
+    width: 1160px;
+    height: 857px;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: relative;
+}
+
+.hortistation .frame {
+    z-index: 0;
+    position: absolute;
+    top: 0px;
+    width: 1160px;
+    height: 857px;
+    background-image: url("~/assets/horticraftstation.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+.hortistation .topbar {
+    position: absolute;
+    left: 304px;
+    top: 99px;
+    height: 45px;
+    width: 250px;
+    line-height: 24px;
+}
+
+.hortistation .topbar .text {
+    font-family: "Fontin Smallcaps";
+    font-weight: lighter;
+    color: #000;
+    font-size: 34px;
+    font-stretch: expanded;
+}
+
+.hortistation .button {
+    position: absolute;
+    left: 824px;
+    top: 568px;
+    height: 50px;
+    width: 160px;
+}
+.hortistation .button .craftButton{
+    font-family: "Fontin Smallcaps";
+    background-color:rgba(0, 0, 0, 0);
+    background-image: url("~/assets/buttons/horti_active.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 160px;
+    height: 50px;
+    border: 0px;
+    padding:0px;
+    margin:0;
+    color:#9dadd2;
+    font-size: 24px;
+}
+.hortistation .button .craftButton:active{
+    background-image: url("~/assets/buttons/horti_disable.png");
+}
+.hortistation .button .craftButton:hover{
+    background-image: url("~/assets/buttons/horti_hover.png");
+}
+
+.hortistation .itemSlot {
+    position: absolute;
+    left: 836px;
+    top: 275px;
+    height: 260px;
+    width: 135px;
+    border: 1px solid yellow;
+}
+
+.hortistation .lifeforce {
+    position: absolute;
+    left: 1086px;
+    top: 324px;
+    height: 60px;
+    width: 60px;
+}
+
+.hortistation .lifeforce .text {
+    font-size: 18px;
+    padding-top: 18px;
+    color: white
+}
+
 .tradewindow {
     z-index: 999;
     position: relative;
@@ -72,7 +167,7 @@
     height: 70vh;
 }
 
-.tradewindow .searchListings{
+.tradewindow .searchListings {
     overflow-y: auto;
     height: 77vh;
 }
@@ -651,10 +746,12 @@
     background-color: #309630;
     border: 1px solid #4dc64d;
 }
+
 .tradeListing .details .status-afk {
     background-color: #c45f00;
     border: 1px solid #ff8512;
 }
+
 .tradeListing .details .status {
     margin-right: auto;
     color: #e2e2e2;
