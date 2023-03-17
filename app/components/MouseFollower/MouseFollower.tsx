@@ -55,6 +55,18 @@ const MouseFollower = () => {
       {currentItem != null ? (
         <img src={currentItem.imgSrc} className="z-30" alt="grid" />
       ) : null}
+
+      {currentItem != null && currentItem.count > 1 ? (
+        <div
+          className={`relative bottom-[105%] left-[7%] text-s stroke-black ${
+            currentItem.count == currentItem.maxStack
+              ? "text-blue-600"
+              : "text-white"
+          }`}
+        >
+          {currentItem.count}
+        </div>
+      ) : null}
     </div>
   );
 };

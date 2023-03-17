@@ -9,8 +9,8 @@ class ItemInventory {
   constructor(length: number, width: number, items: Item[] = []) {
     this.length = length;
     this.width = width;
-    this.items = items.map((item, index) => {
-      return { ...item, index: index };
+    this.items = items.map((item) => {
+      return { ...item };
     });
   }
 

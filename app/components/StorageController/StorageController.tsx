@@ -17,6 +17,8 @@ const testItem: Item = {
   x: 0,
   y: 0,
   hovered: false,
+  maxStack: 8,
+  count: 5,
 };
 
 const mageblood: Item = {
@@ -25,8 +27,10 @@ const mageblood: Item = {
   width: 2,
   length: 1,
   x: 1,
-  y: 0,
+  y: 2,
   hovered: false,
+  maxStack: 1,
+  count: 1,
 };
 
 const farrulsfur: Item = {
@@ -35,8 +39,10 @@ const farrulsfur: Item = {
   width: 2,
   length: 3,
   x: 3,
-  y: 0,
+  y: 2,
   hovered: false,
+  maxStack: 1,
+  count: 1,
 };
 
 const StorageController = () => {
@@ -45,7 +51,9 @@ const StorageController = () => {
   return (
     <div className="w-full h-screen flex gap-8">
       <MouseFollower />
-      <Inventory StarterItems={[testItem, mageblood, farrulsfur]} />
+      <Inventory
+        StarterItems={[testItem, { ...testItem, x: 1 }, mageblood, farrulsfur]}
+      />
       <Inventory StarterItems={[]} />
     </div>
   );

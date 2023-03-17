@@ -1,3 +1,4 @@
+import { readConfig } from "@remix-run/dev/dist/config";
 import { useAtom } from "jotai";
 import type { FC } from "react";
 import { useState } from "react";
@@ -75,6 +76,20 @@ const SlotCell: FC<SlotInterface> = ({
         setCurrentMouseItem(null);
       }
     } else if (currentMouseItem != null && item != null) {
+      if (
+        item.name === currentMouseItem.name &&
+        item.maxStack > 1 &&
+        item.count < item.maxStack
+      ) {
+        const spaceToTake = item.maxStack - item.count;
+        const possibleToGive = Math.min(spaceToTake, currentMouseItem.count);
+        const remainder = currentMouseItem.count - possibleToGive;
+        item.count += possibleToGive;
+        remainder == 0
+          ? setCurrentMouseItem(null)
+          : (currentMouseItem.count = remainder);
+      }
+
       // if (CheckViableForItem(x, y, currentMouseItem)) {
       // 	//temp for holding current item
       // 	const temp: Item = item;
@@ -201,6 +216,15 @@ const SlotCell: FC<SlotInterface> = ({
           }
         >
           {isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
+        </div>
+      ) : null}
+      {item != null && item.count > 1 ? (
+        <div
+          className={`relative bottom-[105%] left-[7%] text-s stroke-black ${
+            item.count == item.maxStack ? "text-blue-600" : "text-white"
+          }`}
+        >
+          {item.count}
         </div>
       ) : null}
     </div>
