@@ -1,0 +1,288 @@
+[
+    {
+        "itemName": "House of Mirrors",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/HouseOfMirrors.png",
+        "itemFlavourText": "What do you see in the mirror?",
+        "itemStackSize": "9",
+        "itemReward": [
+            {
+                "currencyitem": "Mirror of Kalandra"
+            }
+        ]
+    },
+    {
+        "itemName": "The Apothecary",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/TheApothecary.png",
+        "itemFlavourText": "\"You seek the power of my strongest potions, but the price will be far higher than you can imagine.\"",
+        "itemStackSize": "5",
+        "itemReward": [
+            {
+                "uniqueitem": "Mageblood"
+            }
+        ]
+    },
+    {
+        "itemName": "The Price of Devotion",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/ThePriceOfDevotion.png",
+        "itemFlavourText": "Unbeknown to Atziri's finest thaumaturgists, their loyalty would require far greater devotion than mere research.",
+        "itemStackSize": "7",
+        "itemReward": [
+            {
+                "uniqueitem": "Mageblood"
+            },
+            {
+                "br": true
+            },
+            {
+                "default": "Quality:"
+            },
+            {
+                "augmented": "+20%"
+            },
+            {
+                "br": true
+            },
+            {
+                "corrupted": "Two-Implicit"
+            },
+            {
+                "br": true
+            },
+            {
+                "corrupted": "Corrupted"
+            }
+        ]
+    },
+    {
+        "itemName": "Unrequited Love",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/UnrequitedLove.png",
+        "itemFlavourText": "The pale flame of his heart disappeared in his azure reflection.\nThe work of a life.\nAmbitious, and unfinished.",
+        "itemStackSize": "16",
+        "itemReward": [
+            {
+                "currencyitem": "19x Mirror Shard"
+            }
+        ]
+    },
+    {
+        "itemName": "The Insane Cat",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/TheInsaneCat.png",
+        "itemFlavourText": "One person's madness is another person's reality.",
+        "itemStackSize": "9",
+        "itemReward": [
+            {
+                "uniqueitem": "Mageblood"
+            },
+            {
+                "br": true
+            },
+            {
+                "default": "Item Level:"
+            },
+            {
+                "normal": "84"
+            },
+            {
+                "br": true
+            },
+            {
+                "corrupted": "Corrupted"
+            }
+        ]
+    },
+    {
+        "itemName": "The Doctor",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/TheDoctor.png",
+        "itemFlavourText": "\"They said I needed my head examined, but I'd rather just take yours.\" - Klopek the Cannibal",
+        "itemStackSize": "8",
+        "itemReward": [
+            {
+                "uniqueitem": "Headhunter"
+            }
+        ]
+    },
+    {
+        "itemName": "The Demon",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/TheDemon.png",
+        "itemFlavourText": "A man who hears voices may not necessarily be crazy.",
+        "itemStackSize": "10",
+        "itemReward": [
+            {
+                "uniqueitem": "Headhunter"
+            },
+            {
+                "br": true
+            },
+            {
+                "corrupted": "Two-Implicit"
+            },
+            {
+                "br": true
+            },
+            {
+                "corrupted": "Corrupted"
+            }
+        ]
+    },
+    {
+        "itemName": "The Immortal",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/TheImmortal.png",
+        "itemFlavourText": "\"Greetings! Just because you think I'm greedy doesn't mean I'm not willing to share. You'll just have to kill me first.\"\n-Grandmaster Dy'Ness",
+        "itemStackSize": "10",
+        "itemReward": [
+            {
+                "divination": "House of Mirrors"
+            }
+        ]
+    },
+    {
+        "itemName": "The Fiend",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/TheFiend.png",
+        "itemFlavourText": "Your era is now,\nyour power unwavered, \nsoon we will see\nwho the gods truly favoured.",
+        "itemStackSize": "11",
+        "itemReward": [
+            {
+                "uniqueitem": "Headhunter"
+            },
+            {
+                "br": true
+            },
+            {
+                "corrupted": "Corrupted"
+            }
+        ]
+    },
+    {
+        "itemName": "Love Through Ice",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/LoveThroughIce.png",
+        "itemFlavourText": "\"I know one lady for whose sake I will rip out my heart\" \n \n - Derrok, the Dreamer",
+        "itemStackSize": "4",
+        "itemReward": [
+            {
+                "uniqueitem": "Unnatural Instinct"
+            },
+            {
+                "br": true
+            },
+            {
+                "corrupted": "Two-Implicit"
+            },
+            {
+                "br": true
+            },
+            {
+                "corrupted": "Corrupted"
+            }
+        ]
+    },
+    {
+        "itemName": "The Shieldbearer",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/TheShieldbearer.png",
+        "itemFlavourText": "While you grow, I shall be your knight, and you my squire. One day, you shall be the one who stands and defends our home.",
+        "itemStackSize": "8",
+        "itemReward": [
+            {
+                "uniqueitem": "The Squire"
+            }
+        ]
+    },
+    {
+        "itemName": "Choking Guilt",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/ChokingGuilt.png",
+        "itemFlavourText": "As death approached, clarity eluded him. The pain he had wrought surrounded him, dragging him into darkness.",
+        "itemStackSize": "6",
+        "itemReward": [
+            {
+                "uniqueitem": "Stranglegasp"
+            }
+        ]
+    },
+    {
+        "itemName": "Seven Years Bad Luck",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/SevenYearsBadLuck.png",
+        "itemFlavourText": "If enough people believe something to be true, whether or not it is becomes irrelevant.",
+        "itemStackSize": "13",
+        "itemReward": [
+            {
+                "currencyitem": "Mirror Shard"
+            }
+        ]
+    },
+    {
+        "itemName": "The Soul",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/TheSoul.png",
+        "itemFlavourText": "\"Most people only have one. I'm a bit of a hoarder.\"",
+        "itemStackSize": "9",
+        "itemReward": [
+            {
+                "uniqueitem": "Soul Taker"
+            }
+        ]
+    },
+    {
+        "itemName": "The Cheater",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/TheCheater.png",
+        "itemFlavourText": "Sometimes the best way to achieve greatness is to use a shortcut.",
+        "itemStackSize": "3",
+        "itemReward": [
+            {
+                "gemitem": "Level 6 Awakened Support Gem"
+            }
+        ]
+    },
+    {
+        "itemName": "The Nurse",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/TheNurse.png",
+        "itemFlavourText": "We tried to tell him to get his head checked.",
+        "itemStackSize": "8",
+        "itemReward": [
+            {
+                "divination": "The Doctor"
+            }
+        ]
+    },
+    {
+        "itemName": "The Sephirot",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/TheSephirot.png",
+        "itemFlavourText": "If the path to divinity were simple, we'd all be gods.",
+        "itemStackSize": "11",
+        "itemReward": [
+            {
+                "currencyitem": "10x Divine Orb"
+            }
+        ]
+    },
+    {
+        "itemName": "Divine Beauty",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/DivineBeauty.png",
+        "itemFlavourText": "In a land far away lived \na maiden most fair.\nHer smile melted the coldest\nof hearts, her song made\nmen and beast cry, \nher beauty unparalleled;\nDivine.",
+        "itemStackSize": "12",
+        "itemReward": [
+            {
+                "currencyitem": "7x Divine Orb"
+            }
+        ]
+    },
+    {
+        "itemName": "Succor of the Sinless",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/SuccorOfTheSinless.png",
+        "itemFlavourText": "Blessed is the blood of the beholden disciple. The earth is anointed by his step. The damnable are sanctified by his strike.",
+        "itemStackSize": "6",
+        "itemReward": [
+            {
+                "uniqueitem": "Bottled Faith"
+            }
+        ]
+    },
+    {
+        "itemName": "The Patient",
+        "itemIconUrl": "https://web.poecdn.com/image/divination-card/ThePatient.png",
+        "itemFlavourText": "I have a headache, can anyone find me a nurse?",
+        "itemStackSize": "8",
+        "itemReward": [
+            {
+                "divination": "The Nurse"
+            }
+        ]
+    }
+]
