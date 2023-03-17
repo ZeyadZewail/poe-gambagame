@@ -12,6 +12,13 @@
     font-style: normal;
 }
 
+.openTradeButton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 12;
+}
+
 .hideoutWindow {
     background: url('~/assets/hideout.png') no-repeat center center fixed;
     background-size: 100% 100%;
@@ -77,8 +84,8 @@
     height: 857px;
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: absolute;
-    top:10vh;
-    left:18vw;
+    top: 10vh;
+    left: 18vw;
     -webkit-user-select: none;
     /* Safari */
     -ms-user-select: none;
@@ -223,12 +230,8 @@
 }
 
 .tradewindow {
-    z-index: 999;
-    position: relative;
+    position: absolute;
     width: 100%;
-    float: left;
-    margin: 0;
-    position: relative;
     min-width: 745px;
     max-width: 1520px;
     min-height: 98vh;
@@ -240,6 +243,10 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    left: 0;
+    right: 0;
+    margin: auto;
+    box-sizing:content-box;
 }
 
 .tradewindow .header .logo {
@@ -298,14 +305,15 @@
     min-height: 50px;
     min-width: 99%;
     height: 100%;
-    width: 99%;
+    width: 100%;
     background-color: #000;
-    padding: 7px 7px 0;
+    padding: 7px 7px;
+    padding-bottom: 7px;
 }
 
 .tradewindow .searchbar .buttons {
-    padding-inline-start: 10px;
-    padding-bottom: 5px;
+    padding-inline-start: 5px;
+    padding-bottom: 25px;
 }
 
 .tradewindow .searchbar .buttons .searchTextLi {
@@ -368,7 +376,7 @@
 
 
 .tradewindow .inputField {
-    padding: 10px 18px;
+    padding: 10px 8px;
     width: 100%;
     border: 1px solid #000;
     border-radius: 0;
@@ -542,6 +550,7 @@
         transform-origin: top right;
     }
 }
+
 @media screen and (max-height: 700px) {
     .hortistation {
         transform: scale(0.60);
@@ -680,6 +689,7 @@
     background-image: url("~/assets/divination-card.webp");
     background-size: cover;
     background-repeat: no-repeat;
+    border-width: 0px;
 }
 
 .divCard .topbar {
@@ -899,7 +909,9 @@
 .tradeListing .details .price .price-block {
     font-size: 0.8em;
 }
-
+.tradewindow img {
+    display: inline;
+}
 .tradeListing .details .price img {
     height: 32px;
     vertical-align: middle;
