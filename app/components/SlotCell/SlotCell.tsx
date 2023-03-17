@@ -207,7 +207,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 					{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
 				</div>
 			) : null}
-			{item != null && item.count > 1 ? (
+			{item != null && item.maxStack > 1 ? (
 				<div
 					className={`relative bottom-[105%] left-[7%] text-s stroke-black ${
 						item.count == item.maxStack ? "text-blue-600" : "text-white"
