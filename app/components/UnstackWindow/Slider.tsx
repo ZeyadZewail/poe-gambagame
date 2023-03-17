@@ -18,8 +18,7 @@ const Slider: FC<SliderInterface> = ({ min, max, value }) => {
 
 	return (
 		<div className="flex gap-2 justify-center">
-			<p>{value}</p>
-
+			<p>{max - value}</p>
 			<div
 				style={{
 					backgroundImage: `url(${sliderBG})`,
@@ -34,7 +33,7 @@ const Slider: FC<SliderInterface> = ({ min, max, value }) => {
 					alt="slider button"
 				/>
 			</div>
-			<p>{max - value}</p>
+			<p>{value}</p>
 		</div>
 	);
 };
