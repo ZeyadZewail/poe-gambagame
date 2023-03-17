@@ -1,5 +1,6 @@
 import TradeItem from "~/Types/TradeItem";
-
+import divineicon from "~/assets/divineorb.png"
+import vividicon from "~/assets/vividlf.png"
 export interface TradeListingProps {
     tradeItem: TradeItem;
 }
@@ -23,7 +24,7 @@ const TradeListing: React.FC<TradeListingProps> = ({ tradeItem }) => {
                             <span className="amount">1</span>
                             <span>&nbsp;×&nbsp;</span>
 
-                            {tradeItem.lifeForce ? (<span className="currency-text"><img src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGFydmVzdC9WaXZpZExpZmVmb3JjZSIsInNjYWxlIjoxfV0/a355b8a5a2/VividLifeforce.png" alt="vivid-lifeforce" title="vivid-lifeforce" />
+                            {tradeItem.lifeForce ? (<span className="currency-text"><img src={vividicon} alt="vivid-lifeforce" title="vivid-lifeforce" />
                             </span>) : (<span className="currency-text">{tradeItem.itemName}</span>)}
 
                         </span>
@@ -32,7 +33,7 @@ const TradeListing: React.FC<TradeListingProps> = ({ tradeItem }) => {
                             <span className="amount">{itemOnePrice}</span>
                             <span>&nbsp;×&nbsp;</span>
                             <span className="currency-text">
-                                <img src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png" alt="divine" title="divine" />
+                                <img src={divineicon} alt="divine" title="divine" />
                             </span>
                         </span>
                     </div>
@@ -41,14 +42,14 @@ const TradeListing: React.FC<TradeListingProps> = ({ tradeItem }) => {
                             <span className="amount">1</span>
                             <span>&nbsp;×&nbsp;</span>
                             <span className="currency-text">
-                                <img src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png" alt="divine" title="divine" />
+                                <img src={divineicon} alt="divine" title="divine" />
                             </span>
                         </span>
                         <span>⇒</span>
                         <span>
                             <span className="amount">{divOnePrice}</span>
                             <span>&nbsp;×&nbsp;</span>
-                            {tradeItem.lifeForce ? (<span className="currency-text"><img src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGFydmVzdC9WaXZpZExpZmVmb3JjZSIsInNjYWxlIjoxfV0/a355b8a5a2/VividLifeforce.png" alt="vivid-lifeforce" title="vivid-lifeforce" />
+                            {tradeItem.lifeForce ? (<span className="currency-text"><img src={vividicon} alt="vivid-lifeforce" title="vivid-lifeforce" />
                             </span>) : (<span className="currency-text">{tradeItem.itemName}</span>)}
 
                         </span>
@@ -62,7 +63,7 @@ const TradeListing: React.FC<TradeListingProps> = ({ tradeItem }) => {
                         <div className="price-block">
                             <span className="currency-text">{tradeItem.itemName}</span>
                             {tradeItem.lifeForce && (
-                                <img src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGFydmVzdC9WaXZpZExpZmVmb3JjZSIsInNjYWxlIjoxfV0/a355b8a5a2/VividLifeforce.png" alt="vivid-lifeforce" title="vivid-lifeforce" />
+                                <img src={vividicon} alt="vivid-lifeforce" title="vivid-lifeforce" />
                             )}
                             <span>&nbsp;×&nbsp;</span>
                             <span className="amount">{tradeItem.stock}</span>
@@ -72,7 +73,7 @@ const TradeListing: React.FC<TradeListingProps> = ({ tradeItem }) => {
                         <div className="price-block">
                             <span className="amount">{tradeItem.price}</span>
                             <span>&nbsp;×&nbsp;</span>
-                            <img src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png" alt="divine" title="divine" />
+                            <img src={divineicon} alt="divine" title="divine" />
                             <span className="currency-text">Divine Orb</span>
                         </div>
                     </span>
