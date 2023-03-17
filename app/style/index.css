@@ -20,15 +20,12 @@
     right: 0px;
     bottom: 0px;
     left: 0px;
-    display: flex;
-    gap: 100px;
-    align-items: top;
 }
 
 .inventoryWindow {
     text-align: center;
     width: 635px;
-    height: 770px;
+    height: 1000px;
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: relative;
     -webkit-user-select: none;
@@ -37,10 +34,13 @@
     /* IE 10 and IE 11 */
     user-select: none;
     /* Standard syntax */
+    position: absolute;
+    right: 0px;
+    top: 0px;
 }
 
 .inventoryWindow .frame {
-    z-index: 0;
+    z-index: 11;
     position: absolute;
     top: 0px;
     width: 635px;
@@ -50,12 +50,36 @@
     background-repeat: no-repeat;
 }
 
+.inventoryWindow .bottomframe {
+    z-index: 9;
+    position: absolute;
+    bottom: 0px;
+    width: 635px;
+    height: 259px;
+    background-image: url("~/assets/inventoryframebottom.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.manabar {
+    background: url("~/assets/manaoverlay.png") no-repeat center center fixed;
+    z-index: 10;
+    position: absolute;
+    background-size: 100% 100%;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
 .hortistation {
     text-align: center;
     width: 1160px;
     height: 857px;
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    position: relative;
+    position: absolute;
+    top:10vh;
+    left:20vw;
     -webkit-user-select: none;
     /* Safari */
     -ms-user-select: none;
@@ -164,7 +188,7 @@
     height: 32px;
     vertical-align: middle;
     border: none;
-    display:inline;
+    display: inline;
 }
 
 .hortistation .crafts .craft:hover {
@@ -458,41 +482,64 @@
     background-color: #2d3136 !important;
 }
 
+@media screen and (max-width: 2500px) {
+    .hortistation {
+        transform: scale(0.75);
+        transform-origin: top left;
+    }
+
+    .inventoryWindow {
+        transform: scale(0.90);
+        transform-origin: top right;
+    }
+}
+
+
 @media screen and (max-width: 1920px) {
     .hortistation {
-        transform: scale(0.85);
+        transform: scale(0.70);
+        transform-origin: top left;
     }
 
     .inventoryWindow {
         transform: scale(0.85);
+        transform-origin: top right;
     }
 }
 
 @media screen and (max-width: 1750px) {
     .hortistation {
-        transform: scale(0.75);
+        transform: scale(0.65);
+        transform-origin: top left;
     }
 
     .inventoryWindow {
         transform: scale(0.75);
+        transform-origin: top right;
     }
 }
+
 @media screen and (max-width: 1600px) {
     .hortistation {
-        transform: scale(0.65);
+        transform: scale(0.60);
+        transform-origin: top left;
     }
 
     .inventoryWindow {
         transform: scale(0.65);
+        transform-origin: top right;
     }
 }
+
 @media screen and (max-width: 1440px) {
     .hortistation {
         transform: scale(0.55);
+        transform-origin: top left;
     }
 
     .inventoryWindow {
         transform: scale(0.55);
+        transform-origin: top right;
     }
 }
 

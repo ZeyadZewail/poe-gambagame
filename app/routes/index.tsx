@@ -7,20 +7,23 @@ import HorticraftStation from "~/components/horticraftStation";
 import InventoryWindow from "~/components/inventoryWindow";
 
 export const links: LinksFunction = () => {
-	return [{ rel: "stylesheet", href: stylesUrl }];
+  return [{ rel: "stylesheet", href: stylesUrl }];
 };
 
 export const loader = async () => {
-	return json(divCards);
+  return json(divCards);
 };
 
 export default function Index() {
-	const divcards = useLoaderData<typeof loader>();
-	return (
-		<div className="hideoutWindow">
-			<HorticraftStation vividlf={0} />
-			<InventoryWindow />
-			{/*<TradeWindow currency={0} divcards={divcards} />*/}
-		</div>
-	);
+  const divcards = useLoaderData<typeof loader>();
+  return (
+    <div>
+      <div className="hideoutWindow">
+        <HorticraftStation vividlf={0} />
+        <InventoryWindow />
+        {/*<TradeWindow currency={0} divcards={divcards} />*/}
+      </div>
+      <div className="manabar"></div>
+    </div>
+  );
 }
