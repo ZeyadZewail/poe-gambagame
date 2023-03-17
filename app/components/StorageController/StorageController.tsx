@@ -1,13 +1,15 @@
 import { atom, useAtom } from "jotai";
 import Inventory from "../Inventory/Inventory";
-import MouseFollower from "../MouseFollower/MouseFollower";
 import divCardImage from "../../assets/item_divcard.png";
 import mageBloodImage from "../../assets/item_mageblood.png";
 import farrulsFurImage from "../../assets/item_farrulfur.png";
 import type Item from "~/Types/Item";
-const renderVar = atom(false);
+import UnstackWindow from "../UnstackWindow/UnstackWindow";
 
-export { renderVar };
+const renderVar = atom(false);
+const unStackVar = atom(false);
+
+export { renderVar, unStackVar };
 
 const testItem: Item = {
   imgSrc: divCardImage,
@@ -47,10 +49,8 @@ const farrulsfur: Item = {
 
 const StorageController = () => {
   const [render] = useAtom(renderVar);
-
   return (
-    <div className="w-full h-screen flex gap-8">
-      <MouseFollower />
+    <div className="w-full h-screen flex gap-8 p-20">
       <Inventory
         StarterItems={[testItem, { ...testItem, x: 1 }, mageblood, farrulsfur]}
       />

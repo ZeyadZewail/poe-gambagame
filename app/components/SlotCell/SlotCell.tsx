@@ -5,7 +5,11 @@ import { useState } from "react";
 import type Item from "~/Types/Item";
 import type ItemInventory from "~/Types/ItemInventory";
 import { hoveredSlot, mouseItem } from "../MouseFollower/MouseFollower";
-import { renderVar } from "../StorageController/StorageController";
+import { renderVar, unStackVar } from "../StorageController/StorageController";
+import {
+  unStackWindowItemVar,
+  UnStackWindowLocationVar,
+} from "../UnstackWindow/UnstackWindow";
 
 const cellSideLength = 47.4;
 
@@ -24,10 +28,16 @@ const SlotCell: FC<SlotInterface> = ({
   parentInventory,
   isPrimary,
 }) => {
-  const [currentMouseItem, setCurrentMouseItem] = useAtom(mouseItem);
+  const [currentMouseItem, SetCurrentMouseItem] = useAtom(mouseItem);
   const [renderBool, SetForceRender] = useAtom(renderVar);
-  const [hovered, setHovered] = useState(false);
-  const [mouseHoveredSlot, setMouseHoveredSlot] = useAtom(hoveredSlot);
+  const [hovered, SetHovered] = useState(false);
+  const [mouseHoveredSlot, SetMouseHoveredSlot] = useAtom(hoveredSlot);
+  const [UnstackWindow, SetUnstackWindow] = useAtom(unStackVar);
+  const [unStackWindowItem, SetUnstackWindowItem] =
+    useAtom(unStackWindowItemVar);
+  const [UnstackWindowLocation, SetUnstackWindowLocation] = useAtom(
+    UnStackWindowLocationVar
+  );
 
   const calcWidth = () => {
     if (item) {
@@ -53,7 +63,7 @@ const SlotCell: FC<SlotInterface> = ({
     console.log(
       `You clicked slot @ (${x},${y}),Item: ${item?.name},Primary: ${isPrimary}`
     );
-    setMouseHoveredSlot({ x: x, y: y, parentInventory: parentInventory });
+    SetMouseHoveredSlot({ x: x, y: y, parentInventory: parentInventory });
   };
 
   const SwapWithMouse = () => {
@@ -62,7 +72,7 @@ const SlotCell: FC<SlotInterface> = ({
     }
 
     if (item != null && currentMouseItem === null) {
-      setCurrentMouseItem(item);
+      SetCurrentMouseItem(item);
       let index = parentInventory.items.indexOf(item);
       if (index !== -1) {
         parentInventory.items.splice(index, 1);
@@ -73,7 +83,7 @@ const SlotCell: FC<SlotInterface> = ({
         currentMouseItem.x = x;
         currentMouseItem.y = y - Math.floor(currentMouseItem.length / 2);
         parentInventory.items.push(currentMouseItem);
-        setCurrentMouseItem(null);
+        SetCurrentMouseItem(null);
       }
     } else if (currentMouseItem != null && item != null) {
       if (
@@ -86,7 +96,7 @@ const SlotCell: FC<SlotInterface> = ({
         const remainder = currentMouseItem.count - possibleToGive;
         item.count += possibleToGive;
         remainder == 0
-          ? setCurrentMouseItem(null)
+          ? SetCurrentMouseItem(null)
           : (currentMouseItem.count = remainder);
       }
 
@@ -180,21 +190,34 @@ const SlotCell: FC<SlotInterface> = ({
     }
   };
 
+  const HandleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (
+      e.shiftKey &&
+      currentMouseItem === null &&
+      item != null &&
+      item.maxStack > 1 &&
+      item.count > 1
+    ) {
+      SetUnstackWindowLocation({ x: e.clientX, y: e.clientY });
+      SetUnstackWindow(true);
+      SetUnstackWindowItem(item);
+    } else {
+      SwapWithMouse();
+    }
+  };
+
   return (
     <div
       className={`${checkHovered() ? "bg-gray-300 bg-opacity-10" : null} ${
         isPrimary ? "z-20" : "z-10"
-      }`}
+      } `}
       style={{ width: `${cellSideLength}px`, height: `${cellSideLength}px` }}
-      onClick={() => {
-        ReportPosition();
-        SwapWithMouse();
-      }}
+      onClick={HandleClick}
       onMouseEnter={() => {
         if (item) {
           item.hovered = true;
         }
-        setHovered(true);
+        SetHovered(true);
         ReportPosition();
         ForceRender();
       }}
@@ -202,7 +225,7 @@ const SlotCell: FC<SlotInterface> = ({
         if (item) {
           item.hovered = false;
         }
-        setHovered(false);
+        SetHovered(false);
         ForceRender();
       }}
     >
