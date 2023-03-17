@@ -468,6 +468,15 @@
     }
 }
 
+@media screen and (max-width: 1750px) {
+    .hortistation {
+        transform: scale(0.75);
+    }
+
+    .inventoryWindow {
+        transform: scale(0.75);
+    }
+}
 @media screen and (max-width: 1600px) {
     .hortistation {
         transform: scale(0.65);
