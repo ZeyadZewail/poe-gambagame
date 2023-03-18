@@ -209,7 +209,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 			) : null}
 			{item != null && item.maxStack > 1 ? (
 				<div
-					className={`relative bottom-[105%] left-[7%] text-s stroke-black ${
+					className={`relative bottom-[105%] right-[30%] text-s stroke-black ${
 						item.count == item.maxStack ? "text-blue-600" : "text-white"
 					}`}>
 					{item.count}
