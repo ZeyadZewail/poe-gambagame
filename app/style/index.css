@@ -1,1036 +1,1042 @@
 @font-face {
-	font-family: "Fontin Smallcaps";
-	src: url("../fonts/FontinSmallCaps/fontin-smallcaps.woff") format("woff");
-	font-weight: normal;
-	font-style: normal;
+    font-family: "Fontin Smallcaps";
+    src: url("../fonts/FontinSmallCaps/fontin-smallcaps.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "Fontin Regular";
-	src: url("../fonts/FontinRegular/fontin-regular.woff") format("woff");
-	font-weight: normal;
-	font-style: normal;
+    font-family: "Fontin Regular";
+    src: url("../fonts/FontinRegular/fontin-regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
 }
 
 .hideoutWindow {
-	background: url("~/assets/hideout.png") no-repeat center center fixed;
-	background-size: 100% 100%;
-	font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	bottom: 0px;
-	left: 0px;
+    background: url("~/assets/hideout2.jpg") no-repeat center center fixed;
+    background-size: 100% 100%;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
 }
 
 .inventoryWindow {
-	text-align: center;
-	width: 635px;
-	height: 1000px;
-	font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	-webkit-user-select: none;
-	/* Safari */
-	-ms-user-select: none;
-	/* IE 10 and IE 11 */
-	user-select: none;
-	/* Standard syntax */
-	position: absolute;
-	right: 0px;
-	top: 0px;
+    text-align: center;
+    width: 635px;
+    height: 1000px;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    position: absolute;
+    right: 0px;
+    top: 0px;
 }
 
 .inventoryWindow .frame {
-	z-index: 11;
-	position: absolute;
-	top: 0px;
-	width: 628px;
-	height: 768px;
-	background-image: url("~/assets/inventoryframe.png");
-	background-size: contain;
-	background-repeat: no-repeat;
+    position: absolute;
+    top: 0px;
+    width: 628px;
+    height: 768px;
+    background-image: url("~/assets/inventoryframe.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .inventoryWindow .bottomframe {
-	z-index: 9;
-	position: absolute;
-	bottom: 0px;
-	width: 635px;
-	height: 259px;
-	background-image: url("~/assets/inventoryframebottom.png");
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
+    z-index: 38 !important;
+    position: absolute;
+    bottom: 0px;
+    width: 635px;
+    height: 259px;
+    background-image: url("~/assets/inventoryframebottom.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
-.manabar {
-	background: url("~/assets/manaoverlay.png") no-repeat center center fixed;
-	z-index: 10;
-	position: absolute;
-	background-size: 100% 100%;
-	top: 0px;
-	right: 0px;
-	bottom: 0px;
-	left: 0px;
+.uibar {
+    z-index: 39;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 22vh;
+    background-image: url("~/assets/uibar.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .hortistation {
-	text-align: center;
-	width: 1160px;
-	height: 857px;
-	font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	position: absolute;
-	top: 10vh;
-	left: 18vw;
-	-webkit-user-select: none;
-	/* Safari */
-	-ms-user-select: none;
-	/* IE 10 and IE 11 */
-	user-select: none;
-	/* Standard syntax */
-	z-index: 11;
+    text-align: center;
+    width: 1160px;
+    height: 857px;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: absolute;
+    top: 10vh;
+    left: 18vw;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    z-index: 11;
 }
 
 .hortistation .frame {
-	z-index: 0;
-	position: absolute;
-	top: 0px;
-	width: 1160px;
-	height: 857px;
-	background-image: url("~/assets/horticraftstation.png");
-	background-size: contain;
-	background-repeat: no-repeat;
+    z-index: 0;
+    position: absolute;
+    top: 0px;
+    width: 1160px;
+    height: 857px;
+    background-image: url("~/assets/horticraftstation.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .hortistation .topbar {
-	position: absolute;
-	left: 304px;
-	top: 99px;
-	height: 45px;
-	width: 250px;
-	line-height: 24px;
+    position: absolute;
+    left: 304px;
+    top: 99px;
+    height: 45px;
+    width: 250px;
+    line-height: 24px;
 }
 
 .hortistation .topbar .text {
-	font-family: "Fontin Smallcaps";
-	font-weight: lighter;
-	color: #000;
-	font-size: 34px;
-	font-stretch: expanded;
+    font-family: "Fontin Smallcaps";
+    font-weight: lighter;
+    color: #000;
+    font-size: 34px;
+    font-stretch: expanded;
 }
 
 .hortistation .button {
-	position: absolute;
-	left: 824px;
-	top: 568px;
-	height: 50px;
-	width: 160px;
+    position: absolute;
+    left: 824px;
+    top: 568px;
+    height: 50px;
+    width: 160px;
 }
 
 .hortistation .button .craftButton {
-	font-family: "Fontin Smallcaps";
-	background-color: rgba(0, 0, 0, 0);
-	background-image: url("~/assets/buttons/horti_active.png");
-	background-size: cover;
-	background-repeat: no-repeat;
-	width: 160px;
-	height: 50px;
-	border: 0px;
-	padding: 0px;
-	margin: 0;
-	color: #9dadd2;
-	font-size: 24px;
+    font-family: "Fontin Smallcaps";
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("~/assets/buttons/horti_active.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 160px;
+    height: 50px;
+    border: 0px;
+    padding: 0px;
+    margin: 0;
+    color: #9dadd2;
+    font-size: 24px;
 }
 
 .hortistation .button .craftButton:active {
-	background-image: url("~/assets/buttons/horti_disable.png");
+    background-image: url("~/assets/buttons/horti_disable.png");
 }
 
 .hortistation .button .craftButton:hover {
-	background-image: url("~/assets/buttons/horti_hover.png");
+    background-image: url("~/assets/buttons/horti_hover.png");
 }
 
 .hortistation .crafts {
-	position: absolute;
-	left: 100px;
-	top: 200px;
-	height: 550px;
-	width: 625px;
-	overflow-y: auto;
+    position: absolute;
+    left: 100px;
+    top: 200px;
+    height: 550px;
+    width: 625px;
+    overflow-y: auto;
 }
 
 .hortistation .crafts .craft {
-	background-image: url("~/assets/horti/horti_craftnormal.png");
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	height: 92px;
-	width: 625px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+    background-image: url("~/assets/horti/horti_craftnormal.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 92px;
+    width: 625px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .hortistation .crafts .craft .text {
-	color: #7f7f7f;
-	font-size: 21px;
-	text-align: left;
-	font-family: "Fontin Regular";
-	padding: 5px;
-	width: 80%;
+    color: #7f7f7f;
+    font-size: 21px;
+    text-align: left;
+    font-family: "Fontin Regular";
+    padding: 5px;
+    width: 80%;
 }
 
 .hortistation .crafts .craft .cost {
-	padding-top: 50px;
-	color: #dedcfe;
-	font-size: 18px;
+    padding-top: 50px;
+    color: #dedcfe;
+    font-size: 18px;
 }
 
 .hortistation .crafts .craft .cost img {
-	height: 32px;
-	vertical-align: middle;
-	border: none;
-	display: inline;
+    height: 32px;
+    vertical-align: middle;
+    border: none;
+    display: inline;
 }
 
 .hortistation .crafts .craft:hover {
-	background-image: url("~/assets/horti/horti_crafthover.png");
+    background-image: url("~/assets/horti/horti_crafthover.png");
 }
 
 .hortistation .crafts .craft:active {
-	background-image: url("~/assets/horti/horti_craftactive.png");
+    background-image: url("~/assets/horti/horti_craftactive.png");
 }
 
 .hortistation .itemSlot {
-	position: absolute;
-	left: 836px;
-	top: 275px;
-	height: 260px;
-	width: 135px;
+    position: absolute;
+    left: 836px;
+    top: 275px;
+    height: 260px;
+    width: 135px;
 }
 
 .hortistation .lifeforce {
-	position: absolute;
-	left: 1086px;
-	top: 324px;
-	height: 60px;
-	width: 60px;
+    position: absolute;
+    left: 1086px;
+    top: 324px;
+    height: 60px;
+    width: 60px;
 }
 
 .hortistation .lifeforce .text {
-	font-size: 18px;
-	padding-top: 18px;
-	color: white;
+    font-size: 18px;
+    padding-top: 18px;
+    color: white;
 }
 
 .tradewindow {
-	z-index: 999;
-	position: relative;
-	width: 100%;
-	float: left;
-	margin: 0;
-	position: relative;
-	min-width: 745px;
-	max-width: 1520px;
-	min-height: 98vh;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 1.3em;
-	line-height: 1.3;
-	background: url("~/assets/sanctum-bg.jpg") no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+    z-index: 999;
+    position: relative;
+    width: 100%;
+    float: left;
+    margin: 0;
+    position: relative;
+    min-width: 745px;
+    max-width: 1520px;
+    min-height: 98vh;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 1.3em;
+    line-height: 1.3;
+    background: url("~/assets/sanctum-bg.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .tradewindow .header .logo {
-	padding: 5px 0 0;
-	max-width: 125px;
-	margin: 0 auto;
-	display: block;
-	box-sizing: border-box;
+    padding: 5px 0 0;
+    max-width: 125px;
+    margin: 0 auto;
+    display: block;
+    box-sizing: border-box;
 }
 
 .tradewindow .header .menuButtons {
-	position: absolute;
-	top: 0;
-	left: 10px;
+    position: absolute;
+    top: 0;
+    left: 10px;
 }
 
 .tradewindow .header .logo img {
-	overflow: hidden;
-	max-width: 100%;
+    overflow: hidden;
+    max-width: 100%;
 }
 
 .tradewindow .header .currency {
-	right: 0;
-	position: absolute;
-	top: 0;
-	color: white;
+    right: 0;
+    position: absolute;
+    top: 0;
+    color: white;
 }
 
 .tradewindow .searchbar .inputField {
-	max-width: 100%;
+    max-width: 100%;
 }
 
 .tradewindow .searchbar .inputField input {
-	max-width: 100%;
-	width: 100%;
+    max-width: 100%;
+    width: 100%;
 }
 
 .tradewindow .itemSelection {
-	color: #fff8e1;
-	padding-top: 15px;
-	background-color: black;
-	line-height: 24px;
-	min-height: 18em;
-	font-size: 0.8em;
-	font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	overflow-y: auto;
-	height: 70vh;
+    color: #fff8e1;
+    padding-top: 15px;
+    background-color: black;
+    line-height: 24px;
+    min-height: 18em;
+    font-size: 0.8em;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    overflow-y: auto;
+    height: 70vh;
 }
 
 .tradewindow .searchListings {
-	overflow-y: auto;
-	height: 77vh;
+    overflow-y: auto;
+    height: 77vh;
 }
 
 .tradewindow .searchbarInputWrapper {
-	min-height: 50px;
-	min-width: 99%;
-	height: 100%;
-	width: 99%;
-	background-color: #000;
-	padding: 7px 7px 0;
+    min-height: 50px;
+    min-width: 99%;
+    height: 100%;
+    width: 99%;
+    background-color: #000;
+    padding: 7px 7px 0;
 }
 
 .tradewindow .searchbar .buttons {
-	padding-inline-start: 10px;
-	padding-bottom: 5px;
+    padding-inline-start: 10px;
+    padding-bottom: 5px;
 }
 
 .tradewindow .searchbar .buttons .searchTextLi {
-	background-color: rgba(10, 10, 10, 0.9);
+    background-color: rgba(10, 10, 10, 0.9);
 }
 
 .tradewindow .searchbar .buttons .searchText {
-	border: 1px solid rgba(0, 0, 0, 0);
-	border-radius: 0px 0px 0 0;
-	text-decoration: none;
-	height: 32px;
-	padding: 5px;
-	color: #e9cf9f;
-	font-size: 0.8em;
-	font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 0px 0px 0 0;
+    text-decoration: none;
+    height: 32px;
+    padding: 5px;
+    color: #e9cf9f;
+    font-size: 0.8em;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .tradewindow .searchbar .buttons .searchTextLi::before {
-	background-image: url("~/assets/tradeSearchIcon.png");
-	height: 18px;
-	width: 18px;
-	content: " ";
-	display: inline-block;
-	vertical-align: middle;
-	background-repeat: no-repeat;
+    background-image: url("~/assets/tradeSearchIcon.png");
+    height: 18px;
+    width: 18px;
+    content: " ";
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
 }
 
 .tradewindow .searchbar .buttons .resetButtonLi::before {
-	background-image: url("~/assets/tradeSearchResetIcon.png");
-	background-position: 2px 2px;
-	height: 18px;
-	width: 18px;
-	content: " ";
-	display: inline-block;
-	vertical-align: middle;
-	background-repeat: no-repeat;
+    background-image: url("~/assets/tradeSearchResetIcon.png");
+    background-position: 2px 2px;
+    height: 18px;
+    width: 18px;
+    content: " ";
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
 }
 
 .tradewindow .searchbar .buttons .resetButtonLi {
-	background-color: #5a3806;
-	cursor: pointer;
+    background-color: #5a3806;
+    cursor: pointer;
 }
 
 .tradewindow .searchbar .buttons .resetButton {
-	border: 1px solid rgba(0, 0, 0, 0);
-	border-radius: 0px 0px 0 0;
-	text-decoration: none;
-	height: 32px;
-	padding: 5px;
-	color: #e9cf9f;
-	font-size: 0.8em;
-	font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 0px 0px 0 0;
+    text-decoration: none;
+    height: 32px;
+    padding: 5px;
+    color: #e9cf9f;
+    font-size: 0.8em;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.tradewindow .searchbar .buttons > li {
-	list-style-type: none;
-	float: left;
-	margin-bottom: -1px;
+.tradewindow .searchbar .buttons>li {
+    list-style-type: none;
+    float: left;
+    margin-bottom: -1px;
 }
 
 .tradewindow .inputField {
-	padding: 10px 18px;
-	width: 100%;
-	border: 1px solid #000;
-	border-radius: 0;
-	font-size: 1em;
-	line-height: 1.3;
-	box-sizing: border-box;
-	min-height: 30px;
-	background-color: #1e2124;
-	font-size: 0.8em;
-	font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 10px 18px;
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 0;
+    font-size: 1em;
+    line-height: 1.3;
+    box-sizing: border-box;
+    min-height: 30px;
+    background-color: #1e2124;
+    font-size: 0.8em;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .tradewindow .inputField input {
-	cursor: pointer;
-	background: rgba(0, 0, 0, 0);
-	border-radius: 0;
-	margin-bottom: 0px;
-	padding: 1px 4px;
-	text-overflow: clip;
-	white-space: nowrap;
-	overflow: hidden;
-	position: relative;
-	display: inline-block;
-	min-height: 20px;
-	line-height: 20px;
-	border: none;
-	color: #e2e2e2 !important;
-	text-align: left;
-	font: inherit;
-	margin: 0;
-	font-size: inherit;
-	writing-mode: horizontal-tb !important;
-	text-rendering: auto;
-	color: fieldtext;
-	letter-spacing: normal;
-	word-spacing: normal;
-	line-height: normal;
-	text-transform: none;
-	text-indent: 0px;
-	text-shadow: none;
-	display: inline-block;
-	text-align: start;
-	appearance: auto;
-	-webkit-rtl-ordering: logical;
-	cursor: text;
-	background-color: field;
-	margin: 0em;
-	padding: 1px 2px;
-	border-width: 0px;
-	border-style: inset;
-	border-color: #000;
-	border-image: initial;
-	background-color: #1e2124;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0);
+    border-radius: 0;
+    margin-bottom: 0px;
+    padding: 1px 4px;
+    text-overflow: clip;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    min-height: 20px;
+    line-height: 20px;
+    border: none;
+    color: #e2e2e2 !important;
+    text-align: left;
+    font: inherit;
+    margin: 0;
+    font-size: inherit;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 2px;
+    border-width: 0px;
+    border-style: inset;
+    border-color: #000;
+    border-image: initial;
+    background-color: #1e2124;
 }
 
 .tradewindow .inputField input:focus {
-	outline: none;
+    outline: none;
 }
 
 .tradewindow .inputField input::placeholder {
-	color: #e2e2e2;
+    color: #e2e2e2;
 }
 
 .tradewindow .itemSelection .lifeforce img {
-	float: left;
-	clear: left;
-	max-width: 25px;
+    float: left;
+    clear: left;
+    max-width: 25px;
 }
 
 .tradewindow .itemSelection .divcards {
-	margin-left: 35px;
-	clear: left;
+    margin-left: 35px;
+    clear: left;
 }
 
 .tradewindow .itemSelection .divcards .cards {
-	zoom: 0.85;
-	line-height: 1em;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 20px 4.5%;
+    zoom: 0.85;
+    line-height: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 4.5%;
 }
 
 .tradewindow .itemSelection .lifeforce {
-	border: 1px solid #1e2124;
-	margin: 10px;
-	margin-left: 35px;
+    border: 1px solid #1e2124;
+    margin: 10px;
+    margin-left: 35px;
 }
 
 .tradewindow .itemSelection .lifeforce:hover {
-	border: 1px solid #777;
-	background-color: #222;
+    border: 1px solid #777;
+    background-color: #222;
 }
 
 .tradewindow .itemSelection .divcards .card {
-	border: 1px solid #1e2124;
-	max-width: 360px;
+    border: 1px solid #1e2124;
+    max-width: 360px;
 }
 
 .tradewindow .itemSelection .divcards .card:hover {
-	border: 1px solid #777;
-	background-color: #222;
+    border: 1px solid #777;
+    background-color: #222;
 }
 
 .tradewindow .itemSelection .selectedItem {
-	background-color: #2d3136;
-	border-color: #5b636e;
+    background-color: #2d3136;
+    border-color: #5b636e;
 }
 
 .tradewindow .itemSelection .selectedItem:hover {
-	background-color: #2d3136 !important;
+    background-color: #2d3136 !important;
 }
 
 @media screen and (max-height: 1440px) {
-	.hortistation {
-		transform: scale(0.8);
-		transform-origin: top left;
-	}
+    .hortistation {
+        transform: scale(0.8);
+        transform-origin: top left;
+    }
 
-	.inventoryWindow {
-		transform: scale(1.4);
-		transform-origin: top right;
-	}
+    .inventoryWindow {
+        transform: scale(1.4);
+        transform-origin: top right;
+    }
+   
 }
 
 @media screen and (max-height: 1200px) {
-	.hortistation {
-		transform: scale(0.75);
-		transform-origin: top left;
-	}
+    .hortistation {
+        transform: scale(0.75);
+        transform-origin: top left;
+    }
 
-	.inventoryWindow {
-		transform: scale(1);
-		transform-origin: top right;
-	}
+    .inventoryWindow {
+        transform: scale(1);
+        transform-origin: top right;
+    }
+   
 }
 
 @media screen and (max-height: 1000px) {
-	.hortistation {
-		transform: scale(0.7);
-		transform-origin: top left;
-	}
+    .hortistation {
+        transform: scale(0.7);
+        transform-origin: top left;
+    }
 
-	.inventoryWindow {
-		transform: scale(0.93);
-		transform-origin: top right;
-	}
+    .inventoryWindow {
+        transform: scale(0.93);
+        transform-origin: top right;
+    }
+  
 }
 
 @media screen and (max-height: 900px) {
-	.hortistation {
-		transform: scale(0.65);
-		transform-origin: top left;
-	}
+    .hortistation {
+        transform: scale(0.65);
+        transform-origin: top left;
+    }
 
-	.inventoryWindow {
-		transform: scale(0.9);
-		transform-origin: top right;
-	}
+    .inventoryWindow {
+        transform: scale(0.9);
+        transform-origin: top right;
+    }
+   
 }
 
 @media screen and (max-height: 800px) {
-	.hortistation {
-		transform: scale(0.6);
-		transform-origin: top left;
-	}
+    .hortistation {
+        transform: scale(0.6);
+        transform-origin: top left;
+    }
 
-	.inventoryWindow {
-		transform: scale(0.85);
-		transform-origin: top right;
-	}
+    .inventoryWindow {
+        transform: scale(0.85);
+        transform-origin: top right;
+    }
+    
 }
-@media screen and (max-height: 700px) {
-	.hortistation {
-		transform: scale(0.6);
-		transform-origin: top left;
-	}
 
-	.inventoryWindow {
-		transform: scale(0.8);
-		transform-origin: top right;
-	}
+@media screen and (max-height: 750px) {
+    .hortistation {
+        transform: scale(0.6);
+        transform-origin: top left;
+    }
+
+    .inventoryWindow {
+        transform: scale(0.7);
+        transform-origin: top right;
+    }
 }
 
 @media screen and (max-height: 600px) {
-	.hortistation {
-		transform: scale(0.6);
-		transform-origin: top left;
-	}
+    .hortistation {
+        transform: scale(0.6);
+        transform-origin: top left;
+    }
 
-	.inventoryWindow {
-		transform: scale(0.7);
-		transform-origin: top right;
-	}
+    .inventoryWindow {
+        transform: scale(0.55);
+        transform-origin: top right;
+    }
 }
 
 @media screen and (max-width: 600px) {
-	.tradewindow .itemSelection .divcards .cards {
-		zoom: 0.55;
-		display: flex;
-		flex-wrap: wrap;
-	}
+    .tradewindow .itemSelection .divcards .cards {
+        zoom: 0.55;
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 
 .tradewindow .searchButton {
-	padding: 15px 0 15px;
-	width: 20%;
-	margin: 0 auto;
-	display: block;
-	box-sizing: border-box;
+    padding: 15px 0 15px;
+    width: 20%;
+    margin: 0 auto;
+    display: block;
+    box-sizing: border-box;
 }
 
 .tradewindow .searchButton .search-btn {
-	position: relative;
-	padding: 6px;
-	line-height: 16px;
-	min-height: 34px;
-	color: #e2e2e2;
-	background-color: #0f304d;
-	border-color: #4c4c7d;
-	width: 100%;
-	min-width: auto;
-	display: inline-block;
-	margin-bottom: 0;
-	font-weight: normal;
-	text-align: center;
-	vertical-align: middle;
-	touch-action: manipulation;
-	cursor: pointer;
-	background-image: none;
-	border: 1px solid #000;
-	white-space: nowrap;
-	font-size: 13px;
-	border-radius: 0px;
-	user-select: none;
-	font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: relative;
+    padding: 6px;
+    line-height: 16px;
+    min-height: 34px;
+    color: #e2e2e2;
+    background-color: #0f304d;
+    border-color: #4c4c7d;
+    width: 100%;
+    min-width: auto;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid #000;
+    white-space: nowrap;
+    font-size: 13px;
+    border-radius: 0px;
+    user-select: none;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .tradeListing i {
-	font-style: italic;
+    font-style: italic;
 }
 
 .tradeListing i.flag {
-	display: inline-block;
-	height: 15px;
-	width: 20px;
-	vertical-align: text-top;
-	background: url("~/assets/flags/GB.png");
+    display: inline-block;
+    height: 15px;
+    width: 20px;
+    vertical-align: text-top;
+    background: url("~/assets/flags/GB.png");
 }
 
 .tradeListing i.flag.br {
-	background: url("~/assets/flags/BR.png");
+    background: url("~/assets/flags/BR.png");
 }
 
 .tradeListing i.flag.ru {
-	background: url("~/assets/flags/RU.png");
+    background: url("~/assets/flags/RU.png");
 }
 
 .tradeListing i.flag.th {
-	background: url("~/assets/flags/TH.png");
+    background: url("~/assets/flags/TH.png");
 }
 
 .tradeListing i.flag.de {
-	background: url("~/assets/flags/DE.png");
+    background: url("~/assets/flags/DE.png");
 }
 
 .tradeListing i.flag.fr {
-	background: url("~/assets/flags/FR.png");
+    background: url("~/assets/flags/FR.png");
 }
 
 .tradeListing i.flag.es {
-	background: url("~/assets/flags/ES.png");
+    background: url("~/assets/flags/ES.png");
 }
 
 .tradeListing i.flag.jp {
-	background: url("~/assets/flags/JP.png");
+    background: url("~/assets/flags/JP.png");
 }
 
 .tradeListing i.flag.kr {
-	background: url("~/assets/flags/KR.png");
+    background: url("~/assets/flags/KR.png");
 }
 
 .divCard {
-	text-align: center;
-	width: 360px;
-	height: 549px;
-	font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	position: relative;
+    text-align: center;
+    width: 360px;
+    height: 549px;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: relative;
 }
 
 .divCard .image {
-	position: absolute;
-	width: 320px;
-	height: 220px;
-	top: 50px;
-	left: 20px;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
+    position: absolute;
+    width: 320px;
+    height: 220px;
+    top: 50px;
+    left: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .divCard .border {
-	z-index: 0;
-	position: absolute;
-	top: 0px;
-	width: 360px;
-	height: 549px;
-	background-image: url("~/assets/divination-card.webp");
-	background-size: cover;
-	background-repeat: no-repeat;
+    z-index: 0;
+    position: absolute;
+    top: 0px;
+    width: 360px;
+    height: 549px;
+    background-image: url("~/assets/divination-card.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .divCard .topbar {
-	height: 55px;
-	line-height: 60px;
-	font-size: 20px;
+    height: 55px;
+    line-height: 60px;
+    font-size: 20px;
 }
 
 .divCard .topbar .text {
-	color: #000;
-	position: relative;
+    color: #000;
+    position: relative;
 }
 
 .divCard .stackSize {
-	position: absolute;
-	left: 38px;
-	top: 260px;
-	height: 24px;
-	width: 50px;
-	line-height: 24px;
-	font-size: 16px;
-	color: white;
+    position: absolute;
+    left: 38px;
+    top: 260px;
+    height: 24px;
+    width: 50px;
+    line-height: 24px;
+    font-size: 16px;
+    color: white;
 }
 
 .divCard .Stats {
-	position: absolute;
-	top: 270px;
-	height: 279px;
-	padding-left: 30px;
-	padding-right: 30px;
+    position: absolute;
+    top: 270px;
+    height: 279px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .divCard .Stats .explicitArea {
-	height: 100px;
-	width: 320px;
-	vertical-align: middle;
-	display: table-cell;
-	font-size: 16px;
+    height: 100px;
+    width: 320px;
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 16px;
 }
 
 .divCard .Stats .FlavourText {
-	height: 159px;
-	width: 320px;
-	vertical-align: middle;
-	display: table-cell;
-	font-size: 16px;
-	color: #af6025;
+    height: 159px;
+    width: 320px;
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 16px;
+    color: #af6025;
 }
 
 .FlavourText {
-	font-style: italic;
-	padding-left: 5px;
-	padding-right: 5px;
+    font-style: italic;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .rareitem {
-	color: #ffff77;
+    color: #ffff77;
 }
 
 .fractured {
-	color: #a29162;
+    color: #a29162;
 }
 
 .default {
-	color: #7f7f7f;
+    color: #7f7f7f;
 }
 
 .normal {
-	color: #fff;
+    color: #fff;
 }
 
 .uniqueitem {
-	color: #af6025;
+    color: #af6025;
 }
 
 .currencyitem {
-	color: #aa9e82;
+    color: #aa9e82;
 }
 
 .gemitem {
-	color: #1ba29b;
+    color: #1ba29b;
 }
 
 .magicitem {
-	color: #8888ff;
+    color: #8888ff;
 }
 
 .corrupted {
-	color: #d20000;
+    color: #d20000;
 }
 
 .scourged {
-	color: #ff6e25;
+    color: #ff6e25;
 }
 
 .crafted {
-	color: #b4b4ff;
+    color: #b4b4ff;
 }
 
 .enchanted {
-	color: #b8daf2;
+    color: #b8daf2;
 }
 
 .divination {
-	color: #0ebaff;
+    color: #0ebaff;
 }
 
 .tradeListing {
-	line-height: 1.3;
-	align-items: center;
-	align-items: stretch;
-	flex-wrap: wrap;
-	border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-	justify-content: center;
-	padding: 8px 0;
-	margin: 0;
-	opacity: 1;
-	display: flex;
-	position: relative;
-	transition: opacity 0.5s;
-	background: rgba(32, 32, 32, 0.8) !important;
-	box-sizing: border-box;
-	color: #a38d6d;
-	font-size: 0.8em;
+    line-height: 1.3;
+    align-items: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    justify-content: center;
+    padding: 8px 0;
+    margin: 0;
+    opacity: 1;
+    display: flex;
+    position: relative;
+    transition: opacity 0.5s;
+    background: rgba(32, 32, 32, 0.8) !important;
+    box-sizing: border-box;
+    color: #a38d6d;
+    font-size: 0.8em;
 }
 
 .tradeListing .details {
-	margin-top: auto;
-	text-align: left;
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
-	height: 100%;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+    margin-top: auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 .tradeListing .left {
-	position: initial;
-	width: 25%;
-	float: left;
-	min-height: 1px;
-	padding-left: 5px;
-	padding-right: 5px;
+    position: initial;
+    width: 25%;
+    float: left;
+    min-height: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .tradeListing .middle {
-	width: 45%;
-	float: left;
-	position: relative;
-	min-height: 1px;
-	padding-left: 5px;
-	padding-right: 5px;
+    width: 45%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .tradeListing .right {
-	position: initial;
-	float: left;
-	width: 25%;
-	min-height: 1px;
-	padding-left: 5px;
-	padding-right: 5px;
+    position: initial;
+    float: left;
+    width: 25%;
+    min-height: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .tradeListing .price {
-	margin: 0 10px;
+    margin: 0 10px;
 }
 
 .tradeListing .details .price {
-	font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 1.2em;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.2em;
 }
 
 .tradeListing .details .price .per-have {
-	height: 18px;
-	line-height: 18px;
-	font-size: 0.65em;
-	text-align: left;
+    height: 18px;
+    line-height: 18px;
+    font-size: 0.65em;
+    text-align: left;
 }
 
 .tradeListing .details .price .per-want {
-	height: 18px;
-	line-height: 18px;
-	font-size: 0.65em;
-	text-align: left;
+    height: 18px;
+    line-height: 18px;
+    font-size: 0.65em;
+    text-align: left;
 }
 
 .tradeListing .details .amount {
-	color: #a4a4a4;
+    color: #a4a4a4;
 }
 
 .tradeListing .details .currency-text {
-	color: #aa9e82;
+    color: #aa9e82;
 }
 
 .tradeListing .middle.details .price {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .tradeListing .details .price .price-left {
-	text-align: right;
-	padding: 0 8px;
-	flex: 1;
+    text-align: right;
+    padding: 0 8px;
+    flex: 1;
 }
 
-.tradeListing .details .price > span {
-	display: block;
-	text-decoration: none;
-	padding: 8px;
+.tradeListing .details .price>span {
+    display: block;
+    text-decoration: none;
+    padding: 8px;
 }
 
 .tradeListing .details .price .price-left .price-block {
-	height: 32px;
-	line-height: 32px;
+    height: 32px;
+    line-height: 32px;
 }
 
 .tradeListing .details .price .price-block {
-	font-size: 0.8em;
+    font-size: 0.8em;
 }
 
 .tradeListing .details .price img {
-	height: 32px;
-	vertical-align: middle;
-	border: none;
+    height: 32px;
+    vertical-align: middle;
+    border: none;
 }
 
 .tradeListing .details .price .price-right {
-	text-align: left;
-	flex: 1;
-	padding: 0 8px;
+    text-align: left;
+    flex: 1;
+    padding: 0 8px;
 }
 
 .tradeListing .details .info {
-	padding: 0;
-	margin: 0;
-	color: #fff2c7;
+    padding: 0;
+    margin: 0;
+    color: #fff2c7;
 }
 
 .tradeListing .profile-link {
-	display: inline-block;
-	line-height: 15px;
-	color: #e9cf9f;
-	font-size: 0.7em;
-	font-weight: bold;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+    display: inline-block;
+    line-height: 15px;
+    color: #e9cf9f;
+    font-size: 0.7em;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 .tradeListing .pull-right {
-	float: right !important;
+    float: right !important;
 }
 
 .tradeListing small {
-	font-size: 0.7em;
+    font-size: 0.7em;
 }
 
 .tradeListing .details .info .stock {
-	width: fit-content;
-	margin: 0 2px;
-	padding: 2px 4px;
-	font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #a38d6d;
-	font-size: 0.7em;
+    width: fit-content;
+    margin: 0 2px;
+    padding: 2px 4px;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #a38d6d;
+    font-size: 0.7em;
 }
 
 .tradeListing .details .info .stock span {
-	color: #a4a4a4;
+    color: #a4a4a4;
 }
 
 .tradeListing .details .status-online {
-	background-color: #309630;
-	border: 1px solid #4dc64d;
+    background-color: #309630;
+    border: 1px solid #4dc64d;
 }
 
 .tradeListing .details .status-afk {
-	background-color: #c45f00;
-	border: 1px solid #ff8512;
+    background-color: #c45f00;
+    border: 1px solid #ff8512;
 }
 
 .tradeListing .details .status {
-	margin-right: auto;
-	color: #e2e2e2;
-	padding: 1px 5px;
-	font-size: 0.7em;
-	line-height: 1.6em;
-	display: inline-block;
-	margin-bottom: 0;
-	font-weight: normal;
-	text-align: center;
-	vertical-align: middle;
-	touch-action: manipulation;
-	background-image: none;
-	white-space: nowrap;
-	user-select: none;
-	font-family: inherit;
-	text-transform: none;
-	overflow: visible;
-	margin: 0;
+    margin-right: auto;
+    color: #e2e2e2;
+    padding: 1px 5px;
+    font-size: 0.7em;
+    line-height: 1.6em;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    background-image: none;
+    white-space: nowrap;
+    user-select: none;
+    font-family: inherit;
+    text-transform: none;
+    overflow: visible;
+    margin: 0;
 }
 
 .tradeListing .directWhisper {
-	margin-right: auto;
-	color: rgb(233, 207, 159);
-	padding: 1px 5px;
-	font-size: 0.7em;
-	line-height: 1.6em;
-	border-radius: 0px;
-	background-color: #222;
-	border-color: #444;
-	display: inline-block;
-	margin-bottom: 0;
-	font-weight: normal;
-	text-align: center;
-	vertical-align: middle;
-	touch-action: manipulation;
-	cursor: pointer;
-	background-image: none;
-	border: 1px solid #000;
-	white-space: nowrap;
-	user-select: none;
-	font-family: inherit;
-	text-transform: none;
-	overflow: visible;
-	margin: 0;
+    margin-right: auto;
+    color: rgb(233, 207, 159);
+    padding: 1px 5px;
+    font-size: 0.7em;
+    line-height: 1.6em;
+    border-radius: 0px;
+    background-color: #222;
+    border-color: #444;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid #000;
+    white-space: nowrap;
+    user-select: none;
+    font-family: inherit;
+    text-transform: none;
+    overflow: visible;
+    margin: 0;
 }
 
 .tradeListing .directWhisper:hover {
-	background-color: #090909;
-	border-color: #252525;
+    background-color: #090909;
+    border-color: #252525;
 }
 
 .tradeListing .details .per-want img {
-	height: 16px;
+    height: 16px;
 }
 
 .tradeListing .details .per-have img {
-	height: 16px;
+    height: 16px;
 }
 
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
 * {
-	scrollbar-width: auto;
-	scrollbar-color: #8d8689 #000000;
+    scrollbar-width: auto;
+    scrollbar-color: #8d8689 #000000;
 }
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-	width: 12px;
+    width: 12px;
 }
 
 *::-webkit-scrollbar-track {
-	background: #000000;
+    background: #000000;
 }
 
 *::-webkit-scrollbar-thumb {
-	background-color: #8d8689;
-	border-radius: 10px;
-	border: 3px solid #000000;
+    background-color: #8d8689;
+    border-radius: 10px;
+    border: 3px solid #000000;
 }
