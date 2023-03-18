@@ -34,7 +34,7 @@ export default function Index() {
 				<InventoryWindow />
 				{/*<TradeWindow currency={0} divcards={divcards} />*/}
 			</div>
-			<div className="manabar"></div>
+			<div className="uibar"></div>
 		</div>
 	);
 }
