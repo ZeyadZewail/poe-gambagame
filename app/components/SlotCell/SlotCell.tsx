@@ -2,10 +2,11 @@ import { readConfig } from "@remix-run/dev/dist/config";
 import { useAtom } from "jotai";
 import type { FC } from "react";
 import { useState } from "react";
+import { renderVar } from "~/routes";
 import type Item from "~/Types/Item";
 import type ItemInventory from "~/Types/ItemInventory";
 import { hoveredSlot, mouseItem } from "../MouseFollower/MouseFollower";
-import { renderVar, unStackVar } from "../StorageController/StorageController";
+import { unStackVar } from "../StorageController/StorageController";
 import {
 	unStackWindowItemParentVar,
 	unStackWindowItemVar,
@@ -20,9 +21,10 @@ interface SlotInterface {
 	x: number;
 	y: number;
 	isPrimary: boolean;
+	horti: boolean;
 }
 
-const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary }) => {
+const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, horti }) => {
 	const [currentMouseItem, SetCurrentMouseItem] = useAtom(mouseItem);
 	const [renderBool, SetForceRender] = useAtom(renderVar);
 	const [hovered, SetHovered] = useState(false);
@@ -178,10 +180,28 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 		}
 	};
 
+	const getImageStyle = () => {
+		if (horti) {
+			return {
+				width: `${cellSideLength}px`,
+				height: `${cellSideLength}px`,
+				scale: "1.5",
+			};
+		} else if (isPrimary) {
+			return { width: `${calcWidth()}px`, height: `${calcLength()}px` };
+		} else {
+			return { width: "0px", height: "0px" };
+		}
+	};
+
 	return (
 		<div
 			className={`${checkHovered() ? "bg-gray-300 bg-opacity-10" : null} ${isPrimary ? "z-20" : "z-10"} `}
-			style={{ width: `${cellSideLength}px`, height: `${cellSideLength}px` }}
+			style={
+				!horti
+					? { width: `${cellSideLength}px`, height: `${cellSideLength}px` }
+					: { width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }
+			}
 			onClick={HandleClick}
 			onMouseEnter={() => {
 				if (item) {
@@ -199,20 +219,16 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary })
 				ForceRender();
 			}}>
 			{item ? (
-				<div
-					className="pointer-events-none"
-					style={
-						isPrimary ? { width: `${calcWidth()}px`, height: `${calcLength()}px` } : { width: "0px", height: "0px" }
-					}>
+				<div className="pointer-events-none m-0" style={getImageStyle()}>
 					{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
-				</div>
-			) : null}
-			{item != null && item.maxStack > 1 ? (
-				<div
-					className={`relative bottom-[105%] right-[30%] text-s stroke-black ${
-						item.count == item.maxStack ? "text-blue-600" : "text-white"
-					}`}>
-					{item.count}
+					{item.maxStack > 1 ? (
+						<div
+							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${
+								item.count == item.maxStack ? "text-blue-600" : "text-white"
+							}`}>
+							{item.count}
+						</div>
+					) : null}
 				</div>
 			) : null}
 		</div>

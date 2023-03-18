@@ -6,7 +6,7 @@ import HorticraftStation from "~/components/horticraftStation";
 import InventoryWindow from "~/components/inventoryWindow";
 import StorageController, { unStackVar } from "~/components/StorageController/StorageController";
 import MouseFollower from "~/components/MouseFollower/MouseFollower";
-import { useAtom } from "jotai";
+import { atom, useAtom } from "jotai";
 import UnstackWindow from "~/components/UnstackWindow/UnstackWindow";
 
 export const links: LinksFunction = () => {
@@ -17,9 +17,13 @@ export const loader = async () => {
 	return json(divCards);
 };
 
+const renderVar = atom(false);
+export { renderVar };
+
 export default function Index() {
 	const divcards = useLoaderData<typeof loader>();
 	const [spawnUnstack, SetSpawnUnstack] = useAtom(unStackVar);
+	const [render] = useAtom(renderVar);
 
 	return (
 		<div>

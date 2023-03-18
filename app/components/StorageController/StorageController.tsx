@@ -6,10 +6,9 @@ import farrulsFurImage from "../../assets/item_farrulfur.png";
 import type Item from "~/Types/Item";
 import UnstackWindow from "../UnstackWindow/UnstackWindow";
 
-const renderVar = atom(false);
 const unStackVar = atom(false);
 
-export { renderVar, unStackVar };
+export { unStackVar };
 
 const testItem: Item = {
 	imgSrc: divCardImage,
@@ -21,6 +20,7 @@ const testItem: Item = {
 	hovered: false,
 	maxStack: 8,
 	count: 5,
+	type: "divcard",
 };
 
 const mageblood: Item = {
@@ -33,6 +33,7 @@ const mageblood: Item = {
 	hovered: false,
 	maxStack: 1,
 	count: 1,
+	type: "item",
 };
 
 const farrulsfur: Item = {
@@ -45,10 +46,10 @@ const farrulsfur: Item = {
 	hovered: false,
 	maxStack: 1,
 	count: 1,
+	type: "item",
 };
 
 const StorageController = () => {
-	const [render] = useAtom(renderVar);
 	return (
 		<div className="flex gap-8 z-40  fixed top-[13%] left-[4.5%]">
 			<Inventory StarterItems={[testItem, { ...testItem, x: 1 }, mageblood, farrulsfur]} />
