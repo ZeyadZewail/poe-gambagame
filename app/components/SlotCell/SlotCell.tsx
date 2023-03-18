@@ -72,7 +72,12 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			}
 		} else if (currentMouseItem != null && item === null) {
 			// const parentSlotX = x + Math.floor(currentMouseItem.width / 2);
-			if (CheckViableForItem(x, y, currentMouseItem)) {
+			if (horti) {
+				currentMouseItem.x = x;
+				currentMouseItem.y = y;
+				parentInventory.items.push(currentMouseItem);
+				SetCurrentMouseItem(null);
+			} else if (CheckViableForItem(x, y, currentMouseItem)) {
 				currentMouseItem.x = x;
 				currentMouseItem.y = y - Math.floor(currentMouseItem.length / 2);
 				parentInventory.items.push(currentMouseItem);
@@ -183,8 +188,8 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 	const getImageStyle = () => {
 		if (horti) {
 			return {
-				width: `${cellSideLength}px`,
-				height: `${cellSideLength}px`,
+				width: `${calcWidth()}px`,
+				height: `${calcLength()}px`,
 				scale: "1.5",
 			};
 		} else if (isPrimary) {

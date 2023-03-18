@@ -27,7 +27,7 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 					</div>
 				</div>
 			</div>
-			<div className="itemSlot">{hortiInv.generateElementGrid()}</div>
+			<div className="itemSlot">{hortiInv.generateFirstItem()}</div>
 			<div className="button">
 				<button className="craftButton">Craft</button>
 			</div>

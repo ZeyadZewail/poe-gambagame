@@ -39,6 +39,20 @@ class ItemInventory {
 		return temp;
 	};
 
+	generateFirstItem = () => {
+		return (
+			<SlotCell
+				key={`(${0},${0})`}
+				item={this.items[0] ?? null}
+				x={0}
+				y={0}
+				parentInventory={this}
+				isPrimary={true}
+				horti={this.horti}
+			/>
+		);
+	};
+
 	generateElementGrid = () => {
 		const temp = this.generateItemGrid();
 		const rows: any[] = [];
