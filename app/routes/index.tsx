@@ -26,7 +26,7 @@ export default function Index() {
 	const divcards = useLoaderData<typeof loader>();
 	const [spawnUnstack, SetSpawnUnstack] = useAtom(unStackVar);
 	const [render] = useAtom(renderVar);
-	const [tradeWindowOpen, setTradeWindowOpen] = useState(true);
+	const [tradeWindowOpen, setTradeWindowOpen] = useState(false);
 
 	return (
 		<div>
@@ -37,7 +37,9 @@ export default function Index() {
 				<InventoryWindow />
 				{<TradeWindow currency={0} divcards={divcards} modalIsOpen={tradeWindowOpen} setModalIsOpen={setTradeWindowOpen} />}
 			</div>
-			<div className="uibar"></div>
+			<div className="uibar">
+			<button className="openTradeButton" onClick={() => setTradeWindowOpen(true)}>Open Trade</button>
+			</div>
 		</div>
 	);
 }

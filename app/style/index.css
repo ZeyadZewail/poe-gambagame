@@ -14,10 +14,33 @@
 
 .openTradeButton {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 14%;
+    left: 12.5%;
     z-index: 12;
 }
+
+.openTradeButton{
+    font-family: "Fontin Smallcaps";
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("~/assets/buttons/button_normal.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 160px;
+    height: 35px;
+    border: 0px;
+    padding: 0px;
+    color: #fec076;
+    font-size: 18px;
+}
+
+.openTradeButton:active {
+    background-image: url("~/assets/buttons/button_active.png");
+}
+
+.openTradeButton:hover {
+    background-image: url("~/assets/buttons/button_hover.png");
+}
+
 
 .hideoutWindow {
     background: url("~/assets/hideout2.jpg") no-repeat center center fixed;
