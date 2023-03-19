@@ -185,7 +185,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 		}
 
 		for (let x = 0; x <= inventory.width - itemWidth; x++) {
-			for (let y = 0; y <= inventory.length -itemLength;y++) {
+			for (let y = 0; y <= inventory.length - itemLength; y++) {
 				if (!takenSpaces[y].slice(x, x + itemWidth).includes(true)) {
 					let canPlace = true;
 					for (let i = y + 1; i < y + itemLength; i++) {
@@ -243,13 +243,25 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			ForceRender();
 		} else if (e.ctrlKey && currentMouseItem === null && item != null && horti) {
 			hortiInv.removeItem(item);
+			let breakEarly = false;
+			if (item.maxStack > 1) {
+				let sameItems = mainInventory.items.filter((filterItem) => filterItem.name == item.name);
+				for (let i = 0; i < sameItems.length; i++) {
+					const spaceToTake = sameItems[i].maxStack - sameItems[i].count;
+					const possibleToGive = Math.min(spaceToTake, item.count);
+					const remainder = item.count - possibleToGive;
+					sameItems[i].count += possibleToGive;
+					remainder == 0 ? breakEarly = true : (item.count = remainder);
+					if (breakEarly)
+						break;
+				}
+			}
 			let availableSpace = findAvailableSpace(mainInventory, item.width, item.length);
-			if (availableSpace != null) {
+			if (availableSpace != null && !breakEarly) {
 				item.x = availableSpace.x;
 				item.y = availableSpace.y;
+				mainInventory.items.push(item);
 			}
-			mainInventory.items.push(item);
-
 			ForceRender();
 		} else {
 			SetUnstackWindow(false);
