@@ -5,6 +5,7 @@ import { useState } from "react";
 import { renderVar } from "~/routes";
 import type Item from "~/Types/Item";
 import type ItemInventory from "~/Types/ItemInventory";
+import { hortiInvetory } from "../horticraftStation";
 import { hoveredSlot, mouseItem } from "../MouseFollower/MouseFollower";
 import { unStackVar } from "../StorageController/StorageController";
 import {
@@ -33,7 +34,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 	const [unStackWindowItem, SetUnstackWindowItem] = useAtom(unStackWindowItemVar);
 	const [UnstackWindowLocation, SetUnstackWindowLocation] = useAtom(UnStackWindowLocationVar);
 	const [UnstackWindowItemParent, SetUnstackWindowItemParent] = useAtom(unStackWindowItemParentVar);
-
+	const [hortiInv] = useAtom<ItemInventory>(hortiInvetory);
 	const calcWidth = () => {
 		if (item) {
 			return cellSideLength * item.width;
@@ -192,8 +193,16 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				const remainder = currentMouseItem.count - 1;
 				remainder == 0 ? SetCurrentMouseItem(null) : (currentMouseItem.count = remainder);
 				ForceRender();
-				console.log(parentInventory.items);
 			}
+		} else if (e.ctrlKey && currentMouseItem === null && item != null && hortiInv.itemCount() == 0 && !horti) {
+			hortiInv.items.push(item);
+			parentInventory.removeItem(item);
+			ForceRender();
+		} else if (e.ctrlKey && currentMouseItem === null && item != null && horti) {
+			hortiInv.removeItem(item);
+			//need to make player inventory accessible
+			parentInventory.items.push(item);
+			ForceRender();
 		} else {
 			SetUnstackWindow(false);
 			SwapWithMouse();
