@@ -197,9 +197,17 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				remainder == 0 ? SetCurrentMouseItem(null) : (currentMouseItem.count = remainder);
 				ForceRender();
 			}
-		} else if (e.ctrlKey && currentMouseItem === null && item != null && hortiInv.itemCount() == 0 && !horti) {
-			hortiInv.items.push(item);
-			parentInventory.removeItem(item);
+		} else if (e.ctrlKey && currentMouseItem === null && item != null && !horti) {
+			if (hortiInv.itemCount() == 0)  {
+				hortiInv.items.push(item);
+				parentInventory.removeItem(item);
+			} else if (hortiInv.items[0].name == item.name && hortiInv.items[0].count != hortiInv.items[0].maxStack){
+				const spaceToTake = hortiInv.items[0].maxStack - hortiInv.items[0].count;
+				const possibleToGive = Math.min(spaceToTake, item.count);
+				const remainder = item.count - possibleToGive;
+				hortiInv.items[0].count += possibleToGive;
+				remainder == 0 ? parentInventory.removeItem(item) : (item.count = remainder);
+			}
 			ForceRender();
 		} else if (e.ctrlKey && currentMouseItem === null && item != null && horti) {
 			hortiInv.removeItem(item);
@@ -256,9 +264,8 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 					{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
 					{item.maxStack > 1 ? (
 						<div
-							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${
-								item.count == item.maxStack ? "text-blue-600" : "text-white"
-							}`}>
+							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${item.count == item.maxStack ? "text-blue-600" : "text-white"
+								}`}>
 							{item.count}
 						</div>
 					) : null}
