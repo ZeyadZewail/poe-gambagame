@@ -1,7 +1,6 @@
 import StorageController from "./StorageController/StorageController";
 
-export interface InventoryWindowProps {}
-const InventoryWindow: React.FC<InventoryWindowProps> = ({}) => {
+const InventoryWindow = () => {
 	return (
 		<div className="inventoryWindow">
 			<div className="frame"></div>

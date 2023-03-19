@@ -1,6 +1,5 @@
 import { atom } from "jotai";
 import { useAtom } from "jotai/react";
-import { useEffect } from "react";
 import type Item from "~/Types/Item";
 import type ItemInventory from "~/Types/ItemInventory";
 import { cellSideLength } from "../SlotCell/SlotCell";

@@ -1,10 +1,9 @@
-import { atom, useAtom } from "jotai";
+import { atom } from "jotai";
 import Inventory from "../Inventory/Inventory";
 import divCardImage from "../../assets/item_divcard.png";
 import mageBloodImage from "../../assets/item_mageblood.png";
 import farrulsFurImage from "../../assets/item_farrulfur.png";
 import type Item from "~/Types/Item";
-import UnstackWindow from "../UnstackWindow/UnstackWindow";
 
 const unStackVar = atom(false);
 
