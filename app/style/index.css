@@ -196,6 +196,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .hortistation .crafts .craft .text {
@@ -224,8 +225,8 @@
     background-image: url("~/assets/horti/horti_crafthover.png");
 }
 
-.hortistation .crafts .craft:active {
-    background-image: url("~/assets/horti/horti_craftactive.png");
+.hortistation .crafts .craft.selected {
+    background-image: url("~/assets/horti/horti_craftactive.png") !important;
 }
 
 .hortistation .itemSlot {
