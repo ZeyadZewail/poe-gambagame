@@ -16,6 +16,13 @@ class ItemInventory {
 		this.horti = horti;
 	}
 
+	removeItem = (item: Item) => {
+		let index = this.items.indexOf(item);
+		if (index !== -1) {
+			this.items.splice(index, 1);
+		}
+	};
+
 	generateItemGrid = () => {
 		const temp: any = [];
 		for (let step = 0; step < this.length; step++) {

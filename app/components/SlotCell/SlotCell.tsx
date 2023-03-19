@@ -181,6 +181,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			SetUnstackWindowItem(item);
 			SetUnstackWindowItemParent(parentInventory);
 		} else {
+			SetUnstackWindow(false);
 			SwapWithMouse();
 		}
 	};
