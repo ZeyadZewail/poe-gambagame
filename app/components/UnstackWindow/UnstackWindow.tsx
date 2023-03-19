@@ -6,7 +6,7 @@ import unstackBG from "../../assets/sliderwindow.png";
 import buttonBG from "../../assets/unstackbutton_normal.png";
 import { mouseItem } from "../MouseFollower/MouseFollower";
 import type ItemInventory from "~/Types/ItemInventory";
-import { unStackVar } from "../StorageController/StorageController";
+import { unStackVar } from "~/routes";
 
 const unStackWindowItemVar = atom<Item | null>(null);
 const unStackWindowItemParentVar = atom<ItemInventory | null>(null);

@@ -1,11 +1,11 @@
-import StorageController from "./StorageController/StorageController";
+import Inventory from "./Inventory/Inventory";
 
 const InventoryWindow = () => {
 	return (
 		<div className="inventoryWindow">
 			<div className="frame"></div>
 			<div className="inventorygrid">
-				<StorageController />
+				<Inventory />
 			</div>
 			<div className="bottomframe"></div>
 		</div>

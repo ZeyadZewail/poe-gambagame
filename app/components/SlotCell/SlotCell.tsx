@@ -1,11 +1,10 @@
 import { useAtom, useSetAtom } from "jotai";
 import type { FC } from "react";
 import { useState } from "react";
-import { renderVar } from "~/routes";
+import { renderVar, unStackVar } from "~/routes";
 import type Item from "~/Types/Item";
 import type ItemInventory from "~/Types/ItemInventory";
 import { hoveredSlot, mouseItem } from "../MouseFollower/MouseFollower";
-import { unStackVar } from "../StorageController/StorageController";
 import {
 	unStackWindowItemParentVar,
 	unStackWindowItemVar,
