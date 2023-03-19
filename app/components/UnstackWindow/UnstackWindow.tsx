@@ -46,7 +46,7 @@ const UnstackWindow = () => {
 
 	return (
 		<div
-			className="fixed text-white z-40 bg-no-repeat flex flex-col bg-contain p-1"
+			className="fixed text-white z-50 bg-no-repeat flex flex-col bg-contain p-1 select-none"
 			style={{
 				transform: `translate(${location.x}px,${location.y}px)`,
 				backgroundImage: `url(${unstackBG})`,

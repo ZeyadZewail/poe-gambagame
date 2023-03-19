@@ -38,7 +38,7 @@ const MouseFollower = () => {
 
 	return (
 		<div
-			className="z-30 pointer-events-none"
+			className="z-50 pointer-events-none"
 			style={{
 				width: `${calcWidth()}px`,
 				height: `${calcLength()}px`,

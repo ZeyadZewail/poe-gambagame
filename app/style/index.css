@@ -1,13 +1,13 @@
 @font-face {
-    font-family: 'Fontin Smallcaps';
-    src: url('../fonts/FontinSmallCaps/fontin-smallcaps.woff') format('woff');
+    font-family: "Fontin Smallcaps";
+    src: url("../fonts/FontinSmallCaps/fontin-smallcaps.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Fontin Regular';
-    src: url('../fonts/FontinRegular/fontin-regular.woff') format('woff');
+    font-family: "Fontin Regular";
+    src: url("../fonts/FontinRegular/fontin-regular.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
@@ -20,8 +20,9 @@
 }
 
 .hideoutWindow {
-    background: url('~/assets/hideout.png') no-repeat center center fixed;
+    background: url("~/assets/hideout2.jpg") no-repeat center center fixed;
     background-size: 100% 100%;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: absolute;
     top: 0px;
     right: 0px;
@@ -46,18 +47,17 @@
 }
 
 .inventoryWindow .frame {
-    z-index: 11;
     position: absolute;
     top: 0px;
-    width: 635px;
-    height: 770px;
+    width: 628px;
+    height: 768px;
     background-image: url("~/assets/inventoryframe.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 .inventoryWindow .bottomframe {
-    z-index: 9;
+    z-index: 38 !important;
     position: absolute;
     bottom: 0px;
     width: 635px;
@@ -67,15 +67,16 @@
     background-repeat: no-repeat;
 }
 
-.manabar {
-    background: url("~/assets/manaoverlay.png") no-repeat center center fixed;
-    z-index: 10;
+.uibar {
+    z-index: 39;
     position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 22vh;
+    background-image: url("~/assets/uibar.png");
     background-size: 100% 100%;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
+    background-repeat: no-repeat;
 }
 
 .hortistation {
@@ -84,8 +85,8 @@
     height: 857px;
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: absolute;
-    top: 10vh;
-    left: 18vw;
+    top:  10vh;
+    left:  18vw;
     -webkit-user-select: none;
     /* Safari */
     -ms-user-select: none;
@@ -105,7 +106,6 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
-
 
 .hortistation .topbar {
     position: absolute;
@@ -173,7 +173,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .hortistation .crafts .craft .text {
@@ -206,7 +205,6 @@
     background-image: url("~/assets/horti/horti_craftactive.png");
 }
 
-
 .hortistation .itemSlot {
     position: absolute;
     left: 836px;
@@ -226,7 +224,7 @@
 .hortistation .lifeforce .text {
     font-size: 18px;
     padding-top: 18px;
-    color: white
+    color: white;
 }
 
 .tradewindow {
@@ -238,7 +236,7 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 1.3em;
     line-height: 1.3;
-    background: url('~/assets/sanctum-bg.jpg') no-repeat center center fixed;
+    background: url("~/assets/sanctum-bg.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -317,7 +315,7 @@
 }
 
 .tradewindow .searchbar .buttons .searchTextLi {
-    background-color: rgba(10, 10, 10, .9);
+    background-color: rgba(10, 10, 10, 0.9);
 }
 
 .tradewindow .searchbar .buttons .searchText {
@@ -374,7 +372,6 @@
     margin-bottom: -1px;
 }
 
-
 .tradewindow .inputField {
     padding: 10px 8px;
     width: 100%;
@@ -430,7 +427,6 @@
     border-color: #000;
     border-image: initial;
     background-color: #1e2124;
-
 }
 
 .tradewindow .inputField input:focus {
@@ -492,7 +488,7 @@
 
 @media screen and (max-height: 1440px) {
     .hortistation {
-        transform: scale(0.80);
+        transform: scale(0.8);
         transform-origin: top left;
     }
 
@@ -500,8 +496,8 @@
         transform: scale(1.4);
         transform-origin: top right;
     }
+   
 }
-
 
 @media screen and (max-height: 1200px) {
     .hortistation {
@@ -513,11 +509,12 @@
         transform: scale(1);
         transform-origin: top right;
     }
+   
 }
 
 @media screen and (max-height: 1000px) {
     .hortistation {
-        transform: scale(0.70);
+        transform: scale(0.7);
         transform-origin: top left;
     }
 
@@ -525,6 +522,7 @@
         transform: scale(0.93);
         transform-origin: top right;
     }
+  
 }
 
 @media screen and (max-height: 900px) {
@@ -537,11 +535,12 @@
         transform: scale(0.9);
         transform-origin: top right;
     }
+   
 }
 
 @media screen and (max-height: 800px) {
     .hortistation {
-        transform: scale(0.60);
+        transform: scale(0.6);
         transform-origin: top left;
     }
 
@@ -549,28 +548,29 @@
         transform: scale(0.85);
         transform-origin: top right;
     }
+    
 }
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 750px) {
     .hortistation {
-        transform: scale(0.60);
+        transform: scale(0.6);
         transform-origin: top left;
     }
 
     .inventoryWindow {
-        transform: scale(0.80);
+        transform: scale(0.7);
         transform-origin: top right;
     }
 }
 
 @media screen and (max-height: 600px) {
     .hortistation {
-        transform: scale(0.60);
+        transform: scale(0.6);
         transform-origin: top left;
     }
 
     .inventoryWindow {
-        transform: scale(0.70);
+        transform: scale(0.55);
         transform-origin: top right;
     }
 }
@@ -809,7 +809,7 @@
     opacity: 1;
     display: flex;
     position: relative;
-    transition: opacity .5s;
+    transition: opacity 0.5s;
     background: rgba(32, 32, 32, 0.8) !important;
     box-sizing: border-box;
     color: #a38d6d;
@@ -865,14 +865,14 @@
 .tradeListing .details .price .per-have {
     height: 18px;
     line-height: 18px;
-    font-size: .65em;
+    font-size: 0.65em;
     text-align: left;
 }
 
 .tradeListing .details .price .per-want {
     height: 18px;
     line-height: 18px;
-    font-size: .65em;
+    font-size: 0.65em;
     text-align: left;
 }
 
