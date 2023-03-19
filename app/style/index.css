@@ -12,6 +12,36 @@
     font-style: normal;
 }
 
+.openTradeButton {
+    position: absolute;
+    top: 14%;
+    left: 12.5%;
+    z-index: 12;
+}
+
+.openTradeButton {
+    font-family: "Fontin Smallcaps";
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("~/assets/buttons/button_normal.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 160px;
+    height: 35px;
+    border: 0px;
+    padding: 0px;
+    color: #fec076;
+    font-size: 18px;
+}
+
+.openTradeButton:active {
+    background-image: url("~/assets/buttons/button_active.png");
+}
+
+.openTradeButton:hover {
+    background-image: url("~/assets/buttons/button_hover.png");
+}
+
+
 .hideoutWindow {
     background: url("~/assets/hideout2.jpg") no-repeat center center fixed;
     background-size: 100% 100%;
@@ -89,6 +119,29 @@
     z-index: 11;
 }
 
+.hortistation .hortiWarning {
+    z-index: 1;
+    position: absolute;
+    top: 0%;
+    left: 10%;
+    width: 600px;
+    height: 80px;
+    background-image: url("~/assets/horti_warning.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: red;
+    line-height: 76px;
+    font-size: 36px;
+    font-family: "Fontin Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    opacity: 0;
+    transition: opacity 0.8s;
+}
+
+.hortistation .hortiWarning.visible {
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
 .hortistation .frame {
     z-index: 0;
     position: absolute;
@@ -148,6 +201,11 @@
     background-image: url("~/assets/buttons/horti_hover.png");
 }
 
+.hortistation .button .craftButton:disabled {
+    color: #b2b2b2;
+    background-image: url("~/assets/buttons/horti_disabled.png");
+}
+
 .hortistation .crafts {
     position: absolute;
     left: 100px;
@@ -166,6 +224,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .hortistation .crafts .craft .text {
@@ -194,8 +253,8 @@
     background-image: url("~/assets/horti/horti_crafthover.png");
 }
 
-.hortistation .crafts .craft:active {
-    background-image: url("~/assets/horti/horti_craftactive.png");
+.hortistation .crafts .craft.selected {
+    background-image: url("~/assets/horti/horti_craftactive.png") !important;
 }
 
 .hortistation .itemSlot {
@@ -221,12 +280,8 @@
 }
 
 .tradewindow {
-    z-index: 999;
-    position: relative;
+    position: absolute;
     width: 100%;
-    float: left;
-    margin: 0;
-    position: relative;
     min-width: 745px;
     max-width: 1520px;
     min-height: 98vh;
@@ -238,6 +293,10 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    left: 0;
+    right: 0;
+    margin: auto;
+    box-sizing: content-box;
 }
 
 .tradewindow .header .logo {
@@ -254,16 +313,37 @@
     left: 10px;
 }
 
+.tradewindow .header .menuButtons .backToGameButton {
+    text-decoration: none;
+    color: #00b6ff;
+    font-size: 50%;
+    padding: 0;
+    margin: 0;
+}
+
+.tradewindow .header .menuButtons .backToGameButton:hover {
+    color: #00d2ff;
+}
+
 .tradewindow .header .logo img {
     overflow: hidden;
     max-width: 100%;
 }
 
 .tradewindow .header .currency {
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     right: 0;
     position: absolute;
     top: 0;
     color: white;
+    font-size: 24px;
+}
+
+.tradewindow .header .currency img {
+    height: 32px;
+    width: 32px;
+    display: inline;
+    vertical-align: center;
 }
 
 .tradewindow .searchbar .inputField {
@@ -296,14 +376,15 @@
     min-height: 50px;
     min-width: 99%;
     height: 100%;
-    width: 99%;
+    width: 100%;
     background-color: #000;
-    padding: 7px 7px 0;
+    padding: 7px 7px;
+    padding-bottom: 7px;
 }
 
 .tradewindow .searchbar .buttons {
-    padding-inline-start: 10px;
-    padding-bottom: 5px;
+    padding-inline-start: 5px;
+    padding-bottom: 25px;
 }
 
 .tradewindow .searchbar .buttons .searchTextLi {
@@ -365,7 +446,7 @@
 }
 
 .tradewindow .inputField {
-    padding: 10px 18px;
+    padding: 10px 8px;
     width: 100%;
     border: 1px solid #000;
     border-radius: 0;
@@ -488,7 +569,7 @@
         transform: scale(1.4);
         transform-origin: top right;
     }
-   
+
 }
 
 @media screen and (max-height: 1200px) {
@@ -501,7 +582,7 @@
         transform: scale(1);
         transform-origin: top right;
     }
-   
+
 }
 
 @media screen and (max-height: 1000px) {
@@ -514,7 +595,7 @@
         transform: scale(0.93);
         transform-origin: top right;
     }
-  
+
 }
 
 @media screen and (max-height: 900px) {
@@ -527,7 +608,7 @@
         transform: scale(0.9);
         transform-origin: top right;
     }
-   
+
 }
 
 @media screen and (max-height: 800px) {
@@ -540,7 +621,7 @@
         transform: scale(0.85);
         transform-origin: top right;
     }
-    
+
 }
 
 @media screen and (max-height: 750px) {
@@ -681,6 +762,7 @@
     background-image: url("~/assets/divination-card.webp");
     background-size: cover;
     background-repeat: no-repeat;
+    border-width: 0px;
 }
 
 .divCard .topbar {
@@ -899,6 +981,10 @@
 
 .tradeListing .details .price .price-block {
     font-size: 0.8em;
+}
+
+.tradewindow img {
+    display: inline;
 }
 
 .tradeListing .details .price img {

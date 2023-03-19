@@ -59,7 +59,13 @@ class ItemInventory {
 			/>
 		);
 	};
+	setCount = (idx: number, count: number) => {
 
+		if (count > this.items[idx].maxStack)
+			this.items[idx].count = this.items[idx].maxStack;
+		else
+			this.items[idx].count = count;
+	};
 	generateElementGrid = () => {
 		const temp = this.generateItemGrid();
 		const rows: any[] = [];
@@ -92,7 +98,6 @@ class ItemInventory {
 					);
 			}
 		}
-
 		return rows.map((r, index) => {
 			return (
 				<div className={`flex flex-row ${this.horti ? "w-full h-full" : null}`} key={index}>
