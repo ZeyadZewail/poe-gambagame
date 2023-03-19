@@ -3,8 +3,9 @@ import type { FC } from "react";
 import { useState } from "react";
 import { renderVar, unStackVar } from "~/routes";
 import type Item from "~/Types/Item";
-import type ItemInventory from "~/Types/ItemInventory";
+import ItemInventory from "~/Types/ItemInventory";
 import { hortiInventory } from "../horticraftStation";
+import { inventoryVar } from "../Inventory/Inventory";
 import { hoveredSlot, mouseItem } from "../MouseFollower/MouseFollower";
 import {
 	unStackWindowItemParentVar,
@@ -29,6 +30,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 	const [hovered, SetHovered] = useState(false);
 	const [mouseHoveredSlot, SetMouseHoveredSlot] = useAtom(hoveredSlot);
 	const [hortiInv] = useAtom<ItemInventory>(hortiInventory);
+	const [mainInventory] = useAtom<ItemInventory>(inventoryVar);
 	const SetUnstackWindow = useSetAtom(unStackVar);
 	const SetUnstackWindowItem = useSetAtom(unStackWindowItemVar);
 	const SetUnstackWindowLocation = useSetAtom(UnStackWindowLocationVar);
@@ -107,7 +109,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 		ForceRender();
 	};
 
-	const CheckSpaceForItem = (x: number, y: number, item: Item) => {
+	const CheckSpaceForItem = (x: number, y: number) => {
 		if (currentMouseItem != null) {
 			const parentSloty = y - Math.floor(currentMouseItem.length / 2);
 
@@ -125,7 +127,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 		// 	return true;
 		// }
 
-		if (item === null && item2 != null && CheckSpaceForItem(x, y, item2)) {
+		if (item === null && item2 != null && CheckSpaceForItem(x, y)) {
 			const parentSloty = y - Math.floor(item2.length / 2);
 			const viabilityMatrix = parentInventory.generateItemGrid();
 			for (let i = 0; i < item2.length; i++) {
@@ -171,6 +173,37 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 		}
 	};
 
+	const findAvailableSpace = (inventory: ItemInventory, itemWidth: number, itemLength: number): { x: number, y: number } | null => {
+		const takenSpaces: boolean[][] = Array.from({ length: inventory.length }, () => new Array(inventory.width).fill(false));
+
+		for (const item of inventory.items) {
+			for (let y = item.y; y < item.y + item.length; y++) {
+				for (let x = item.x; x < item.x + item.width; x++) {
+					takenSpaces[y][x] = true;
+				}
+			}
+		}
+
+		for (let x = 0; x <= inventory.width - itemWidth; x++) {
+			for (let y = 0; y <= inventory.length -itemLength;y++) {
+				if (!takenSpaces[y].slice(x, x + itemWidth).includes(true)) {
+					let canPlace = true;
+					for (let i = y + 1; i < y + itemLength; i++) {
+						if (takenSpaces[i].slice(x, x + itemWidth).includes(true)) {
+							canPlace = false;
+							break;
+						}
+					}
+					if (canPlace) {
+						return { x, y };
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+
 	const HandleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		if (e.shiftKey && currentMouseItem === null && item != null && item.maxStack > 1 && item.count > 1) {
 			SetUnstackWindowLocation({ x: e.clientX, y: e.clientY });
@@ -210,8 +243,13 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			ForceRender();
 		} else if (e.ctrlKey && currentMouseItem === null && item != null && horti) {
 			hortiInv.removeItem(item);
-			//need to make player inventory accessible
-			parentInventory.items.push(item);
+			let availableSpace = findAvailableSpace(mainInventory, item.width, item.length);
+			if (availableSpace != null) {
+				item.x = availableSpace.x;
+				item.y = availableSpace.y;
+			}
+			mainInventory.items.push(item);
+
 			ForceRender();
 		} else {
 			SetUnstackWindow(false);
@@ -263,9 +301,8 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 					{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
 					{item.maxStack > 1 ? (
 						<div
-							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${
-								item.count == item.maxStack ? "text-blue-600" : "text-white"
-							}`}>
+							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${item.count == item.maxStack ? "text-blue-600" : "text-white"
+								}`}>
 							{item.count}
 						</div>
 					) : null}
