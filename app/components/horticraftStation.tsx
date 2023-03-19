@@ -10,7 +10,7 @@ export interface HorticraftStationProps {
 
 const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 	const [hortiInv] = useState<ItemInventory>(new ItemInventory(1, 1, [], true));
-	const [selectedCraft, setSelectedCraft] = useState<number | null>(null);
+	const [selectedCraft, setSelectedCraft] = useState<number | null>(0);
 	const [renderBool, SetForceRender] = useAtom(renderVar);
 	const ForceRender = () => {
 		SetForceRender(!renderBool);
@@ -33,12 +33,7 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 					<span className="normal">Sacrifice</span> up to half a stack of <span className="normal">Divination Cards</span> to receive between 0 and twice that amount of the same Card
 				</div>
 			),
-		},
-		{
-			craftFunction: (inventory: ItemInventory) => gambleSomething(inventory),
-			cost: 500,
-			text: <div>Reroll one Card</div>,
-		},
+		}
 	];
 
 	return (
@@ -75,7 +70,6 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 export default HorticraftStation;
 
 function gamble(inventory: ItemInventory) {
-	console.log(inventory);
 	let outcome: number = gambleLogic(inventory.items[0].count, inventory.items[0].maxStack)
 	inventory.setCount(0, outcome)
 	if(outcome == 0)
@@ -91,7 +85,4 @@ function gambleLogic(currentValue: number, maxValue: number): number {
 
 	const randomValue = Math.floor(Math.random() * (currentValue * 2 + 1));
 	return Math.min(randomValue, maxValue);
-}
-function gambleSomething(inventory: ItemInventory) {
-	console.log("something");
 }
