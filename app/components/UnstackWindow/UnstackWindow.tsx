@@ -1,4 +1,4 @@
-import { atom, useAtom } from "jotai";
+import { atom, useAtom, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import type Item from "~/Types/Item";
 import Slider from "./Slider";
@@ -20,8 +20,8 @@ const UnstackWindow = () => {
 	const [parentInventory] = useAtom(unStackWindowItemParentVar);
 	const [location] = useAtom(UnStackWindowLocationVar);
 	const [value, SetValue] = useState<number>(starterCount);
-	const [currentMouseItem, SetCurrentMouseItem] = useAtom(mouseItem);
-	const [spawnUnstack, SetSpawnUnstack] = useAtom(unStackVar);
+	const SetCurrentMouseItem = useSetAtom(mouseItem);
+	const SetSpawnUnstack = useSetAtom(unStackVar);
 
 	useEffect(() => {
 		SetValue(starterCount);

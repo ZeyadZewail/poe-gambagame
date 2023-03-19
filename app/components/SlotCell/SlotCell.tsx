@@ -1,5 +1,4 @@
-import { readConfig } from "@remix-run/dev/dist/config";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import type { FC } from "react";
 import { useState } from "react";
 import { renderVar } from "~/routes";
@@ -30,11 +29,12 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 	const [renderBool, SetForceRender] = useAtom(renderVar);
 	const [hovered, SetHovered] = useState(false);
 	const [mouseHoveredSlot, SetMouseHoveredSlot] = useAtom(hoveredSlot);
-	const [UnstackWindow, SetUnstackWindow] = useAtom(unStackVar);
-	const [unStackWindowItem, SetUnstackWindowItem] = useAtom(unStackWindowItemVar);
-	const [UnstackWindowLocation, SetUnstackWindowLocation] = useAtom(UnStackWindowLocationVar);
-	const [UnstackWindowItemParent, SetUnstackWindowItemParent] = useAtom(unStackWindowItemParentVar);
 	const [hortiInv] = useAtom<ItemInventory>(hortiInvetory);
+	const SetUnstackWindow = useSetAtom(unStackVar);
+	const SetUnstackWindowItem = useSetAtom(unStackWindowItemVar);
+	const SetUnstackWindowLocation = useSetAtom(UnStackWindowLocationVar);
+	const SetUnstackWindowItemParent = useSetAtom(unStackWindowItemParentVar);
+
 	const calcWidth = () => {
 		if (item) {
 			return cellSideLength * item.width;
@@ -178,14 +178,17 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			SetUnstackWindow(true);
 			SetUnstackWindowItem(item);
 			SetUnstackWindowItemParent(parentInventory);
-		} else if (e.shiftKey && currentMouseItem != null && (item === null || (item.name == currentMouseItem.name && item.count != item.maxStack))) {
+		} else if (
+			e.shiftKey &&
+			currentMouseItem != null &&
+			(item === null || (item.name == currentMouseItem.name && item.count != item.maxStack))
+		) {
 			if (item != null) {
 				const spaceToTake = item.maxStack - item.count;
 				const possibleToGive = Math.min(spaceToTake, 1);
 				const remainder = currentMouseItem.count - possibleToGive;
 				item.count += possibleToGive;
 				remainder == 0 ? SetCurrentMouseItem(null) : (currentMouseItem.count = remainder);
-				ForceRender();
 			} else {
 				currentMouseItem.x = x;
 				currentMouseItem.y = y - Math.floor(currentMouseItem.length / 2);
@@ -207,6 +210,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			SetUnstackWindow(false);
 			SwapWithMouse();
 		}
+		ForceRender();
 	};
 
 	const getImageStyle = () => {
@@ -252,8 +256,9 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 					{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
 					{item.maxStack > 1 ? (
 						<div
-							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${item.count == item.maxStack ? "text-blue-600" : "text-white"
-								}`}>
+							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${
+								item.count == item.maxStack ? "text-blue-600" : "text-white"
+							}`}>
 							{item.count}
 						</div>
 					) : null}
