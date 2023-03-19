@@ -12,6 +12,10 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 	const [hortiInv] = useState<ItemInventory>(new ItemInventory(1, 1, [], true));
 	const [selectedCraft, setSelectedCraft] = useState<number | null>(0);
 	const [renderBool, SetForceRender] = useAtom(renderVar);
+	const [warningTextVisible, setWarningTextVisible] = useState(false);
+	const [warningText, setWarningText] = useState("");
+	const [warningTimeout, setWarningTimeout]  = useState<number | undefined>();
+
 	const ForceRender = () => {
 		SetForceRender(!renderBool);
 	};
@@ -36,8 +40,31 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 		}
 	];
 
+
+	function gamble(inventory: ItemInventory) {
+		try {
+			let outcome: number = gambleLogic(inventory.items[0].count, inventory.items[0].maxStack)
+			inventory.setCount(0, outcome)
+			if (outcome == 0) {
+				inventory.removeItem(inventory.items[0])
+			}
+			setWarningTextVisible(false);
+		} catch {
+			if (warningTimeout) {
+				clearTimeout(warningTimeout);
+			  }
+			setWarningText("Too many Items in stack");
+			setWarningTextVisible(true);
+			ForceRender();
+			const timeoutId = window.setTimeout(() => {
+				setWarningTextVisible(false);
+			}, 1500);
+			setWarningTimeout(timeoutId);
+		}
+	}
 	return (
 		<div className="hortistation">
+			<div className={`hortiWarning ${warningTextVisible ? "visible" : ""}`}>{warningText}</div>
 			<div className="frame"></div>
 			<div className="topbar">
 				<div className="text">Horticrafting</div>
@@ -56,7 +83,7 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 			</div>
 			<div className="itemSlot">{hortiInv.generateFirstItem()}</div>
 			<div className="button">
-				<button className="craftButton" onClick={craftSelected}>
+				<button className="craftButton" onClick={craftSelected} disabled={hortiInv.items.length == 0}>
 					Craft
 				</button>
 			</div>
@@ -69,20 +96,11 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 
 export default HorticraftStation;
 
-function gamble(inventory: ItemInventory) {
-	let outcome: number = gambleLogic(inventory.items[0].count, inventory.items[0].maxStack)
-	inventory.setCount(0, outcome)
-	if(outcome == 0)
-	{
-		inventory.items.splice(0, inventory.items.length);
-	}
 
-}
 function gambleLogic(currentValue: number, maxValue: number): number {
 	if (currentValue > maxValue / 2) {
 		throw new Error('Current value cannot be higher than half of max value');
 	}
-
 	const randomValue = Math.floor(Math.random() * (currentValue * 2 + 1));
 	return Math.min(randomValue, maxValue);
 }

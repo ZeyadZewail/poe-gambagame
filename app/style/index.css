@@ -119,6 +119,29 @@
     z-index: 11;
 }
 
+.hortistation .hortiWarning {
+    z-index: 1;
+    position: absolute;
+    top: 0%;
+    left: 10%;
+    width: 600px;
+    height: 80px;
+    background-image: url("~/assets/horti_warning.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: red;
+    line-height: 76px;
+    font-size: 36px;
+    font-family: "Fontin Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    opacity: 0;
+    transition: opacity 0.8s;
+}
+
+.hortistation .hortiWarning.visible {
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
 .hortistation .frame {
     z-index: 0;
     position: absolute;
@@ -176,6 +199,11 @@
 
 .hortistation .button .craftButton:hover {
     background-image: url("~/assets/buttons/horti_hover.png");
+}
+
+.hortistation .button .craftButton:disabled {
+    color: #b2b2b2;
+    background-image: url("~/assets/buttons/horti_disabled.png");
 }
 
 .hortistation .crafts {
