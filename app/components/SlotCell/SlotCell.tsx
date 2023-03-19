@@ -4,7 +4,7 @@ import { useState } from "react";
 import { renderVar, unStackVar } from "~/routes";
 import type Item from "~/Types/Item";
 import type ItemInventory from "~/Types/ItemInventory";
-import { hortiInvetory } from "../horticraftStation";
+import { hortiInventory } from "../horticraftStation";
 import { hoveredSlot, mouseItem } from "../MouseFollower/MouseFollower";
 import {
 	unStackWindowItemParentVar,
@@ -28,7 +28,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 	const [renderBool, SetForceRender] = useAtom(renderVar);
 	const [hovered, SetHovered] = useState(false);
 	const [mouseHoveredSlot, SetMouseHoveredSlot] = useAtom(hoveredSlot);
-	const [hortiInv] = useAtom<ItemInventory>(hortiInvetory);
+	const [hortiInv] = useAtom<ItemInventory>(hortiInventory);
 	const SetUnstackWindow = useSetAtom(unStackVar);
 	const SetUnstackWindowItem = useSetAtom(unStackWindowItemVar);
 	const SetUnstackWindowLocation = useSetAtom(UnStackWindowLocationVar);
@@ -197,10 +197,10 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				ForceRender();
 			}
 		} else if (e.ctrlKey && currentMouseItem === null && item != null && !horti) {
-			if (hortiInv.itemCount() == 0)  {
+			if (hortiInv.itemCount() == 0) {
 				hortiInv.items.push(item);
 				parentInventory.removeItem(item);
-			} else if (hortiInv.items[0].name == item.name && hortiInv.items[0].count != hortiInv.items[0].maxStack){
+			} else if (hortiInv.items[0].name == item.name && hortiInv.items[0].count != hortiInv.items[0].maxStack) {
 				const spaceToTake = hortiInv.items[0].maxStack - hortiInv.items[0].count;
 				const possibleToGive = Math.min(spaceToTake, item.count);
 				const remainder = item.count - possibleToGive;
@@ -263,8 +263,9 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 					{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
 					{item.maxStack > 1 ? (
 						<div
-							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${item.count == item.maxStack ? "text-blue-600" : "text-white"
-								}`}>
+							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${
+								item.count == item.maxStack ? "text-blue-600" : "text-white"
+							}`}>
 							{item.count}
 						</div>
 					) : null}

@@ -10,7 +10,7 @@ import InventoryWindow from "~/components/inventoryWindow";
 import MouseFollower from "~/components/MouseFollower/MouseFollower";
 import { atom, useAtom } from "jotai";
 import UnstackWindow from "~/components/UnstackWindow/UnstackWindow";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 export const links: LinksFunction = () => {
 	return [{ rel: "stylesheet", href: stylesUrl }];
@@ -43,10 +43,15 @@ export default function Index() {
 			<div className="hideoutWindow">
 				<MouseFollower />
 				{spawnUnstack ? <UnstackWindow /> : null}
-				<HorticraftStation vividlf={0} />
+
 				<ClientOnly>
 					{() => {
-						return <InventoryWindow />;
+						return (
+							<Fragment>
+								<HorticraftStation vividlf={0} />
+								<InventoryWindow />
+							</Fragment>
+						);
 					}}
 				</ClientOnly>
 				{
