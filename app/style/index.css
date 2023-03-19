@@ -19,7 +19,7 @@
     z-index: 12;
 }
 
-.openTradeButton{
+.openTradeButton {
     font-family: "Fontin Smallcaps";
     background-color: rgba(0, 0, 0, 0);
     background-image: url("~/assets/buttons/button_normal.png");
@@ -108,8 +108,8 @@
     height: 857px;
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: absolute;
-    top:  10vh;
-    left:  18vw;
+    top: 10vh;
+    left: 18vw;
     -webkit-user-select: none;
     /* Safari */
     -ms-user-select: none;
@@ -267,7 +267,7 @@
     left: 0;
     right: 0;
     margin: auto;
-    box-sizing:content-box;
+    box-sizing: content-box;
 }
 
 .tradewindow .header .logo {
@@ -284,16 +284,37 @@
     left: 10px;
 }
 
+.tradewindow .header .menuButtons .backToGameButton {
+    text-decoration: none;
+    color: #00b6ff;
+    font-size: 50%;
+    padding: 0;
+    margin: 0;
+}
+
+.tradewindow .header .menuButtons .backToGameButton:hover {
+    color: #00d2ff;
+}
+
 .tradewindow .header .logo img {
     overflow: hidden;
     max-width: 100%;
 }
 
 .tradewindow .header .currency {
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     right: 0;
     position: absolute;
     top: 0;
     color: white;
+    font-size: 24px;
+}
+
+.tradewindow .header .currency img {
+    height: 32px;
+    width: 32px;
+    display: inline;
+    vertical-align: center;
 }
 
 .tradewindow .searchbar .inputField {
@@ -519,7 +540,7 @@
         transform: scale(1.4);
         transform-origin: top right;
     }
-   
+
 }
 
 @media screen and (max-height: 1200px) {
@@ -532,7 +553,7 @@
         transform: scale(1);
         transform-origin: top right;
     }
-   
+
 }
 
 @media screen and (max-height: 1000px) {
@@ -545,7 +566,7 @@
         transform: scale(0.93);
         transform-origin: top right;
     }
-  
+
 }
 
 @media screen and (max-height: 900px) {
@@ -558,7 +579,7 @@
         transform: scale(0.9);
         transform-origin: top right;
     }
-   
+
 }
 
 @media screen and (max-height: 800px) {
@@ -571,7 +592,7 @@
         transform: scale(0.85);
         transform-origin: top right;
     }
-    
+
 }
 
 @media screen and (max-height: 750px) {
@@ -932,9 +953,11 @@
 .tradeListing .details .price .price-block {
     font-size: 0.8em;
 }
+
 .tradewindow img {
     display: inline;
 }
+
 .tradeListing .details .price img {
     height: 32px;
     vertical-align: middle;

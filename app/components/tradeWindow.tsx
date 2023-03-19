@@ -8,7 +8,7 @@ import Trader, { TraderType } from "~/Types/Trader";
 import ReactModal from 'react-modal';
 import DivCardGenerator from "./divCardGenerator";
 import TradeListing from "./tradeListing";
-
+import divineicon from "~/assets/divineorb.png"
 
 export interface TradeWindowProps {
     currency: number;
@@ -75,13 +75,13 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards, modalIsOp
                 <div className="tradewindow">
                     <div className="header">
                         <div className="menuButtons">
-                            <button>Back to Game</button>
+                            <button className="backToGameButton" onClick={()=> setModalIsOpen(false)}>BACK TO GAME</button>
                         </div>
                         <div className="logo">
                             <img src={tradeLogo} />
                         </div>
                         <div className="currency">
-                            {currency} Div
+                            {currency} <img src={divineicon} alt="divine" title="divine" />
                         </div>
                     </div>
                     <div className="searchbar">
