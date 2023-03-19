@@ -191,6 +191,8 @@ export function generateTraders(): Trader[] {
         { accountName: "Syperek", characterName: "我在這裡撫摸我的雞巴我現在在我的雞巴上塗了乳液", type: TraderType.Scammer, region: Region.English },
         { accountName: "kedam7", characterName: "GeneratingGodSeed", type: TraderType.OilPrince, region: Region.English },
         { accountName: "Prise11", characterName: "BigChungus", type: TraderType.OilPrince, region: Region.English },
+        { accountName: "Lev", characterName: "TriAxis", type: TraderType.PriceFixer, region: Region.Русский },
+           
     ]
     for (let i = 0; traders.length < 150; i++) {
         let newTrader = generateRandomTrader();
