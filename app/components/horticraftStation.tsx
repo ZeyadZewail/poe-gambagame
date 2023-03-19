@@ -1,4 +1,4 @@
-import { useAtom } from "jotai";
+import { atom, useAtom } from "jotai";
 import { useState } from "react";
 import { renderVar } from "~/routes";
 import ItemInventory from "~/Types/ItemInventory";
@@ -7,9 +7,10 @@ import HortiCraft from "./hortiCraft";
 export interface HorticraftStationProps {
 	vividlf: number;
 }
-
+const hortiInvetory = atom<ItemInventory>(new ItemInventory(1, 1, [], true));
+export {hortiInvetory}
 const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
-	const [hortiInv] = useState<ItemInventory>(new ItemInventory(1, 1, [], true));
+	const [hortiInv] = useAtom<ItemInventory>(hortiInvetory);
 	const [selectedCraft, setSelectedCraft] = useState<number | null>(0);
 	const [renderBool, SetForceRender] = useAtom(renderVar);
 	const [warningTextVisible, setWarningTextVisible] = useState(false);

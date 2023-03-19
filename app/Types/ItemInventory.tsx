@@ -22,7 +22,9 @@ class ItemInventory {
 			this.items.splice(index, 1);
 		}
 	};
-
+	itemCount = () => {
+		return this.items.length;
+	}
 	generateItemGrid = () => {
 		const temp: any = [];
 		for (let step = 0; step < this.length; step++) {
