@@ -33,10 +33,7 @@ const UnstackWindow = () => {
 			SetCurrentMouseItem({ ...item, count: value });
 			if (item.count - value === 0) {
 				if (parentInventory != null) {
-					let index = parentInventory.items.indexOf(item);
-					if (index !== -1) {
-						parentInventory.items.splice(index, 1);
-					}
+					parentInventory.removeItem(item);
 				}
 			} else {
 				item.count -= value;
