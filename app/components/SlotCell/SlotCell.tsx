@@ -66,10 +66,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 
 		if (item != null && currentMouseItem === null) {
 			SetCurrentMouseItem(item);
-			let index = parentInventory.items.indexOf(item);
-			if (index !== -1) {
-				parentInventory.items.splice(index, 1);
-			}
+			parentInventory.removeItem(item);
 		} else if (currentMouseItem != null && item === null) {
 			// const parentSlotX = x + Math.floor(currentMouseItem.width / 2);
 			if (horti) {
