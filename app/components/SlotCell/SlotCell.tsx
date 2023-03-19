@@ -177,6 +177,23 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			SetUnstackWindow(true);
 			SetUnstackWindowItem(item);
 			SetUnstackWindowItemParent(parentInventory);
+		} else if (e.shiftKey && currentMouseItem != null && (item === null || (item.name == currentMouseItem.name && item.count != item.maxStack))) {
+			if (item != null) {
+				const spaceToTake = item.maxStack - item.count;
+				const possibleToGive = Math.min(spaceToTake, 1);
+				const remainder = currentMouseItem.count - possibleToGive;
+				item.count += possibleToGive;
+				remainder == 0 ? SetCurrentMouseItem(null) : (currentMouseItem.count = remainder);
+				ForceRender();
+			} else {
+				currentMouseItem.x = x;
+				currentMouseItem.y = y - Math.floor(currentMouseItem.length / 2);
+				parentInventory.items.push({ ...currentMouseItem, count: 1 });
+				const remainder = currentMouseItem.count - 1;
+				remainder == 0 ? SetCurrentMouseItem(null) : (currentMouseItem.count = remainder);
+				ForceRender();
+				console.log(parentInventory.items);
+			}
 		} else {
 			SetUnstackWindow(false);
 			SwapWithMouse();
@@ -226,9 +243,8 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 					{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
 					{item.maxStack > 1 ? (
 						<div
-							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${
-								item.count == item.maxStack ? "text-blue-600" : "text-white"
-							}`}>
+							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${item.count == item.maxStack ? "text-blue-600" : "text-white"
+								}`}>
 							{item.count}
 						</div>
 					) : null}
