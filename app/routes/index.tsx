@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 import { ClientOnly } from "remix-utils";
 import TradeWindow from "~/components/tradeWindow";
 import stylesUrl from "~/style/index.css";
-import divCards from "~/data/divcards.json";
+import Items from "~/data/items.json";
 import { useLoaderData } from "@remix-run/react";
 import HorticraftStation from "~/components/horticraftStation";
 import InventoryWindow from "~/components/inventoryWindow";
@@ -17,7 +17,7 @@ export const links: LinksFunction = () => {
 };
 
 export const loader = async () => {
-	return json(divCards);
+	return json(Items);
 };
 
 const renderVar = atom(false);
@@ -26,7 +26,7 @@ const unStackVar = atom(false);
 export { renderVar, unStackVar };
 
 export default function Index() {
-	const divcards = useLoaderData<typeof loader>();
+	const items = useLoaderData<typeof loader>();
 	const [spawnUnstack, SetSpawnUnstack] = useAtom(unStackVar);
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [render] = useAtom(renderVar);
@@ -57,7 +57,7 @@ export default function Index() {
 				{
 					<TradeWindow
 						currency={0}
-						divcards={divcards}
+						divcards={items.divcards}
 						modalIsOpen={tradeWindowOpen}
 						setModalIsOpen={setTradeWindowOpen}
 					/>

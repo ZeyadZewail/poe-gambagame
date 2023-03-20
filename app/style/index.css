@@ -761,6 +761,53 @@
     background: url("~/assets/flags/KR.png");
 }
 
+.uniqueItem {
+    text-align: center;
+    height: 100%;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: relative;
+    user-select: none;
+}
+
+.uniqueItem .header {
+    background: url("~/assets/unique/headerLeft.png") top left no-repeat, url("~/assets/unique/headerRight.png") top right no-repeat, url("~/assets/unique/headerCenter.png") top center repeat-x;
+    color: #af6025;
+    font-size: 110%;
+}
+
+.uniqueItem .header .itemName {
+    line-height: 24px;
+}
+
+.uniqueItem .header .baseName {
+    line-height: 24px;
+}
+
+.uniqueItem .stats {
+    padding-top: 5px;
+    padding-bottom: 6px;
+    background-color: rgba(0, 0, 0, .8);
+    color: #7f7f7f;
+}
+
+.uniqueItem .stats .implicitArea {
+    color: #88f;
+}
+
+.uniqueItem .stats .explicitArea {
+    color: #88f;
+}
+
+.uniqueItem .stats .FlavourText {
+    color: #af6025;
+}
+
+.uniqueItem .stats .separator {
+    background: url("~/assets/unique/seperator.png") center no-repeat;
+    height: 7.5px;
+    margin: 0.8px;
+}
+
 .divCard {
     text-align: center;
     width: 360px;
