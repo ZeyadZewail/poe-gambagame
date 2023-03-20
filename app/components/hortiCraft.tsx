@@ -5,12 +5,11 @@ import type ItemInventory from "~/Types/ItemInventory";
 export interface HortiCraftProps {
 	cost: number;
 	text: ReactElement<any, any>;
-	craftFunction: (inventory: ItemInventory) => void;
 	onSelect: () => void;
 	isSelected: boolean;
 }
 
-const HortiCraft: React.FC<HortiCraftProps> = ({ cost, text, craftFunction, onSelect, isSelected }) => {
+const HortiCraft: React.FC<HortiCraftProps> = ({ cost, text, onSelect, isSelected }) => {
 	return (
 		<div className={`craft ${isSelected ? "selected" : ""}`} onClick={onSelect}>
 			<div className="text">{text}</div>
