@@ -135,7 +135,6 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards, modalIsOp
 								</div>
 							</div>
 							<div className="searchButton">
-								(Please select an item)
 								<button className="search-btn" onClick={search}>
 									Search
 								</button>
