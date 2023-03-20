@@ -76,7 +76,6 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 				{crafts.map((craft, index) => (
 					<HortiCraft
 						key={index}
-						craftFunction={craft.craftFunction}
 						cost={craft.cost}
 						text={craft.text}
 						isSelected={selectedCraft === index}
