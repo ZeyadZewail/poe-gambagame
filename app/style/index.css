@@ -11,7 +11,9 @@
     font-weight: normal;
     font-style: normal;
 }
-
+html{
+    background-color: #000;
+}
 .openTradeButton {
     position: absolute;
     top: 14%;
@@ -549,7 +551,7 @@
 }
 
 .tradewindow .itemSelection .divcards .cards {
-    zoom: 0.85;
+    zoom: 0.80;
     line-height: 1em;
     display: flex;
     flex-wrap: wrap;
