@@ -892,6 +892,73 @@
     padding-right: 5px;
 }
 
+.itemContextMenu {
+    position: relative;
+    height: 201px;
+    width: 201px;
+    background-image: url("~/assets/contextMenu/contextMenu.png");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemContextMenu .closeButton {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 24px;
+    width: 24px;
+    background-image: url("~/assets/contextMenu/contextMenuCloseButton.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.itemContextMenu .topWrapper {
+    margin: 0 auto;
+    width: 177px;
+    height: 13px;
+    background-image: url("~/assets/contextMenu/contextMenuWrapperTop.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.itemContextMenu .bottomWrapper {
+    margin: 0 auto;
+    width: 177px;
+    height: 13px;
+    background-image: url("~/assets/contextMenu/contextMenuWrapperBottom.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.itemContextMenu .buttons{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.itemContextMenu button {
+    font-family: "Fontin Smallcaps";
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("~/assets/buttons/button_normal.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 160px;
+    height: 35px;
+    border: 0px;
+    padding: 0px;
+    color: #fec076;
+    font-size: 18px;
+}
+
+.itemContextMenu button:active {
+    background-image: url("~/assets/buttons/button_active.png");
+}
+
+.itemContextMenu button:hover {
+    background-image: url("~/assets/buttons/button_hover.png");
+}
+
+
 .rareitem {
     color: #ffff77;
 }
