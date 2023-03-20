@@ -1,12 +1,12 @@
 import { useAtom, useSetAtom } from "jotai";
-import type { FC } from "react";
+import { FC, useRef } from "react";
 import { useState } from "react";
-import { renderVar, unStackVar } from "~/routes";
+import { hoveredSlotVar, hoverItemVar, renderVar, unStackVar } from "~/routes";
 import type Item from "~/Types/Item";
-import ItemInventory from "~/Types/ItemInventory";
+import type ItemInventory from "~/Types/ItemInventory";
 import { hortiInventory } from "../horticraftStation";
 import { inventoryVar } from "../Inventory/Inventory";
-import { hoveredSlot, mouseItem } from "../MouseFollower/MouseFollower";
+import { hoveredSlotLocation, mouseItem } from "../MouseFollower/MouseFollower";
 import {
 	unStackWindowItemParentVar,
 	unStackWindowItemVar,
@@ -28,13 +28,17 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 	const [currentMouseItem, SetCurrentMouseItem] = useAtom(mouseItem);
 	const [renderBool, SetForceRender] = useAtom(renderVar);
 	const [hovered, SetHovered] = useState(false);
-	const [mouseHoveredSlot, SetMouseHoveredSlot] = useAtom(hoveredSlot);
+	const [mouseHoveredSlotLocation, SetMouseHoveredSlotLocation] = useAtom(hoveredSlotLocation);
+	const [mosueHoveredSlot, SetMouseHoveredSlot] = useAtom(hoveredSlotVar);
 	const [hortiInv] = useAtom<ItemInventory>(hortiInventory);
 	const [mainInventory] = useAtom<ItemInventory>(inventoryVar);
+	const [hoverItem, SetHoverItem] = useAtom(hoverItemVar);
 	const SetUnstackWindow = useSetAtom(unStackVar);
 	const SetUnstackWindowItem = useSetAtom(unStackWindowItemVar);
 	const SetUnstackWindowLocation = useSetAtom(UnStackWindowLocationVar);
 	const SetUnstackWindowItemParent = useSetAtom(unStackWindowItemParentVar);
+
+	const slotRef = useRef(null);
 
 	const calcWidth = () => {
 		if (item) {
@@ -58,7 +62,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 
 	const ReportPosition = () => {
 		// console.log(`You clicked slot @ (${x},${y}),Item: ${item?.name},Primary: ${isPrimary}`);
-		SetMouseHoveredSlot({ x: x, y: y, parentInventory: parentInventory });
+		SetMouseHoveredSlotLocation({ x: x, y: y, parentInventory: parentInventory });
 	};
 
 	const SwapWithMouse = () => {
@@ -162,19 +166,25 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 	const checkHovered = () => {
 		if (currentMouseItem === null) {
 			return hovered || item?.hovered;
-		} else if (mouseHoveredSlot) {
-			const dx = x - mouseHoveredSlot.x;
-			const withinX = x >= mouseHoveredSlot.x && dx <= currentMouseItem.width - 1;
+		} else if (mouseHoveredSlotLocation) {
+			const dx = x - mouseHoveredSlotLocation.x;
+			const withinX = x >= mouseHoveredSlotLocation.x && dx <= currentMouseItem.width - 1;
 
 			const withinY =
-				y <= mouseHoveredSlot.y + Math.floor(currentMouseItem.length / 2) &&
-				y >= mouseHoveredSlot.y - Math.floor(currentMouseItem.length / 2);
-			return withinX && withinY && mouseHoveredSlot.parentInventory == parentInventory;
+				y <= mouseHoveredSlotLocation.y + Math.floor(currentMouseItem.length / 2) &&
+				y >= mouseHoveredSlotLocation.y - Math.floor(currentMouseItem.length / 2);
+			return withinX && withinY && mouseHoveredSlotLocation.parentInventory == parentInventory;
 		}
 	};
 
-	const findAvailableSpace = (inventory: ItemInventory, itemWidth: number, itemLength: number): { x: number, y: number } | null => {
-		const takenSpaces: boolean[][] = Array.from({ length: inventory.length }, () => new Array(inventory.width).fill(false));
+	const findAvailableSpace = (
+		inventory: ItemInventory,
+		itemWidth: number,
+		itemLength: number
+	): { x: number; y: number } | null => {
+		const takenSpaces: boolean[][] = Array.from({ length: inventory.length }, () =>
+			new Array(inventory.width).fill(false)
+		);
 
 		for (const item of inventory.items) {
 			for (let y = item.y; y < item.y + item.length; y++) {
@@ -202,7 +212,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 		}
 
 		return null;
-	}
+	};
 
 	const HandleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		if (e.shiftKey && currentMouseItem === null && item != null && item.maxStack > 1 && item.count > 1) {
@@ -251,9 +261,8 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 					const possibleToGive = Math.min(spaceToTake, item.count);
 					const remainder = item.count - possibleToGive;
 					sameItems[i].count += possibleToGive;
-					remainder == 0 ? breakEarly = true : (item.count = remainder);
-					if (breakEarly)
-						break;
+					remainder == 0 ? (breakEarly = true) : (item.count = remainder);
+					if (breakEarly) break;
 				}
 			}
 			let availableSpace = findAvailableSpace(mainInventory, item.width, item.length);
@@ -267,6 +276,26 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			SetUnstackWindow(false);
 			SwapWithMouse();
 		}
+		ForceRender();
+	};
+
+	const handleRightClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		e.preventDefault();
+		alert("cum (right click menu)");
+	};
+
+	const handleHover = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		if (item) {
+			item.hovered = true;
+			SetHoverItem(item);
+			if (slotRef != null) {
+				SetMouseHoveredSlot(slotRef);
+			}
+		} else {
+			SetHoverItem(null);
+		}
+		SetHovered(true);
+		ReportPosition();
 		ForceRender();
 	};
 
@@ -286,6 +315,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 
 	return (
 		<div
+			ref={slotRef}
 			className={`${checkHovered() ? "bg-gray-300 bg-opacity-10" : null} ${isPrimary ? "z-20" : "z-10"} `}
 			style={
 				!horti
@@ -293,14 +323,8 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 					: { width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }
 			}
 			onClick={HandleClick}
-			onMouseEnter={() => {
-				if (item) {
-					item.hovered = true;
-				}
-				SetHovered(true);
-				ReportPosition();
-				ForceRender();
-			}}
+			onContextMenu={handleRightClick}
+			onMouseEnter={handleHover}
 			onMouseLeave={() => {
 				if (item) {
 					item.hovered = false;
@@ -313,8 +337,9 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 					{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
 					{item.maxStack > 1 ? (
 						<div
-							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${item.count == item.maxStack ? "text-blue-600" : "text-white"
-								}`}>
+							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${
+								item.count == item.maxStack ? "text-blue-600" : "text-white"
+							}`}>
 							{item.count}
 						</div>
 					) : null}

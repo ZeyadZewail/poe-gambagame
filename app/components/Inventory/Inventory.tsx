@@ -5,11 +5,12 @@ import mageBloodImage from "../../assets/item_mageblood.png";
 import farrulsFurImage from "../../assets/item_farrulfur.png";
 import ItemInventory from "~/Types/ItemInventory";
 import { atom, useAtomValue, useSetAtom } from "jotai";
-import { hoveredSlot } from "../MouseFollower/MouseFollower";
+import { hoveredSlotLocation } from "../MouseFollower/MouseFollower";
+import { hoverItemVar } from "~/routes";
 
-const testItem: Item = {
+const TheDoctor: Item = {
 	imgSrc: divCardImage,
-	name: "Test Div Card",
+	name: "The Doctor",
 	width: 1,
 	length: 1,
 	x: 0,
@@ -47,15 +48,15 @@ const farrulsfur: Item = {
 };
 
 const inventoryVar = atom<ItemInventory>(() => {
-	return new ItemInventory(12, 12, [testItem, { ...testItem, x: 1 }, mageblood, farrulsfur], false);
+	return new ItemInventory(12, 12, [TheDoctor, { ...TheDoctor, x: 1 }, mageblood, farrulsfur], false);
 });
 
 export { inventoryVar };
 
 const Inventory = () => {
 	const mainInventory = useAtomValue(inventoryVar);
-	const SetMouseHoveredSlot = useSetAtom(hoveredSlot);
-
+	const SetMouseHoveredSlot = useSetAtom(hoveredSlotLocation);
+	const SetMouseHoveredItem = useSetAtom(hoverItemVar);
 	const rows = mainInventory.generateElementGrid();
 
 	return (
@@ -63,6 +64,7 @@ const Inventory = () => {
 			className="flex flex-col w-fit h-fit z-40  fixed top-[13%] left-[4.5%]"
 			onMouseLeave={() => {
 				SetMouseHoveredSlot(null);
+				SetMouseHoveredItem(null);
 			}}>
 			<img src={inventoryGrid} alt="grid" className="absolute" />
 			{rows}

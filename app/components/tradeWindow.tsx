@@ -10,6 +10,7 @@ import ReactModal from "react-modal";
 import DivCardGenerator from "./divCardGenerator";
 import TradeListing from "./tradeListing";
 import divineicon from "~/assets/divineorb.png";
+import Divcard from "~/Types/Divcard";
 
 export interface TradeWindowProps {
 	currency: number;
@@ -122,7 +123,7 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards, modalIsOp
 								<div className="divcards">
 									<div className="options"></div>
 									<div className="cards">
-										{filteredDivCards.map((divcard) => (
+										{filteredDivCards.map((divcard: Divcard) => (
 											<div
 												className={`card ${selectedCard === divcard.itemName ? "selectedItem" : ""}`}
 												onClick={() => handleCardClick(divcard.itemName)}

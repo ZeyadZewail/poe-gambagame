@@ -12,8 +12,8 @@ interface slotLocation {
 }
 
 const mouseItem = atom<Item | null>(null);
-const hoveredSlot = atom<slotLocation | null>(null);
-export { mouseItem, hoveredSlot };
+const hoveredSlotLocation = atom<slotLocation | null>(null);
+export { mouseItem, hoveredSlotLocation };
 
 const MouseFollower = () => {
 	const [currentItem] = useAtom(mouseItem);
