@@ -41,7 +41,6 @@ export default function Index() {
 	const [render] = useAtom(renderVar);
 	const [tradeWindowOpen, setTradeWindowOpen] = useState(false);
 
-	console.log(hoveredSlot?.current?.getBoundingClientRect());
 	const DivHover = () => {
 		if (hoverItem != null) {
 			if (hoverItem.type == "divcard") {
