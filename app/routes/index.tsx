@@ -40,8 +40,8 @@ export default function Index() {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [render] = useAtom(renderVar);
 	const [tradeWindowOpen, setTradeWindowOpen] = useState(false);
-	console.log(hoveredSlotLocation);
 
+	console.log(hoveredSlot?.current?.getBoundingClientRect());
 	const DivHover = () => {
 		if (hoverItem != null) {
 			if (hoverItem.type == "divcard") {
@@ -52,36 +52,23 @@ export default function Index() {
 
 				if (foundDivCard != undefined && hoveredSlot?.current != null && hoveredSlotLocation != null) {
 					//@ts-ignore
-					const x = hoveredSlot.current.getBoundingClientRect()["x"];
-					//@ts-ignore
-					const y = hoveredSlot.current.getBoundingClientRect()["y"];
-					if (hoveredSlotLocation.x < 7) {
-						return (
-							<div
-								className="fixed z-50 pointer-events-none"
-								style={{
-									transform: `translate(${(x + cellSideLength) / 0.6}px,${(y - 120) / 0.6}px)`,
-									scale: "0.6",
-									transformOrigin: "top left",
-								}}>
-								<DivCardGenerator divcard={foundDivCard} item={hoverItem} />
-							</div>
-						);
-					} else {
-						return (
-							<div
-								className="fixed z-50 pointer-events-none"
-								style={{
-									transform: `translate(${(x - cellSideLength - 170) / 0.6}px,${(y - 110) / 0.6}px)`,
-									scale: "0.6",
-									transformOrigin: "top left",
-								}}>
-								<DivCardGenerator divcard={foundDivCard} item={hoverItem} />
-							</div>
-						);
-					}
-				} else {
-					alert("Big Ritard Not a card");
+					const rect = hoveredSlot.current.getBoundingClientRect();
+					const x = rect["x"];
+					const y = rect["y"];
+					const slotWidth = rect["width"];
+					const slotHeight = rect["height"];
+					const xTranslate = hoveredSlotLocation.x < 7 ? x / 0.6 + slotWidth * 1.8 : (x - 170) / 0.6 - slotWidth * 1.8;
+					return (
+						<div
+							className="fixed z-50 pointer-events-none"
+							style={{
+								transform: `translate(${xTranslate}px,${(y - 110) / 0.6}px)`,
+								scale: "0.6",
+								transformOrigin: "top left",
+							}}>
+							<DivCardGenerator divcard={foundDivCard} item={hoverItem} />
+						</div>
+					);
 				}
 			}
 		}

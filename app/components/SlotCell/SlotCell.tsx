@@ -110,6 +110,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			// 	}
 			// }
 		}
+
 		ForceRender();
 	};
 
@@ -237,6 +238,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				parentInventory.items.push({ ...currentMouseItem, count: 1 });
 				const remainder = currentMouseItem.count - 1;
 				remainder == 0 ? SetCurrentMouseItem(null) : (currentMouseItem.count = remainder);
+
 				ForceRender();
 			}
 		} else if (e.ctrlKey && currentMouseItem === null && item != null && !horti) {
@@ -250,6 +252,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				hortiInv.items[0].count += possibleToGive;
 				remainder == 0 ? parentInventory.removeItem(item) : (item.count = remainder);
 			}
+
 			ForceRender();
 		} else if (e.ctrlKey && currentMouseItem === null && item != null && horti) {
 			hortiInv.removeItem(item);
@@ -284,7 +287,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 		alert("cum (right click menu)");
 	};
 
-	const handleHover = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+	const handleHover = () => {
 		if (item) {
 			item.hovered = true;
 			SetHoverItem(item);
@@ -329,6 +332,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				if (item) {
 					item.hovered = false;
 				}
+				SetMouseHoveredSlot(null);
 				SetHovered(false);
 				ForceRender();
 			}}>
