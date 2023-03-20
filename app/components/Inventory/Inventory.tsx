@@ -7,18 +7,7 @@ import ItemInventory from "~/Types/ItemInventory";
 import { atom, useAtomValue, useSetAtom } from "jotai";
 import { hoveredSlot } from "../MouseFollower/MouseFollower";
 
-const testItem: Item = {
-	imgSrc: divCardImage,
-	name: "Test Div Card",
-	width: 1,
-	length: 1,
-	x: 0,
-	y: 0,
-	hovered: false,
-	maxStack: 8,
-	count: 5,
-	type: "divcard",
-};
+const testItem: Item = ;
 
 const mageblood: Item = {
 	imgSrc: mageBloodImage,
