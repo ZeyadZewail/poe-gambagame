@@ -2,6 +2,30 @@ import { Region } from "~/Types/Region";
 import TradeItem from "~/Types/TradeItem";
 import Trader, { TraderType } from "~/Types/Trader";
 
+
+export function generateTraders(): Trader[] {
+    const traders: Trader[] = [
+        { accountName: "witten_", characterName: "PoMsMcDonaldsManager", type: TraderType.Scammer, region: Region.English },
+        { accountName: "PepegaIRL", characterName: "NonStopPepega", type: TraderType.Honest, region: Region.English },
+        { accountName: "Ltfxx", characterName: "DivinationOrbital ", type: TraderType.Honest, region: Region.English },
+        { accountName: "Syperek", characterName: "我在這裡撫摸我的雞巴我現在在我的雞巴上塗了乳液", type: TraderType.Scammer, region: Region.English },
+        { accountName: "kedam7", characterName: "GeneratingGodSeed", type: TraderType.OilPrince, region: Region.English },
+        { accountName: "Prise11", characterName: "BigChungus", type: TraderType.OilPrince, region: Region.English },
+        { accountName: "Lev", characterName: "TriAxis", type: TraderType.PriceFixer, region: Region.Русский },
+
+    ]
+    for (let i = 0; traders.length < 150; i++) {
+        let newTrader = generateRandomTrader();
+        const nameExists = traders.some(trader =>
+            trader.accountName === newTrader.accountName || trader.characterName === newTrader.characterName
+        );
+        if (!nameExists) {
+            traders.push(newTrader);
+        }
+    }
+    return traders;
+}
+
 export default function generateTradeListings(item: string, traders: Trader[]): TradeItem[] {
     const randomTraders = traders.sort(() => 0.5 - Math.random()).slice(0, 30);
     let itemPrice = 0;
@@ -183,28 +207,7 @@ function generateItemStock(type: TraderType): number {
     return stock;
 }
 
-export function generateTraders(): Trader[] {
-    const traders: Trader[] = [
-        { accountName: "witten_", characterName: "PoMsMcDonaldsManager", type: TraderType.Scammer, region: Region.English },
-        { accountName: "PepegaIRL", characterName: "NonStopPepega", type: TraderType.Honest, region: Region.English },
-        { accountName: "Ltfxx", characterName: "DivinationOrbital ", type: TraderType.Honest, region: Region.English },
-        { accountName: "Syperek", characterName: "我在這裡撫摸我的雞巴我現在在我的雞巴上塗了乳液", type: TraderType.Scammer, region: Region.English },
-        { accountName: "kedam7", characterName: "GeneratingGodSeed", type: TraderType.OilPrince, region: Region.English },
-        { accountName: "Prise11", characterName: "BigChungus", type: TraderType.OilPrince, region: Region.English },
-        { accountName: "Lev", characterName: "TriAxis", type: TraderType.PriceFixer, region: Region.Русский },
-           
-    ]
-    for (let i = 0; traders.length < 150; i++) {
-        let newTrader = generateRandomTrader();
-        const nameExists = traders.some(trader =>
-            trader.accountName === newTrader.accountName || trader.characterName === newTrader.characterName
-        );
-        if (!nameExists) {
-            traders.push(newTrader);
-        }
-    }
-    return traders;
-}
+
 
 const ratios: { [key: string]: number } = {
     [TraderType.Honest]: 0.83,
