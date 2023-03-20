@@ -5,7 +5,7 @@ import mageBloodImage from "../../assets/item_mageblood.png";
 import farrulsFurImage from "../../assets/item_farrulfur.png";
 import ItemInventory from "~/Types/ItemInventory";
 import { atom, useAtomValue, useSetAtom } from "jotai";
-import { hoveredSlotLocation } from "../MouseFollower/MouseFollower";
+import { hoveredSlotLocationVar } from "../MouseFollower/MouseFollower";
 import { hoverItemVar } from "~/routes";
 
 const TheDoctor: Item = {
@@ -55,7 +55,7 @@ export { inventoryVar };
 
 const Inventory = () => {
 	const mainInventory = useAtomValue(inventoryVar);
-	const SetMouseHoveredSlot = useSetAtom(hoveredSlotLocation);
+	const SetMouseHoveredSlot = useSetAtom(hoveredSlotLocationVar);
 	const SetMouseHoveredItem = useSetAtom(hoverItemVar);
 	const rows = mainInventory.generateElementGrid();
 

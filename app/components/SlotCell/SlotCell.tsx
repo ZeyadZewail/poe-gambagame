@@ -6,7 +6,7 @@ import type Item from "~/Types/Item";
 import type ItemInventory from "~/Types/ItemInventory";
 import { hortiInventory } from "../horticraftStation";
 import { inventoryVar } from "../Inventory/Inventory";
-import { hoveredSlotLocation, mouseItem } from "../MouseFollower/MouseFollower";
+import { hoveredSlotLocationVar, mouseItem } from "../MouseFollower/MouseFollower";
 import {
 	unStackWindowItemParentVar,
 	unStackWindowItemVar,
@@ -28,7 +28,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 	const [currentMouseItem, SetCurrentMouseItem] = useAtom(mouseItem);
 	const [renderBool, SetForceRender] = useAtom(renderVar);
 	const [hovered, SetHovered] = useState(false);
-	const [mouseHoveredSlotLocation, SetMouseHoveredSlotLocation] = useAtom(hoveredSlotLocation);
+	const [mouseHoveredSlotLocation, SetMouseHoveredSlotLocation] = useAtom(hoveredSlotLocationVar);
 	const [mosueHoveredSlot, SetMouseHoveredSlot] = useAtom(hoveredSlotVar);
 	const [hortiInv] = useAtom<ItemInventory>(hortiInventory);
 	const [mainInventory] = useAtom<ItemInventory>(inventoryVar);

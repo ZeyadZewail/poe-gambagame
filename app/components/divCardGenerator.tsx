@@ -6,26 +6,15 @@ import type Item from "~/Types/Item";
 export interface DivCardGeneratorProps {
 	divcard: Divcard;
 	item?: Item;
-	hovered?: boolean;
-	x?: number;
-	y?: number;
 }
 
-const DivCardGenerator: React.FC<DivCardGeneratorProps> = ({ divcard, item, hovered, x, y }) => {
+const DivCardGenerator: React.FC<DivCardGeneratorProps> = ({ divcard, item }) => {
 	const [divCard, setDivCard] = useState(divcard);
 	useEffect(() => {
 		setDivCard(divcard);
 	}, [divcard]);
 	return (
-		<div
-			className={hovered ? "fixed divCard " : "divCard"}
-			style={
-				hovered
-					? {
-							transform: `translate(${x}px,${y}px)`,
-					  }
-					: {}
-			}>
+		<div className="divCard">
 			{divCard.itemIconUrl == "" ? (
 				<div className="image" style={{ backgroundImage: `url(${placeHolderCardImage})` }}></div>
 			) : (
