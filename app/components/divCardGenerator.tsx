@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import placeHolderCardImage from "~/assets/blankcard.png";
+import Divcard from '~/Types/Divcard';
+import Item from '~/Types/Item';
 
-const DivCardGenerator = ({ divcard }) => {
+export interface DivCardGeneratorProps {
+    divcard: Divcard;
+    item?: Item;
+}
+
+const DivCardGenerator: React.FC<DivCardGeneratorProps> = ({ divcard, item }) => {
     const [divCard, setDivCard] = useState(divcard);
     useEffect(() => {
         setDivCard(divcard)
@@ -37,7 +44,7 @@ const DivCardGenerator = ({ divcard }) => {
                     <div className="FlavourText">{divCard.itemFlavourText}</div>
                 </div>
             </div>
-            <div className="stackSize">{divCard.itemStackSize}</div>
+            <div className="stackSize">{item != null && (<span>{item.count}/</span>)}{divCard.itemStackSize}</div>
         </div>
     );
 }

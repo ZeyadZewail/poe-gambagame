@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react"
-
-const UniqueItemGenerator = ({ unique }) => {
+import Item from "~/Types/Item";
+import Uniqueitem from "~/Types/Uniqueitem";
+export interface UniqueItemGeneratorProps {
+    unique: Uniqueitem;
+    item?: Item;
+}
+const UniqueItemGenerator: React.FC<UniqueItemGeneratorProps> = ({ unique, item }) => {
     const [uniuqeItem, setUniqueItem] = useState(unique);
     useEffect(() => {
         setUniqueItem(unique)
