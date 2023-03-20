@@ -79,6 +79,33 @@
     background-repeat: no-repeat;
 }
 
+.inventoryWindow .text {
+    position: absolute;
+    top: 53px;
+    left: 212px;
+    width: 200px;
+    height: 80px;
+    color: #000;
+    font-size: 24px;
+}
+
+.inventoryWindow .currency {
+    position: absolute;
+    top: 708px;
+    left: 212px;
+    width: 200px;
+    height: 80px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.inventoryWindow .currency img {
+    display: inline;
+    height: 24px;
+    width: 24px;
+    vertical-align: center;
+}
+
 .inventoryWindow .bottomframe {
     z-index: 38 !important;
     position: absolute;
