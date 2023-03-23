@@ -90,7 +90,7 @@ export default function Index() {
 					{() => {
 						return (
 							<Fragment>
-								<HorticraftStation vividlf={0} />
+								<HorticraftStation />
 								<InventoryWindow />
 							</Fragment>
 						);

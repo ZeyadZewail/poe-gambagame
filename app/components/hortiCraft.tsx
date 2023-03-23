@@ -7,13 +7,14 @@ export interface HortiCraftProps {
 	text: ReactElement<any, any>;
 	onSelect: () => void;
 	isSelected: boolean;
+	currentLifeForce: number;
 }
 
-const HortiCraft: React.FC<HortiCraftProps> = ({ cost, text, onSelect, isSelected }) => {
+const HortiCraft: React.FC<HortiCraftProps> = ({ cost, text, onSelect, isSelected,  currentLifeForce}) => {
 	return (
 		<div className={`craft ${isSelected ? "selected" : ""}`} onClick={onSelect}>
 			<div className="text">{text}</div>
-			<div className="cost">
+			<div className={`cost ${cost > currentLifeForce ? "red":""}` }>
 				{cost}
 				<img src={vividicon} alt="vivid-lifeforce" title="vivid-lifeforce" />
 			</div>

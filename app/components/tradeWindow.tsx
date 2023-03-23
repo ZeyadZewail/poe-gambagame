@@ -2,15 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import tradeLogo from "~/assets/tradelogo.png";
 import vividlf from "~/assets/vividlf.png";
 import generateTradeListings, { generateTraders } from "~/helpers/tradersGenerator";
-import { Region } from "~/Types/Region";
 import type TradeItem from "~/Types/TradeItem";
 import type Trader from "~/Types/Trader";
-import { TraderType } from "~/Types/Trader";
 import ReactModal from "react-modal";
 import DivCardGenerator from "./divCardGenerator";
 import TradeListing from "./tradeListing";
 import divineicon from "~/assets/divineorb.png";
 import Divcard from "~/Types/Divcard";
+import ItemInventory from "~/Types/ItemInventory";
+import { inventoryVar } from "./Inventory/Inventory";
+import { useAtom } from "jotai";
 
 export interface TradeWindowProps {
 	currency: number;
@@ -25,6 +26,7 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards, modalIsOp
 	const [searched, setSearched] = useState(false);
 	const [itemsFound, setItemsFound] = useState<TradeItem[]>([]);
 	const traders: Trader[] = generateTraders();
+	const [mainInventory] = useAtom<ItemInventory>(inventoryVar)
 	const handleCardClick = (itemName: string) => {
 		if (itemName === selectedCard) {
 			// If the clicked card is already selected, deselect it

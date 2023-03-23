@@ -48,7 +48,7 @@ const farrulsfur: Item = {
 };
 
 const inventoryVar = atom<ItemInventory>(() => {
-	return new ItemInventory(12, 12, [TheDoctor, { ...TheDoctor, x: 1 }, mageblood, farrulsfur], false);
+	return new ItemInventory(12, 12, [TheDoctor, { ...TheDoctor, x: 1 }, mageblood, farrulsfur], false, 10, 15000);
 });
 
 export { inventoryVar };

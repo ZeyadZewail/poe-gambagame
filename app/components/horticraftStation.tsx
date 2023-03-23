@@ -3,21 +3,21 @@ import { useState } from "react";
 import { renderVar } from "~/routes";
 import ItemInventory from "~/Types/ItemInventory";
 import HortiCraft from "./hortiCraft";
+import { inventoryVar } from "./Inventory/Inventory";
 
-export interface HorticraftStationProps {
-	vividlf: number;
-}
 const hortiInventory = atom<ItemInventory>(() => {
-	return new ItemInventory(1, 1, [], true);
+	return new ItemInventory(1, 1, [], true, 0, 0);
 });
 export { hortiInventory };
-const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
+const HorticraftStation: React.FC = () => {
 	const [hortiInv] = useAtom<ItemInventory>(hortiInventory);
 	const [selectedCraft, setSelectedCraft] = useState<number | null>(0);
 	const [renderBool, SetForceRender] = useAtom(renderVar);
 	const [warningTextVisible, setWarningTextVisible] = useState(false);
 	const [warningText, setWarningText] = useState("");
+	const [warningTextSize, setWarningTextSize] = useState("");
 	const [warningTimeout, setWarningTimeout] = useState<number | undefined>();
+	const [mainInventory] = useAtom<ItemInventory>(inventoryVar)
 
 	const ForceRender = () => {
 		SetForceRender(!renderBool);
@@ -26,14 +26,14 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 		if (selectedCraft !== null) {
 			// execute the selected craft function with the inventory
 			const selectedCraftFunction = crafts[selectedCraft].craftFunction;
-			selectedCraftFunction(hortiInv);
+			selectedCraftFunction(hortiInv, crafts[selectedCraft].cost, mainInventory.lifeforce);
 			ForceRender();
 		}
 	};
 
 	const crafts = [
 		{
-			craftFunction: (inventory: ItemInventory) => gamble(inventory),
+			craftFunction: (inventory: ItemInventory, cost: number, lifeforce: number) => gamble(inventory, cost, lifeforce),
 			cost: 1500,
 			text: (
 				<div>
@@ -44,18 +44,34 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 		},
 	];
 
-	function gamble(inventory: ItemInventory) {
+	function gamble(inventory: ItemInventory, cost: number, lifeforce: number) {
+		if (cost > lifeforce) {
+			if (warningTimeout) {
+				clearTimeout(warningTimeout);
+			}
+			setWarningTextSize("24px")
+			setWarningText("You do not have sufficient currency to buy this mod.");
+			setWarningTextVisible(true);
+			ForceRender();
+			const timeoutId = window.setTimeout(() => {
+				setWarningTextVisible(false);
+			}, 1500);
+			setWarningTimeout(timeoutId);
+			return;
+		}
 		try {
 			let outcome: number = gambleLogic(inventory.items[0].count, inventory.items[0].maxStack);
 			inventory.setCount(0, outcome);
 			if (outcome == 0) {
 				inventory.removeItem(inventory.items[0]);
 			}
+			mainInventory.lifeforce = mainInventory.lifeforce - cost;
 			setWarningTextVisible(false);
 		} catch {
 			if (warningTimeout) {
 				clearTimeout(warningTimeout);
 			}
+			setWarningTextSize("36px")
 			setWarningText("Too many Items in stack");
 			setWarningTextVisible(true);
 			ForceRender();
@@ -67,7 +83,7 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 	}
 	return (
 		<div className="hortistation">
-			<div className={`hortiWarning ${warningTextVisible ? "visible" : ""}`}>{warningText}</div>
+			<div className={`hortiWarning ${warningTextVisible ? "visible" : ""}`} style={{ fontSize: warningTextSize }}>{warningText}</div>
 			<div className="frame"></div>
 			<div className="topbar">
 				<div className="text">Horticrafting</div>
@@ -80,6 +96,7 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 						text={craft.text}
 						isSelected={selectedCraft === index}
 						onSelect={() => setSelectedCraft(index)}
+						currentLifeForce={mainInventory.lifeforce}
 					/>
 				))}
 			</div>
@@ -90,14 +107,18 @@ const HorticraftStation: React.FC<HorticraftStationProps> = ({ vividlf }) => {
 				</button>
 			</div>
 			<div className="lifeforce">
-				<div className="text">{vividlf}</div>
+				<div className="text">{lifeForceFormatter(mainInventory.lifeforce)}</div>
 			</div>
 		</div>
 	);
 };
 
 export default HorticraftStation;
+function lifeForceFormatter(lifeforce: number): string {
 
+	return lifeforce > 10000 ? lifeforce / 1000 + "k" : lifeforce + "";
+
+}
 function gambleLogic(currentValue: number, maxValue: number): number {
 	if (currentValue > maxValue / 2) {
 		throw new Error("Current value cannot be higher than half of max value");

@@ -1,7 +1,10 @@
-import Inventory from "./Inventory/Inventory";
+import Inventory, { inventoryVar } from "./Inventory/Inventory";
 import divineicon from "~/assets/divineorb.png";
+import ItemInventory from "~/Types/ItemInventory";
+import { useAtom } from "jotai";
 
 const InventoryWindow = () => {
+	const [mainInventory] = useAtom<ItemInventory>(inventoryVar)
 	return (
 		<div className="inventoryWindow">
 			<div className="frame"></div>
@@ -12,7 +15,7 @@ const InventoryWindow = () => {
 				<Inventory />
 			</div>
 			<div className="currency">
-				0 <img src={divineicon} alt="divine" title="divine" />
+				{mainInventory.currency} <img src={divineicon} alt="divine" title="divine" />
 			</div>
 			<div className="bottomframe"></div>
 		</div>

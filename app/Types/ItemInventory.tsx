@@ -6,14 +6,18 @@ class ItemInventory {
 	length: number;
 	width: number;
 	horti: boolean;
+	currency: number;
+	lifeforce: number;
 
-	constructor(length: number, width: number, items: Item[] = [], horti: boolean = false) {
+	constructor(length: number, width: number, items: Item[] = [], horti: boolean = false, currency = 0, lifeforce = 0) {
 		this.length = length;
 		this.width = width;
 		this.items = items.map((item) => {
 			return { ...item };
 		});
 		this.horti = horti;
+		this.currency = currency;
+		this.lifeforce = lifeforce;
 	}
 
 	removeItem = (item: Item) => {
