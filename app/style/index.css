@@ -903,10 +903,11 @@ html {
 .itemContextMenu {
     position: relative;
     height: 201px;
-    width: 201px;
+    max-width: 201px;
     background-image: url("~/assets/contextMenu/contextMenu.png");
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
@@ -919,6 +920,10 @@ html {
     background-image: url("~/assets/contextMenu/contextMenuCloseButton.png");
     background-size: cover;
     background-repeat: no-repeat;
+    cursor: pointer;
+}
+.itemContextMenu .closeButton:hover {
+    background-image: url("~/assets/contextMenu/contextMenuCloseButtonHover.png");
 }
 
 .itemContextMenu .topWrapper {
