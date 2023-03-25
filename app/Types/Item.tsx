@@ -1,4 +1,5 @@
 interface Item {
+	id?: number;
 	name: string;
 	imgSrc: string;
 	type: "divcard" | "item";
@@ -6,10 +7,10 @@ interface Item {
 	length: number;
 	x: number;
 	y: number;
-	hovered: boolean;
+	hovered?: boolean;
 	maxStack: number;
 	count: number;
-	price:number;
+	price: number;
 }
 
 export default Item;

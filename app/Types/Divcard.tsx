@@ -1,7 +1,8 @@
 export default interface Divcard {
-    itemName: string,
-    itemIconUrl: string,
-    itemFlavourText: string,
-    itemStackSize: string,
-    itemReward: []
+    itemName: string;
+    itemIconUrl: string;
+    itemFlavourText: string;
+    itemStackSize: string;
+    itemReward: [];
+    itemRewardId: number;
 }
