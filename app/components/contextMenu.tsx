@@ -1,5 +1,6 @@
+import { useLoaderData } from "@remix-run/react";
 import { useAtom, useSetAtom } from "jotai";
-import { contextMenuVar, unStackVar } from "~/routes";
+import { contextMenuVar, loader, unStackVar } from "~/routes";
 import { unStackWindowItemParentVar, unStackWindowItemVar, UnStackWindowLocationVar } from "./UnstackWindow/UnstackWindow";
 
 export interface ContextMenuProps { }
@@ -13,7 +14,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ }) => {
     const SetUnstackWindowItem = useSetAtom(unStackWindowItemVar);
     const SetUnstackWindowLocation = useSetAtom(UnStackWindowLocationVar);
     const SetUnstackWindowItemParent = useSetAtom(unStackWindowItemParentVar);
-
+    const items = useLoaderData<typeof loader>();
     const sellItem = () => {
         if (parentInventory != null && item != null) {
             parentInventory.removeItem(item);
@@ -21,7 +22,23 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ }) => {
             parentInventory.currency = parentInventory.currency + item.price * item.count;
         }
     }
-    const turnItemIn = () => { }
+    const turnItemIn = () => {
+        if (item != null && parentInventory != null) {
+            if (item.count == item.maxStack) {
+                parentInventory.removeItem(item)
+                SetContextMenu(false)
+                let foundDivCard = items.divcards.find((d) => {
+                    return d.itemName === item.name;
+                });
+                let foundReward = items.itemRewards.find((r) => {
+                    console.log(items);
+                    return r.name === foundDivCard?.itemRewardId;
+                });
+                console.log(foundReward);
+                //parentInventory.items.push(foundReward);
+            }
+        }
+    }
     const openUnstackWindow = () => {
         SetContextMenu(false)
         SetUnstackWindow(true);
@@ -40,7 +57,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ }) => {
                 <div className="topWrapper"></div>
                 <div className="buttons">
                     <button onClick={sellItem}>Sell Item</button>
-                    {item!.type == 'divcard'  &&<button onClick={turnItemIn}>Turn Item In</button>}
+                    {(item!.type == 'divcard' && item!.count == item!.maxStack) && <button onClick={turnItemIn}>Turn Item In</button>}
                     {item!.count > 1 && <button onClick={openUnstackWindow}>Unstack Item</button>}
                 </div>
             </div>

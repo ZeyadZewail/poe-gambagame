@@ -19,7 +19,12 @@ class ItemInventory {
 		this.currency = currency;
 		this.lifeforce = lifeforce;
 	}
-
+	generateReward = (item:Item) => {
+		if(item.type == 'divcard' && item.count == item.maxStack){
+			this.removeItem(item);
+			
+		}
+	}
 	removeItem = (item: Item) => {
 		let index = this.items.indexOf(item);
 		if (index !== -1) {
