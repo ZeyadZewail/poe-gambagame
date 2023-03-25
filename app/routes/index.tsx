@@ -16,6 +16,7 @@ import Item from "~/Types/Item";
 import Divcard from "~/Types/Divcard";
 import { cellSideLength } from "~/components/SlotCell/SlotCell";
 import ContextMenu from "~/components/contextMenu";
+import BGMPlayer from "~/components/bgmPlayer";
 
 export const links: LinksFunction = () => {
 	return [{ rel: "stylesheet", href: stylesUrl }];
@@ -86,6 +87,7 @@ export default function Index() {
 				}
 			}}>
 			<div className="hideoutWindow">
+				
 				<MouseFollower />
 				{spawnUnstack ? <UnstackWindow /> : null}
 				{spawnContextMenu ? <ContextMenu /> : null}
@@ -96,6 +98,7 @@ export default function Index() {
 							<Fragment>
 								<HorticraftStation />
 								<InventoryWindow />
+								<BGMPlayer />
 							</Fragment>
 						);
 					}}

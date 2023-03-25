@@ -4,6 +4,7 @@ import { useState } from "react";
 import { contextMenuVar, hoveredSlotVar, hoverItemVar, renderVar, unStackVar } from "~/routes";
 import type Item from "~/Types/Item";
 import type ItemInventory from "~/Types/ItemInventory";
+import playSound, { AudioFile } from "../audioPlayer";
 import ContextMenu from "../contextMenu";
 import { hortiInventory } from "../horticraftStation";
 import { inventoryVar } from "../Inventory/Inventory";
@@ -75,6 +76,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 		}
 
 		if (item != null && currentMouseItem === null) {
+			playSound(AudioFile.itemPickUp, 0.5)
 			SetCurrentMouseItem(item);
 			parentInventory.removeItem(item);
 		} else if (currentMouseItem != null && item === null) {
@@ -90,6 +92,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				parentInventory.items.push(currentMouseItem);
 				SetCurrentMouseItem(null);
 			}
+			playSound(AudioFile.itemDDiv,0.5);
 		} else if (currentMouseItem != null && item != null) {
 			if (item.name === currentMouseItem.name && item.maxStack > 1 && item.count < item.maxStack) {
 				const spaceToTake = item.maxStack - item.count;
