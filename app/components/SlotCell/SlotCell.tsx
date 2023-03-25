@@ -1,9 +1,10 @@
 import { useAtom, useSetAtom } from "jotai";
 import { FC, useRef } from "react";
 import { useState } from "react";
-import { hoveredSlotVar, hoverItemVar, renderVar, unStackVar } from "~/routes";
+import { contextMenuVar, hoveredSlotVar, hoverItemVar, renderVar, unStackVar } from "~/routes";
 import type Item from "~/Types/Item";
 import type ItemInventory from "~/Types/ItemInventory";
+import ContextMenu from "../contextMenu";
 import { hortiInventory } from "../horticraftStation";
 import { inventoryVar } from "../Inventory/Inventory";
 import { hoveredSlotLocationVar, mouseItem } from "../MouseFollower/MouseFollower";
@@ -37,6 +38,9 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 	const SetUnstackWindowItem = useSetAtom(unStackWindowItemVar);
 	const SetUnstackWindowLocation = useSetAtom(UnStackWindowLocationVar);
 	const SetUnstackWindowItemParent = useSetAtom(unStackWindowItemParentVar);
+
+
+	const SetContextMenu = useSetAtom(contextMenuVar);
 
 	const slotRef = useRef(null);
 
@@ -217,6 +221,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 
 	const HandleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		if (e.shiftKey && currentMouseItem === null && item != null && item.maxStack > 1 && item.count > 1) {
+			SetContextMenu(false);
 			SetUnstackWindowLocation({ x: e.clientX, y: e.clientY });
 			SetUnstackWindow(true);
 			SetUnstackWindowItem(item);
@@ -242,6 +247,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				ForceRender();
 			}
 		} else if (e.ctrlKey && currentMouseItem === null && item != null && !horti) {
+			SetContextMenu(false);
 			if (hortiInv.itemCount() == 0) {
 				hortiInv.items.push(item);
 				parentInventory.removeItem(item);
@@ -277,14 +283,32 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			ForceRender();
 		} else {
 			SetUnstackWindow(false);
+			SetContextMenu(false);
 			SwapWithMouse();
 		}
 		ForceRender();
 	};
 
 	const handleRightClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		SetUnstackWindow(false);
 		e.preventDefault();
-		alert("cum (right click menu)");
+		if (window != null && item != null && !horti) {
+			const maxScreenWidth = window.innerWidth;
+			const maxScreenHeight = window.innerHeight;
+			let spawnX = e.clientX;
+			let spawnY = e.clientY;
+			if (spawnX + 210 > maxScreenWidth)
+				spawnX = spawnX - 210;
+			if (spawnY + 210 > maxScreenHeight)
+				spawnY = spawnY - 210;
+			SetUnstackWindowItem(item);
+			SetUnstackWindowItemParent(parentInventory);
+			SetUnstackWindowLocation({ x: spawnX, y: spawnY });
+			SetContextMenu(true);
+
+		}
+
+
 	};
 
 	const handleHover = () => {
@@ -341,9 +365,8 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 					{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
 					{item.maxStack > 1 ? (
 						<div
-							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${
-								item.count == item.maxStack ? "text-blue-600" : "text-white"
-							}`}>
+							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${item.count == item.maxStack ? "text-blue-600" : "text-white"
+								}`}>
 							{item.count}
 						</div>
 					) : null}

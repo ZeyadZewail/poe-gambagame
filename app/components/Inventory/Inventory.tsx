@@ -19,6 +19,7 @@ const TheDoctor: Item = {
 	maxStack: 8,
 	count: 5,
 	type: "divcard",
+	price: 8
 };
 
 const mageblood: Item = {
@@ -32,6 +33,7 @@ const mageblood: Item = {
 	maxStack: 1,
 	count: 1,
 	type: "item",
+	price: 210
 };
 
 const farrulsfur: Item = {
@@ -45,6 +47,7 @@ const farrulsfur: Item = {
 	maxStack: 1,
 	count: 1,
 	type: "item",
+	price: 10
 };
 
 const inventoryVar = atom<ItemInventory>(() => {

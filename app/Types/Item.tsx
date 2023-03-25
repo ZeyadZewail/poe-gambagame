@@ -9,6 +9,7 @@ interface Item {
 	hovered: boolean;
 	maxStack: number;
 	count: number;
+	price:number;
 }
 
 export default Item;
