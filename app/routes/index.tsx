@@ -8,7 +8,7 @@ import { useLoaderData } from "@remix-run/react";
 import HorticraftStation from "~/components/horticraftStation";
 import InventoryWindow from "~/components/inventoryWindow";
 import MouseFollower, { hoveredSlotLocationVar } from "~/components/MouseFollower/MouseFollower";
-import { atom, useAtom, useAtomValue } from "jotai";
+import { atom, useAtom, useAtomValue, } from "jotai";
 import UnstackWindow from "~/components/UnstackWindow/UnstackWindow";
 import { Fragment, MutableRefObject, useEffect, useState } from "react";
 import DivCardGenerator from "~/components/divCardGenerator";
@@ -17,6 +17,7 @@ import Divcard from "~/Types/Divcard";
 import { cellSideLength } from "~/components/SlotCell/SlotCell";
 import ContextMenu from "~/components/contextMenu";
 import BGMPlayer from "~/components/bgmPlayer";
+import { bgmVar } from "../components/bgmPlayer";
 
 export const links: LinksFunction = () => {
 	return [{ rel: "stylesheet", href: stylesUrl }];
@@ -44,6 +45,7 @@ export default function Index() {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [render] = useAtom(renderVar);
 	const [tradeWindowOpen, setTradeWindowOpen] = useState(false);
+	const [bgmMute, setBgmMute] = useAtom(bgmVar)
 
 	const DivHover = () => {
 		if (hoverItem != null) {
@@ -86,7 +88,7 @@ export default function Index() {
 					SetSpawnContextMenu(false);
 				}
 			}}>
-			<div className="hideoutWindow">
+			<div className="hideoutWindow" onClick={() => {setBgmMute(false);  }}>
 				
 				<MouseFollower />
 				{spawnUnstack ? <UnstackWindow /> : null}
@@ -96,9 +98,10 @@ export default function Index() {
 					{() => {
 						return (
 							<Fragment>
-								<HorticraftStation />
-								<InventoryWindow />
-								<BGMPlayer />
+								<BGMPlayer>
+									<HorticraftStation />
+									<InventoryWindow />
+								</BGMPlayer>
 							</Fragment>
 						);
 					}}
