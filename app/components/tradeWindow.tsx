@@ -14,13 +14,12 @@ import { inventoryVar } from "./Inventory/Inventory";
 import { useAtom } from "jotai";
 
 export interface TradeWindowProps {
-	currency: number;
 	divcards: any;
 	modalIsOpen: boolean;
 	setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards, modalIsOpen, setModalIsOpen }) => {
+const TradeWindow: React.FC<TradeWindowProps> = ({ divcards, modalIsOpen, setModalIsOpen }) => {
 	const [selectedCard, setSelectedCard] = useState("");
 	const [searchValue, setSearchValue] = useState("");
 	const [searched, setSearched] = useState(false);
@@ -85,7 +84,7 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ currency, divcards, modalIsOp
 							<img src={tradeLogo} />
 						</div>
 						<div className="currency">
-							{currency} <img src={divineicon} alt="divine" title="divine" />
+							{mainInventory.currency} <img src={divineicon} alt="divine" title="divine" />
 						</div>
 					</div>
 					<div className="searchbar">
