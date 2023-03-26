@@ -3,17 +3,20 @@ import bgm2 from "~/assets/audio/HarvestCombat.wav"
 import bgm3 from "~/assets/audio/HarvestGarden.wav"
 import { FC, useEffect, useRef, useState } from "react"
 import { atom, useAtomValue } from "jotai";
+import { get, set } from "local-storage";
 const bgmVar = atom(true);
-export { bgmVar }
+const bgmVolumeVar  = atom<number>(JSON.parse(get('bgmVolume') ?? "0.3") ?? 0.3);
+export { bgmVar, bgmVolumeVar }
 const BGMPlayer = ({ children }) => {
     const [currentAudioIndex, setCurrentAudioIndex] = useState(0);
     const audioFiles = [bgm1, bgm2, bgm3];
     const audioRef = useRef(new Audio(audioFiles[currentAudioIndex]));
     const muteAudio = useAtomValue(bgmVar);
+    const volume = useAtomValue(bgmVolumeVar);
     const playAudio = () => {
         if (audioRef.current.paused) {
             audioRef.current.loop = false;
-            audioRef.current.volume = 0.3;
+            audioRef.current.volume = volume;
             audioRef.current.play();
             audioRef.current.addEventListener('ended', handleNextAudio);
             audioRef.current.muted = muteAudio;
@@ -25,6 +28,10 @@ const BGMPlayer = ({ children }) => {
             audioRef.current.muted = false;
         }
     }, [muteAudio]);
+    useEffect(() => {
+        audioRef.current.volume = volume;
+        set('bgmVolume', JSON.stringify(volume));
+    }, [volume]);
     useEffect(() => {
         audioRef.current.pause();
         audioRef.current = new Audio(audioFiles[currentAudioIndex]);

@@ -1,3 +1,5 @@
+import { AudioFile } from "~/components/audioPlayer";
+
 interface Item {
 	id?: number;
 	name: string;
@@ -11,6 +13,8 @@ interface Item {
 	maxStack: number;
 	count: number;
 	price: number;
+	dropSound: AudioFile;
+	pickUpSound: AudioFile;
 }
 
 export default Item;

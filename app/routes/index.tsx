@@ -16,7 +16,7 @@ import Item from "~/Types/Item";
 import Divcard from "~/Types/Divcard";
 import { cellSideLength } from "~/components/SlotCell/SlotCell";
 import ContextMenu from "~/components/contextMenu";
-import BGMPlayer from "~/components/bgmPlayer";
+import BGMPlayer, { bgmVolumeVar } from "~/components/bgmPlayer";
 import { bgmVar } from "../components/bgmPlayer";
 
 export const links: LinksFunction = () => {
@@ -46,6 +46,10 @@ export default function Index() {
 	const [render] = useAtom(renderVar);
 	const [tradeWindowOpen, setTradeWindowOpen] = useState(false);
 	const [bgmMute, setBgmMute] = useAtom(bgmVar)
+	const [bgmVolume, setBgmVolume] = useAtom(bgmVolumeVar)
+	useEffect(() => {
+
+	}, [bgmVolume]);
 
 	const DivHover = () => {
 		if (hoverItem != null) {
@@ -88,8 +92,8 @@ export default function Index() {
 					SetSpawnContextMenu(false);
 				}
 			}}>
-			<div className="hideoutWindow" onClick={() => {setBgmMute(false);  }}>
-				
+			<div className="hideoutWindow" onClick={() => { setBgmMute(false); }}>
+
 				<MouseFollower />
 				{spawnUnstack ? <UnstackWindow /> : null}
 				{spawnContextMenu ? <ContextMenu /> : null}
@@ -119,6 +123,14 @@ export default function Index() {
 				<button className="openTradeButton" onClick={() => setTradeWindowOpen(true)}>
 					Open Trade
 				</button>
+				<ClientOnly>
+					{() => {
+						return (
+							<div className={`bgmButton ${bgmVolume == 0 ? "muted" : ""}`} onClick={() => { if (bgmVolume > 0) setBgmVolume(0); else setBgmVolume(0.3); }}></div>
+						)
+					}}
+				</ClientOnly>
+				<div className="bgmButtonText">BGM</div>
 			</div>
 		</div>
 	);

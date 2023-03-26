@@ -7,6 +7,7 @@ import ItemInventory from "~/Types/ItemInventory";
 import { atom, useAtomValue, useSetAtom } from "jotai";
 import { hoveredSlotLocationVar } from "../MouseFollower/MouseFollower";
 import { hoverItemVar } from "~/routes";
+import { AudioFile } from "../audioPlayer";
 
 const TheDoctor: Item = {
 	imgSrc: divCardImage,
@@ -19,7 +20,9 @@ const TheDoctor: Item = {
 	maxStack: 8,
 	count: 5,
 	type: "divcard",
-	price: 8
+	price: 8,
+	pickUpSound: AudioFile.itemPickUp,
+	dropSound: AudioFile.itemDDiv
 };
 
 const mageblood: Item = {
@@ -33,7 +36,9 @@ const mageblood: Item = {
 	maxStack: 1,
 	count: 1,
 	type: "item",
-	price: 210
+	price: 210,
+	pickUpSound: AudioFile.itemPickUp,
+	dropSound: AudioFile.itemDDiv
 };
 
 const farrulsfur: Item = {
@@ -47,7 +52,9 @@ const farrulsfur: Item = {
 	maxStack: 1,
 	count: 1,
 	type: "item",
-	price: 10
+	price: 10,
+	pickUpSound: AudioFile.itemPickUp,
+	dropSound: AudioFile.itemDDiv
 };
 
 const inventoryVar = atom<ItemInventory>(() => {

@@ -2,6 +2,7 @@ import { atom, useAtom } from "jotai";
 import { useState } from "react";
 import { renderVar } from "~/routes";
 import ItemInventory from "~/Types/ItemInventory";
+import playSound from "./audioPlayer";
 import HortiCraft from "./hortiCraft";
 import { inventoryVar } from "./Inventory/Inventory";
 
@@ -61,6 +62,9 @@ const HorticraftStation: React.FC = () => {
 		}
 		try {
 			let outcome: number = gambleLogic(inventory.items[0].count, inventory.items[0].maxStack);
+			if (inventory.items[0].count < outcome) {
+				playSound(inventory.items[0].dropSound, 1);
+			}
 			inventory.setCount(0, outcome);
 			if (outcome == 0) {
 				inventory.removeItem(inventory.items[0]);
