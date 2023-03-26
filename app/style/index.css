@@ -133,6 +133,41 @@ html {
     background-repeat: no-repeat;
 }
 
+.uibar .bgmButton {
+    position: absolute;
+    bottom: 22%;
+    left: 12.85%;
+    width: 2.3%;
+    height: 26%;
+    background-image: url("~/assets/bgm/pausebgm.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 40;
+    cursor: pointer;
+}
+
+.uibar .bgmButton.muted {
+    background-image: url("~/assets/bgm/playbgm.png");
+}
+
+.uibar .bgmButtonText {
+    position: absolute;
+    bottom: 15%;
+    left: 13.2%;
+    width: 2.3%;
+    height: 5%;
+    z-index: 40;
+    font-size: 1em;
+    color: #fec076;
+    font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */  
+}
+
 .hortistation {
     text-align: center;
     width: 1160px;
@@ -923,6 +958,7 @@ html {
     background-repeat: no-repeat;
     cursor: pointer;
 }
+
 .itemContextMenu .closeButton:hover {
     background-image: url("~/assets/contextMenu/contextMenuCloseButtonHover.png");
 }
