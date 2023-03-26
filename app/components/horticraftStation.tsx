@@ -2,7 +2,7 @@ import { atom, useAtom } from "jotai";
 import { useState } from "react";
 import { renderVar } from "~/routes";
 import ItemInventory from "~/Types/ItemInventory";
-import playSound from "./audioPlayer";
+import playSound, { AudioFile } from "./audioPlayer";
 import HortiCraft from "./hortiCraft";
 import { inventoryVar } from "./Inventory/Inventory";
 
@@ -26,6 +26,7 @@ const HorticraftStation: React.FC = () => {
 	const craftSelected = () => {
 		if (selectedCraft !== null) {
 			// execute the selected craft function with the inventory
+			playSound(AudioFile.Button, 0.1)
 			const selectedCraftFunction = crafts[selectedCraft].craftFunction;
 			selectedCraftFunction(hortiInv, crafts[selectedCraft].cost, mainInventory.lifeforce);
 			ForceRender();

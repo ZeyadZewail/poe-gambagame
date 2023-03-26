@@ -14,7 +14,6 @@ import { Fragment, MutableRefObject, useEffect, useState } from "react";
 import DivCardGenerator from "~/components/divCardGenerator";
 import Item from "~/Types/Item";
 import Divcard from "~/Types/Divcard";
-import { cellSideLength } from "~/components/SlotCell/SlotCell";
 import ContextMenu from "~/components/contextMenu";
 import BGMPlayer, { bgmVolumeVar } from "~/components/bgmPlayer";
 import { bgmVar } from "../components/bgmPlayer";
@@ -112,7 +111,6 @@ export default function Index() {
 				</ClientOnly>
 				{
 					<TradeWindow
-						currency={0}
 						divcards={items.divcards}
 						modalIsOpen={tradeWindowOpen}
 						setModalIsOpen={setTradeWindowOpen}
