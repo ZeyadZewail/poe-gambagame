@@ -26,7 +26,7 @@ const HorticraftStation: React.FC = () => {
 	const craftSelected = () => {
 		if (selectedCraft !== null) {
 			// execute the selected craft function with the inventory
-			playSound(AudioFile.Button, 0.1)
+			playSound(AudioFile.Button, 0.05)
 			const selectedCraftFunction = crafts[selectedCraft].craftFunction;
 			selectedCraftFunction(hortiInv, crafts[selectedCraft].cost, mainInventory.lifeforce);
 			ForceRender();
@@ -64,13 +64,14 @@ const HorticraftStation: React.FC = () => {
 		try {
 			let outcome: number = gambleLogic(inventory.items[0].count, inventory.items[0].maxStack);
 			if (inventory.items[0].count < outcome) {
-				playSound(inventory.items[0].dropSound, 1);
+				playSound(inventory.items[0].dropSound, 0.3);
 			}
 			inventory.setCount(0, outcome);
 			if (outcome == 0) {
 				inventory.removeItem(inventory.items[0]);
 			}
 			mainInventory.lifeforce = mainInventory.lifeforce - cost;
+			playSound(AudioFile.harvestCraft, 0.1)
 			setWarningTextVisible(false);
 		} catch {
 			if (warningTimeout) {

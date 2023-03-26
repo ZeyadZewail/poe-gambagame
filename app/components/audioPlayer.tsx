@@ -2,8 +2,9 @@ import divDrop from "~/assets/audio/item_drop_divcard.wav"
 import itemPickup from "~/assets/audio/item_pickup.wav"
 import buttonDown from "~/assets/audio/button_down.wav"
 import buttonUp from "~/assets/audio/button_up.wav"
+import harvestCraft from "~/assets/audio/harvestcraft.wav"
 export enum AudioFile {
-    itemDDiv, itemPickUp, Button
+    itemDDiv, itemPickUp, Button, harvestCraft
 }
 
 export default function playSound(audio: AudioFile, volume: number) {
@@ -21,6 +22,10 @@ export default function playSound(audio: AudioFile, volume: number) {
             audioFileToPlay.addEventListener('ended', () => {
                 buttonUpAudio.play();
             });
+            break;
+        case AudioFile.harvestCraft:
+            audioFileToPlay = new Audio(harvestCraft)
+            break;
         default:
             break;
     }
