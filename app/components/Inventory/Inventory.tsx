@@ -9,18 +9,18 @@ import { hoveredSlotLocationVar } from "../MouseFollower/MouseFollower";
 import { hoverItemVar } from "~/routes";
 import { AudioFile } from "../audioPlayer";
 
-const TheDoctor: Item = {
+const TheApothecary: Item = {
 	imgSrc: divCardImage,
-	name: "The Doctor",
+	name: "The Apothecary",
 	width: 1,
 	length: 1,
 	x: 0,
 	y: 0,
 	hovered: false,
-	maxStack: 8,
-	count: 5,
+	maxStack: 5,
+	count: 2,
 	type: "divcard",
-	price: 8,
+	price: 41,
 	pickUpSound: AudioFile.itemPickUp,
 	dropSound: AudioFile.itemDDiv
 };
@@ -58,7 +58,7 @@ const farrulsfur: Item = {
 };
 
 const inventoryVar = atom<ItemInventory>(() => {
-	return new ItemInventory(12, 12, [TheDoctor, { ...TheDoctor, x: 1 }, mageblood, farrulsfur], false, 10, 15000);
+	return new ItemInventory(12, 12, [TheApothecary, { ...TheApothecary, x: 1 }, mageblood, farrulsfur], false, 10, 15000);
 });
 
 export { inventoryVar };

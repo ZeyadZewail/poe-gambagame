@@ -92,7 +92,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				parentInventory.items.push(currentMouseItem);
 				SetCurrentMouseItem(null);
 			}
-			playSound(AudioFile.itemDDiv,0.5);
+			playSound(AudioFile.itemDDiv, 0.5);
 		} else if (currentMouseItem != null && item != null) {
 			if (item.name === currentMouseItem.name && item.maxStack > 1 && item.count < item.maxStack) {
 				const spaceToTake = item.maxStack - item.count;
@@ -185,42 +185,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 		}
 	};
 
-	const findAvailableSpace = (
-		inventory: ItemInventory,
-		itemWidth: number,
-		itemLength: number
-	): { x: number; y: number } | null => {
-		const takenSpaces: boolean[][] = Array.from({ length: inventory.length }, () =>
-			new Array(inventory.width).fill(false)
-		);
 
-		for (const item of inventory.items) {
-			for (let y = item.y; y < item.y + item.length; y++) {
-				for (let x = item.x; x < item.x + item.width; x++) {
-					takenSpaces[y][x] = true;
-				}
-			}
-		}
-
-		for (let x = 0; x <= inventory.width - itemWidth; x++) {
-			for (let y = 0; y <= inventory.length - itemLength; y++) {
-				if (!takenSpaces[y].slice(x, x + itemWidth).includes(true)) {
-					let canPlace = true;
-					for (let i = y + 1; i < y + itemLength; i++) {
-						if (takenSpaces[i].slice(x, x + itemWidth).includes(true)) {
-							canPlace = false;
-							break;
-						}
-					}
-					if (canPlace) {
-						return { x, y };
-					}
-				}
-			}
-		}
-
-		return null;
-	};
 
 	const HandleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		if (e.shiftKey && currentMouseItem === null && item != null && item.maxStack > 1 && item.count > 1) {
@@ -382,3 +347,37 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 export default SlotCell;
 
 export { cellSideLength };
+
+export function findAvailableSpace(inventory: ItemInventory, itemWidth: number, itemLength: number
+): { x: number; y: number } | null {
+	const takenSpaces: boolean[][] = Array.from({ length: inventory.length }, () =>
+		new Array(inventory.width).fill(false)
+	);
+
+	for (const item of inventory.items) {
+		for (let y = item.y; y < item.y + item.length; y++) {
+			for (let x = item.x; x < item.x + item.width; x++) {
+				takenSpaces[y][x] = true;
+			}
+		}
+	}
+
+	for (let x = 0; x <= inventory.width - itemWidth; x++) {
+		for (let y = 0; y <= inventory.length - itemLength; y++) {
+			if (!takenSpaces[y].slice(x, x + itemWidth).includes(true)) {
+				let canPlace = true;
+				for (let i = y + 1; i < y + itemLength; i++) {
+					if (takenSpaces[i].slice(x, x + itemWidth).includes(true)) {
+						canPlace = false;
+						break;
+					}
+				}
+				if (canPlace) {
+					return { x, y };
+				}
+			}
+		}
+	}
+
+	return null;
+};

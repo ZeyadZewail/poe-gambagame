@@ -350,12 +350,14 @@
             "length": 1,
             "width": 2,
             "name": "Mageblood",
-            "imgSrc": "../assets/item_mageblood.png",
+            "imgSrc": "item_mageblood.png",
             "price": 210,
             "type": "item",
             "x": 0,
             "y": 0,
-            "maxStack": 1
+            "maxStack": 1,
+            "pickUpSound": 1,
+            "dropSound": 0
         }
     ]
 }

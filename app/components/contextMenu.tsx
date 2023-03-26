@@ -1,6 +1,8 @@
 import { useLoaderData } from "@remix-run/react";
 import { useAtom, useSetAtom } from "jotai";
+import imageOuputter from "~/helpers/imageOutputter";
 import { contextMenuVar, loader, unStackVar } from "~/routes";
+import { findAvailableSpace } from "./SlotCell/SlotCell";
 import { unStackWindowItemParentVar, unStackWindowItemVar, UnStackWindowLocationVar } from "./UnstackWindow/UnstackWindow";
 
 export interface ContextMenuProps { }
@@ -23,19 +25,25 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ }) => {
         }
     }
     const turnItemIn = () => {
-        if (item != null && parentInventory != null) {
+        if (item != null && parentInventory != null && !parentInventory.horti) {
             if (item.count == item.maxStack) {
-                parentInventory.removeItem(item)
                 SetContextMenu(false)
                 let foundDivCard = items.divcards.find((d) => {
                     return d.itemName === item.name;
                 });
                 let foundReward = items.itemRewards.find((r) => {
-                    console.log(items);
-                    return r.name === foundDivCard?.itemRewardId;
+                    return r.id === foundDivCard?.itemRewardId;
                 });
-                console.log(foundReward);
-                //parentInventory.items.push(foundReward);
+                if (foundReward != null) {
+                    foundReward.imgSrc = imageOuputter(foundReward.imgSrc)
+                    let availableSpace = findAvailableSpace(parentInventory, foundReward.width, foundReward.length)
+                    if (availableSpace != null) {
+                        foundReward.x = availableSpace.x;
+                        foundReward.y = availableSpace.y;
+                        parentInventory.removeItem(item)
+                        parentInventory.items.push(foundReward);
+                    }
+                }
             }
         }
     }
