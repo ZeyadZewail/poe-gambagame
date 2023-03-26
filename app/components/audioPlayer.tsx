@@ -14,6 +14,7 @@ export default function playSound(audio: AudioFile, volume: number) {
             break;
         case AudioFile.itemPickUp:
             audioFileToPlay = new Audio(itemPickup)
+            break;
         case AudioFile.Button:
             audioFileToPlay = new Audio(buttonDown)
             let buttonUpAudio = new Audio(buttonUp)
