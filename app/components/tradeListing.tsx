@@ -15,6 +15,9 @@ const TradeListing: React.FC<TradeListingProps> = ({ tradeItem }) => {
         else
             divOnePrice = parseFloat((tradeItem.stock / tradeItem.price).toFixed(4));
     }
+    const buyItem = () => {
+        console.log(tradeItem);
+    }
     return (
         <div className="tradeListing">
             <div className="left details">
@@ -96,7 +99,7 @@ const TradeListing: React.FC<TradeListingProps> = ({ tradeItem }) => {
                         {!tradeItem.afk ? (<span className="status status-online">Online</span>) :
                             (<span className="status status-afk">AFK</span>)}
 
-                        <button className="directWhisper">Direct Whisper</button>
+                        <button className="directWhisper" onClick={buyItem}>Direct Whisper</button>
                     </div>
                 </div>
             </div>

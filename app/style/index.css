@@ -613,7 +613,7 @@ html {
 
 .tradewindow .itemSelection .divcards .card {
     border: 1px solid #1e2124;
-    max-width: 360px;
+    max-width: 36vh;
 }
 
 .tradewindow .itemSelection .divcards .card:hover {
@@ -854,18 +854,22 @@ html {
 
 .divCard {
     text-align: center;
+    /*
     width: 360px;
     height: 549px;
+    */
+    width: 36vh;
+    height: calc(36vh * 61/ 40);
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: relative;
 }
 
 .divCard .image {
     position: absolute;
-    width: 320px;
-    height: 220px;
-    top: 50px;
-    left: 20px;
+    width: calc(36vh * 8/ 9);
+    height: calc(36vh * 11/ 18);
+    top: calc(36vh * 5/ 36);
+    left: calc(36vh *1/ 18);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -875,8 +879,8 @@ html {
     z-index: 0;
     position: absolute;
     top: 0px;
-    width: 360px;
-    height: 549px;
+    width: 36vh;
+    height: calc(36vh * 61/ 40);
     background-image: url("~/assets/divination-card.webp");
     background-size: cover;
     background-repeat: no-repeat;
@@ -884,9 +888,9 @@ html {
 }
 
 .divCard .topbar {
-    height: 55px;
-    line-height: 60px;
-    font-size: 20px;
+    height: calc(36vh * 11/ 72);
+    line-height: calc(36vh * 1/6);
+    font-size: calc(36vh * 1/ 18);
 }
 
 .divCard .topbar .text {
@@ -896,44 +900,44 @@ html {
 
 .divCard .stackSize {
     position: absolute;
-    left: 38px;
-    top: 260px;
-    height: 24px;
-    width: 50px;
-    line-height: 24px;
-    font-size: 16px;
+    left: calc(36vh * 19 / 180);
+    top: calc(36vh * 13 / 18);
+    height: calc(36vh * 1 / 15);
+    width: calc(36vh * 5 / 36);
+    line-height: calc(36vh * 1 / 15);
+    font-size: calc(36vh * 2 / 45);
     color: white;
 }
 
 .divCard .Stats {
     position: absolute;
-    top: 270px;
-    height: 279px;
-    padding-left: 30px;
-    padding-right: 30px;
+    top: calc(36vh * 3 / 4);
+    height: calc(36vh * 31 / 40);
+    padding-left: calc(36vh * 1/ 12);
+    padding-right: calc(36vh * 1/ 12);
 }
 
 .divCard .Stats .explicitArea {
-    height: 100px;
-    width: 320px;
+    height: calc(36vh * 5 / 18);
+    width: calc(36vh * 8 / 9);
     vertical-align: middle;
     display: table-cell;
-    font-size: 16px;
+    font-size: calc(36vh * 2 / 45);
 }
 
 .divCard .Stats .FlavourText {
-    height: 159px;
-    width: 320px;
+    height: calc(36vh * 53 / 120);
+    width: calc(36vh * 8 / 9);
     vertical-align: middle;
     display: table-cell;
-    font-size: 16px;
+    font-size: calc(36vh * 2 / 45);
     color: #af6025;
 }
 
 .FlavourText {
     font-style: italic;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: calc(36vh * 1 /72);
+    padding-right: calc(36vh * 1 /72);
 }
 
 .itemContextMenu {
