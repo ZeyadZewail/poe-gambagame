@@ -213,19 +213,21 @@ html {
     position: absolute;
     top: 0%;
     left: 10%;
-    width: 600px;
-    height: 80px;
+    width: calc(var(--hortistation-width) * 15/29);
+    height: calc(var(--hortistation-width) * 2/29);
     background-image: url("~/assets/horti_warning.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     color: red;
-    line-height: 76px;
-    font-size: 36px;
+    line-height: calc(var(--hortistation-width) * 19/290);
+    font-size: calc(var(--hortistation-width) * 9/290);
     font-family: "Fontin Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
     opacity: 0;
     transition: opacity 0.8s;
 }
-
+.hortistation .hortiWarning.nocurrency{
+    font-size: calc(var(--hortistation-width) * 3/145);
+}
 .hortistation .hortiWarning.visible {
     opacity: 1;
     transition: opacity 0.2s;

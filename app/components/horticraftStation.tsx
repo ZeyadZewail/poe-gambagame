@@ -50,7 +50,7 @@ const HorticraftStation: React.FC = () => {
 			if (warningTimeout) {
 				clearTimeout(warningTimeout);
 			}
-			setWarningTextSize("24px")
+			setWarningTextSize("nocurrency")
 			setWarningText("You do not have sufficient currency to buy this mod.");
 			setWarningTextVisible(true);
 			ForceRender();
@@ -73,7 +73,7 @@ const HorticraftStation: React.FC = () => {
 			if (warningTimeout) {
 				clearTimeout(warningTimeout);
 			}
-			setWarningTextSize("36px")
+			setWarningTextSize("")
 			setWarningText("Too many Items in stack");
 			setWarningTextVisible(true);
 			ForceRender();
@@ -85,7 +85,7 @@ const HorticraftStation: React.FC = () => {
 	}
 	return (
 		<div className="hortistation">
-			<div className={`hortiWarning ${warningTextVisible ? "visible" : ""}`} style={{ fontSize: warningTextSize }}>{warningText}</div>
+			<div className={`hortiWarning ${warningTextVisible ? "visible" : ""} ${warningTextSize}`}>{warningText}</div>
 			<div className="frame"></div>
 			<div className="topbar">
 				<div className="text">Horticrafting</div>
