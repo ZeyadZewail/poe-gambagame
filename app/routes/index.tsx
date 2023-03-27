@@ -17,6 +17,7 @@ import Divcard from "~/Types/Divcard";
 import ContextMenu from "~/components/contextMenu";
 import BGMPlayer, { bgmVolumeVar } from "~/components/bgmPlayer";
 import { bgmVar } from "../components/bgmPlayer";
+import playSound, { AudioFile, buttonAudioVol } from "~/components/audioPlayer";
 
 export const links: LinksFunction = () => {
 	return [{ rel: "stylesheet", href: stylesUrl }];
@@ -46,6 +47,7 @@ export default function Index() {
 	const [tradeWindowOpen, setTradeWindowOpen] = useState(false);
 	const [bgmMute, setBgmMute] = useAtom(bgmVar)
 	const [bgmVolume, setBgmVolume] = useAtom(bgmVolumeVar)
+	const [buttonVolume] = useAtom(buttonAudioVol)
 	useEffect(() => {
 
 	}, [bgmVolume]);
@@ -118,7 +120,7 @@ export default function Index() {
 				}
 			</div>
 			<div className="uibar">
-				<button className="openTradeButton" onClick={() => setTradeWindowOpen(true)}>
+				<button className="openTradeButton" onClick={() => setTradeWindowOpen(true)} onMouseDown={() => playSound(AudioFile.ButtonDown,buttonVolume)} onMouseUp={() => { playSound(AudioFile.ButtonUp, buttonVolume) }}>
 					Open Trade
 				</button>
 				<ClientOnly>

@@ -2,7 +2,7 @@ import { atom, useAtom } from "jotai";
 import { useState } from "react";
 import { renderVar } from "~/routes";
 import ItemInventory from "~/Types/ItemInventory";
-import playSound, { AudioFile } from "./audioPlayer";
+import playSound, { AudioFile, buttonAudioVol } from "./audioPlayer";
 import HortiCraft from "./hortiCraft";
 import { inventoryVar } from "./Inventory/Inventory";
 
@@ -19,14 +19,13 @@ const HorticraftStation: React.FC = () => {
 	const [warningTextSize, setWarningTextSize] = useState("");
 	const [warningTimeout, setWarningTimeout] = useState<number | undefined>();
 	const [mainInventory] = useAtom<ItemInventory>(inventoryVar)
-
+	const [buttonVolume] = useAtom(buttonAudioVol)
 	const ForceRender = () => {
 		SetForceRender(!renderBool);
 	};
 	const craftSelected = () => {
 		if (selectedCraft !== null) {
 			// execute the selected craft function with the inventory
-			playSound(AudioFile.Button, 0.05)
 			const selectedCraftFunction = crafts[selectedCraft].craftFunction;
 			selectedCraftFunction(hortiInv, crafts[selectedCraft].cost, mainInventory.lifeforce);
 			ForceRender();
@@ -108,7 +107,7 @@ const HorticraftStation: React.FC = () => {
 			</div>
 			<div className="itemSlot">{hortiInv.generateFirstItem()}</div>
 			<div className="button">
-				<button className="craftButton" onClick={craftSelected} disabled={hortiInv.items.length == 0}>
+				<button className="craftButton" onClick={craftSelected} onMouseDown={() => playSound(AudioFile.ButtonDown, buttonVolume)} onMouseUp={() => { playSound(AudioFile.ButtonUp, buttonVolume) }} disabled={hortiInv.items.length == 0}>
 					Craft
 				</button>
 			</div>
