@@ -654,13 +654,6 @@ html {
     background-color: #2d3136 !important;
 }
 
-@media screen and (max-height:600px) {
-    .inventoryWindow {
-        --inventory-width: calc(635 *100vw/2400) !important;
-    }
-
-}
-
 @media screen and (max-width: 600px) {
     .divCard {
         --card-width: calc(360 *100vh/600) !important;
