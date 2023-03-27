@@ -44,7 +44,7 @@ export default function Index() {
 	const hoveredSlotLocation = useAtomValue(hoveredSlotLocationVar);
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [render] = useAtom(renderVar);
-	const [tradeWindowOpen, setTradeWindowOpen] = useState(true);
+	const [tradeWindowOpen, setTradeWindowOpen] = useState(false);
 	const setBgmMute = useSetAtom(bgmVar)
 	const [bgmVolume, setBgmVolume] = useAtom(bgmVolumeVar)
 	useEffect(() => {
