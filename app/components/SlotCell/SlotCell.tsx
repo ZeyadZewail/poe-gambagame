@@ -76,7 +76,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 		}
 
 		if (item != null && currentMouseItem === null) {
-			playSound(AudioFile.itemPickUp, 0.5)
+			playSound(AudioFile.itemPickUp)
 			SetCurrentMouseItem(item);
 			parentInventory.removeItem(item);
 		} else if (currentMouseItem != null && item === null) {
@@ -86,13 +86,14 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				currentMouseItem.y = y;
 				parentInventory.items.push(currentMouseItem);
 				SetCurrentMouseItem(null);
+				playSound(AudioFile.itemDDiv);
 			} else if (CheckViableForItem(x, y, currentMouseItem)) {
 				currentMouseItem.x = x;
 				currentMouseItem.y = y - Math.floor(currentMouseItem.length / 2);
 				parentInventory.items.push(currentMouseItem);
 				SetCurrentMouseItem(null);
+				playSound(AudioFile.itemDDiv);
 			}
-			playSound(AudioFile.itemDDiv, 0.5);
 		} else if (currentMouseItem != null && item != null) {
 			if (item.name === currentMouseItem.name && item.maxStack > 1 && item.count < item.maxStack) {
 				const spaceToTake = item.maxStack - item.count;
@@ -100,6 +101,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				const remainder = currentMouseItem.count - possibleToGive;
 				item.count += possibleToGive;
 				remainder == 0 ? SetCurrentMouseItem(null) : (currentMouseItem.count = remainder);
+				playSound(AudioFile.itemDDiv);
 			}
 
 			// if (CheckViableForItem(x, y, currentMouseItem)) {
@@ -117,7 +119,6 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			// 	}
 			// }
 		}
-
 		ForceRender();
 	};
 
@@ -205,13 +206,14 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				const remainder = currentMouseItem.count - possibleToGive;
 				item.count += possibleToGive;
 				remainder == 0 ? SetCurrentMouseItem(null) : (currentMouseItem.count = remainder);
+				playSound(AudioFile.itemDDiv);
 			} else {
 				currentMouseItem.x = x;
 				currentMouseItem.y = y - Math.floor(currentMouseItem.length / 2);
 				parentInventory.items.push({ ...currentMouseItem, count: 1 });
 				const remainder = currentMouseItem.count - 1;
 				remainder == 0 ? SetCurrentMouseItem(null) : (currentMouseItem.count = remainder);
-
+				playSound(AudioFile.itemDDiv);
 				ForceRender();
 			}
 		} else if (e.ctrlKey && currentMouseItem === null && item != null && !horti) {
@@ -219,12 +221,14 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			if (hortiInv.itemCount() == 0) {
 				hortiInv.items.push(item);
 				parentInventory.removeItem(item);
+				playSound(AudioFile.itemDDiv);
 			} else if (hortiInv.items[0].name == item.name && hortiInv.items[0].count != hortiInv.items[0].maxStack) {
 				const spaceToTake = hortiInv.items[0].maxStack - hortiInv.items[0].count;
 				const possibleToGive = Math.min(spaceToTake, item.count);
 				const remainder = item.count - possibleToGive;
 				hortiInv.items[0].count += possibleToGive;
 				remainder == 0 ? parentInventory.removeItem(item) : (item.count = remainder);
+				playSound(AudioFile.itemDDiv);
 			}
 
 			ForceRender();
@@ -239,6 +243,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 					const remainder = item.count - possibleToGive;
 					sameItems[i].count += possibleToGive;
 					remainder == 0 ? (breakEarly = true) : (item.count = remainder);
+					playSound(AudioFile.itemDDiv);
 					if (breakEarly) break;
 				}
 			}
@@ -247,6 +252,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				item.x = availableSpace.x;
 				item.y = availableSpace.y;
 				mainInventory.items.push(item);
+				playSound(AudioFile.itemDDiv);
 			}
 			ForceRender();
 		} else {

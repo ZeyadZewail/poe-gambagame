@@ -8,7 +8,7 @@ import { useLoaderData } from "@remix-run/react";
 import HorticraftStation from "~/components/horticraftStation";
 import InventoryWindow from "~/components/inventoryWindow";
 import MouseFollower, { hoveredSlotLocationVar } from "~/components/MouseFollower/MouseFollower";
-import { atom, useAtom, useAtomValue, } from "jotai";
+import { atom, useAtom, useAtomValue, useSetAtom, } from "jotai";
 import UnstackWindow from "~/components/UnstackWindow/UnstackWindow";
 import { Fragment, MutableRefObject, useEffect, useState } from "react";
 import DivCardGenerator from "~/components/divCardGenerator";
@@ -17,7 +17,7 @@ import Divcard from "~/Types/Divcard";
 import ContextMenu from "~/components/contextMenu";
 import BGMPlayer, { bgmVolumeVar } from "~/components/bgmPlayer";
 import { bgmVar } from "../components/bgmPlayer";
-import playSound, { AudioFile, buttonAudioVol } from "~/components/audioPlayer";
+import playSound, { AudioFile } from "~/components/audioPlayer";
 
 export const links: LinksFunction = () => {
 	return [{ rel: "stylesheet", href: stylesUrl }];
@@ -45,9 +45,8 @@ export default function Index() {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [render] = useAtom(renderVar);
 	const [tradeWindowOpen, setTradeWindowOpen] = useState(false);
-	const [bgmMute, setBgmMute] = useAtom(bgmVar)
+	const setBgmMute = useSetAtom(bgmVar)
 	const [bgmVolume, setBgmVolume] = useAtom(bgmVolumeVar)
-	const [buttonVolume] = useAtom(buttonAudioVol)
 	useEffect(() => {
 
 	}, [bgmVolume]);
@@ -120,7 +119,7 @@ export default function Index() {
 				}
 			</div>
 			<div className="uibar">
-				<button className="openTradeButton" onClick={() => setTradeWindowOpen(true)} onMouseDown={() => playSound(AudioFile.ButtonDown,buttonVolume)} onMouseUp={() => { playSound(AudioFile.ButtonUp, buttonVolume) }}>
+				<button className="openTradeButton" onClick={() => setTradeWindowOpen(true)} onMouseDown={() => playSound(AudioFile.ButtonDown)} onMouseUp={() => { playSound(AudioFile.ButtonUp) }}>
 					Open Trade
 				</button>
 				<ClientOnly>

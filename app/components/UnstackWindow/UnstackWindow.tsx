@@ -7,6 +7,7 @@ import buttonBG from "../../assets/unstackbutton_normal.png";
 import { mouseItem } from "../MouseFollower/MouseFollower";
 import type ItemInventory from "~/Types/ItemInventory";
 import { unStackVar } from "~/routes";
+import playSound, { AudioFile } from "../audioPlayer";
 
 const unStackWindowItemVar = atom<Item | null>(null);
 const unStackWindowItemParentVar = atom<ItemInventory | null>(null);
@@ -30,6 +31,7 @@ const UnstackWindow = () => {
 	const HandleOk = () => {
 		SetSpawnUnstack(false);
 		if (item != null && value != 0) {
+			playSound(AudioFile.itemPickUp)
 			SetCurrentMouseItem({ ...item, count: value });
 			if (item.count - value === 0) {
 				if (parentInventory != null) {

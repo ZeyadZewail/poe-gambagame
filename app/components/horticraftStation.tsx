@@ -2,7 +2,7 @@ import { atom, useAtom } from "jotai";
 import { useState } from "react";
 import { renderVar } from "~/routes";
 import ItemInventory from "~/Types/ItemInventory";
-import playSound, { AudioFile, buttonAudioVol } from "./audioPlayer";
+import playSound, { AudioFile } from "./audioPlayer";
 import HortiCraft from "./hortiCraft";
 import { inventoryVar } from "./Inventory/Inventory";
 
@@ -19,7 +19,6 @@ const HorticraftStation: React.FC = () => {
 	const [warningTextSize, setWarningTextSize] = useState("");
 	const [warningTimeout, setWarningTimeout] = useState<number | undefined>();
 	const [mainInventory] = useAtom<ItemInventory>(inventoryVar)
-	const [buttonVolume] = useAtom(buttonAudioVol)
 	const ForceRender = () => {
 		SetForceRender(!renderBool);
 	};
@@ -63,14 +62,14 @@ const HorticraftStation: React.FC = () => {
 		try {
 			let outcome: number = gambleLogic(inventory.items[0].count, inventory.items[0].maxStack);
 			if (inventory.items[0].count < outcome) {
-				playSound(inventory.items[0].dropSound, 0.3);
+				playSound(inventory.items[0].dropSound);
 			}
 			inventory.setCount(0, outcome);
 			if (outcome == 0) {
 				inventory.removeItem(inventory.items[0]);
 			}
 			mainInventory.lifeforce = mainInventory.lifeforce - cost;
-			playSound(AudioFile.harvestCraft, 0.1)
+			playSound(AudioFile.harvestCraft)
 			setWarningTextVisible(false);
 		} catch {
 			if (warningTimeout) {
@@ -107,7 +106,7 @@ const HorticraftStation: React.FC = () => {
 			</div>
 			<div className="itemSlot">{hortiInv.generateFirstItem()}</div>
 			<div className="button">
-				<button className="craftButton" onClick={craftSelected} onMouseDown={() => playSound(AudioFile.ButtonDown, buttonVolume)} onMouseUp={() => { playSound(AudioFile.ButtonUp, buttonVolume) }} disabled={hortiInv.items.length == 0}>
+				<button className="craftButton" onClick={craftSelected} onMouseDown={() => playSound(AudioFile.ButtonDown)} onMouseUp={() => { playSound(AudioFile.ButtonUp) }} disabled={hortiInv.items.length == 0}>
 					Craft
 				</button>
 			</div>

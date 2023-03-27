@@ -8,29 +8,33 @@ export enum AudioFile {
     itemDDiv, itemPickUp, ButtonDown, ButtonUp, harvestCraft
 }
 
-const buttonAudioVol = atom(0.3);
-export { buttonAudioVol }
-export default function playSound(audio: AudioFile, volume: number) {
+const itemVolume = 0.3;
+const buttonVolume = 0.3;
+export default function playSound(audio: AudioFile) {
     let audioFileToPlay = new Audio('');
     switch (audio) {
         case AudioFile.itemDDiv:
             audioFileToPlay = new Audio(divDrop);
+            audioFileToPlay.volume = itemVolume;
             break;
         case AudioFile.itemPickUp:
             audioFileToPlay = new Audio(itemPickup)
+            audioFileToPlay.volume = itemVolume;
             break;
         case AudioFile.ButtonDown:
             audioFileToPlay = new Audio(buttonDown)
+            audioFileToPlay.volume = buttonVolume;
             break;
         case AudioFile.ButtonUp:
             audioFileToPlay = new Audio(buttonUp)
+            audioFileToPlay.volume = buttonVolume;
             break;
         case AudioFile.harvestCraft:
             audioFileToPlay = new Audio(harvestCraft)
+            audioFileToPlay.volume = itemVolume;
             break;
         default:
             break;
     }
-    audioFileToPlay.volume = volume;
     audioFileToPlay.play();
 }
