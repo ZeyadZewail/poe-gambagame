@@ -889,7 +889,7 @@ html {
 .divCard .topbar {
     height: calc(var(--card-width) * 11/ 72);
     line-height: calc(var(--card-width) * 1/6);
-    font-size: calc(var(--card-width) * 1/ 18);
+    font-size: 1vw;
 }
 
 .divCard .topbar .text {
@@ -904,7 +904,7 @@ html {
     height: calc(var(--card-width) * 1 / 15);
     width: calc(var(--card-width) * 5 / 36);
     line-height: calc(var(--card-width) * 1 / 15);
-    font-size: calc(var(--card-width) * 2 / 45);
+    font-size: 0.8vw;
     color: white;
 }
 
@@ -922,7 +922,7 @@ html {
     vertical-align: middle;
     display: table-cell;
     line-height: calc(var(--card-width) * 2 / 45);
-    font-size: calc(var(--card-width) * 2 / 45);
+    font-size: 0.9vw;
 }
 
 .divCard .Stats .FlavourText {
@@ -932,6 +932,7 @@ html {
     display: table-cell;
     line-height: calc(var(--card-width) * 2 / 45);
     font-size: calc(var(--card-width) * 2 / 45);
+    font-size: 1vw;
     color: #af6025;
 }
 
