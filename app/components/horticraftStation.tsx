@@ -45,6 +45,7 @@ const HorticraftStation: React.FC = () => {
 	];
 
 	function gamble(inventory: ItemInventory, cost: number, lifeforce: number) {
+		playSound(inventory.items[0].dropSound);
 		if (cost > lifeforce) {
 			if (warningTimeout) {
 				clearTimeout(warningTimeout);
@@ -61,9 +62,6 @@ const HorticraftStation: React.FC = () => {
 		}
 		try {
 			let outcome: number = gambleLogic(inventory.items[0].count, inventory.items[0].maxStack);
-			if (inventory.items[0].count < outcome) {
-				playSound(inventory.items[0].dropSound);
-			}
 			inventory.setCount(0, outcome);
 			if (outcome == 0) {
 				inventory.removeItem(inventory.items[0]);

@@ -71,7 +71,7 @@ const UnstackWindow = () => {
 					<Slider min={0} max={item.count} value={value} />
 				</div>
 			) : null}
-			<button className="m-0 w-fit relative top-[0%] scale-75 self-end" onClick={HandleOk}>
+			<button className="m-0 w-fit relative top-[0%] scale-75 self-end" onClick={HandleOk} onMouseDown={() => playSound(AudioFile.ButtonDown)} onMouseUp={() => { playSound(AudioFile.ButtonUp) }}>
 				<img src={buttonBG} alt="unstack Button" />
 			</button>
 		</div>

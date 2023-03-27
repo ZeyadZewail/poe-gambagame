@@ -4,6 +4,7 @@ import buttonDown from "~/assets/audio/button_click_down.wav"
 import buttonUp from "~/assets/audio/button_click_up.wav"
 import harvestCraft from "~/assets/audio/harvestcraft.wav"
 import { atom } from "jotai"
+import Item from "~/Types/Item"
 export enum AudioFile {
     itemDDiv, itemPickUp, ButtonDown, ButtonUp, harvestCraft
 }
