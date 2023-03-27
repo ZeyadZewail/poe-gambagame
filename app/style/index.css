@@ -26,9 +26,8 @@ html {
 .openTradeButton {
     font-family: "Fontin Smallcaps";
     background-color: rgba(0, 0, 0, 0);
-    background-image: url("~/assets/buttons/button_normal.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    background: url("~/assets/buttons/button_normal_left.png") top left no-repeat, url("~/assets/buttons/button_normal_right.png") top right no-repeat, url("~/assets/buttons/button_normal_middle.png") top center repeat-x;
+    background-size: contain;
     width: 160px;
     height: 35px;
     border: 0px;
@@ -38,11 +37,13 @@ html {
 }
 
 .openTradeButton:active {
-    background-image: url("~/assets/buttons/button_active.png");
+    background: url("~/assets/buttons/button_active_left.png") top left no-repeat, url("~/assets/buttons/button_active_right.png") top right no-repeat, url("~/assets/buttons/button_active_middle.png") top center repeat-x;
+    background-size: contain;
 }
 
 .openTradeButton:hover {
-    background-image: url("~/assets/buttons/button_hover.png");
+    background: url("~/assets/buttons/button_hover_left.png") top left no-repeat, url("~/assets/buttons/button_hover_right.png") top right no-repeat, url("~/assets/buttons/button_hover_middle.png") top center repeat-x;
+    background-size: contain;
 }
 
 
@@ -165,7 +166,7 @@ html {
     -ms-user-select: none;
     /* IE 10 and IE 11 */
     user-select: none;
-    /* Standard syntax */  
+    /* Standard syntax */
 }
 
 .hortistation {
@@ -938,9 +939,9 @@ html {
 .itemContextMenu {
     z-index: 50;
     position: fixed;
-    height: 201px;
     max-width: 201px;
-    background-image: url("~/assets/contextMenu/contextMenu.png");
+    background: url("~/assets/contextMenu/contextMenuTop.png") center top no-repeat, url("~/assets/contextMenu/contextMenuBottom.png") center bottom no-repeat, url("~/assets/contextMenu/contextMenuMiddle.png") center repeat-y;
+    background-size: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -948,11 +949,13 @@ html {
 }
 
 .itemContextMenu .closeButton {
-    position: absolute;
-    right: 5px;
-    top: 5px;
+    position: relative;
     height: 24px;
     width: 24px;
+    margin-left: auto;
+    margin-top: 8px;
+    margin-right: 8px;
+    display: block;
     background-image: url("~/assets/contextMenu/contextMenuCloseButton.png");
     background-size: cover;
     background-repeat: no-repeat;
@@ -991,9 +994,8 @@ html {
 .itemContextMenu button {
     font-family: "Fontin Smallcaps";
     background-color: rgba(0, 0, 0, 0);
-    background-image: url("~/assets/buttons/button_normal.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    background: url("~/assets/buttons/button_normal_left.png") top left no-repeat, url("~/assets/buttons/button_normal_right.png") top right no-repeat, url("~/assets/buttons/button_normal_middle.png") top center repeat-x;
+    background-size: contain;
     width: 160px;
     height: 35px;
     border: 0px;
@@ -1003,11 +1005,13 @@ html {
 }
 
 .itemContextMenu button:active {
-    background-image: url("~/assets/buttons/button_active.png");
+    background: url("~/assets/buttons/button_active_left.png") top left no-repeat, url("~/assets/buttons/button_active_right.png") top right no-repeat, url("~/assets/buttons/button_active_middle.png") top center repeat-x;
+    background-size: contain;
 }
 
 .itemContextMenu button:hover {
-    background-image: url("~/assets/buttons/button_hover.png");
+    background: url("~/assets/buttons/button_hover_left.png") top left no-repeat, url("~/assets/buttons/button_hover_right.png") top right no-repeat, url("~/assets/buttons/button_hover_middle.png") top center repeat-x;
+    background-size: contain;
 }
 
 

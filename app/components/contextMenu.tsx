@@ -59,8 +59,6 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ }) => {
             style={{
                 transform: `translate(${location.x}px,${location.y}px)`
             }}>
-            <div className="closeButton" onClick={() => SetContextMenu(false)}>
-            </div>
             <div className="options">
                 <div className="topWrapper"></div>
                 <div className="buttons">
