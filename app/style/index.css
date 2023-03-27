@@ -28,12 +28,12 @@ html {
     background-color: rgba(0, 0, 0, 0);
     background: url("~/assets/buttons/button_normal_left.png") top left no-repeat, url("~/assets/buttons/button_normal_right.png") top right no-repeat, url("~/assets/buttons/button_normal_middle.png") top center repeat-x;
     background-size: contain;
-    width: 160px;
-    height: 35px;
+    width: 8vw;
+    height: 3.5vh;
     border: 0px;
     padding: 0px;
     color: #fec076;
-    font-size: 18px;
+    font-size: 0.85vw;
 }
 
 .openTradeButton:active {
@@ -59,9 +59,10 @@ html {
 }
 
 .inventoryWindow {
+    --inventory-width: calc(635 *100vw/2000);
     text-align: center;
-    width: 635px;
-    height: 1000px;
+    width: var(--inventory-width);
+    height: 100vh;
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-user-select: none;
     /* Safari */
@@ -75,51 +76,71 @@ html {
 }
 
 .inventoryWindow .frame {
+    z-index: 38;
     position: absolute;
     top: 0px;
-    width: 628px;
-    height: 768px;
+    width: calc(var(--inventory-width) * 1256/1270);
+    height: calc(var(--inventory-width) * 1536/1270);
     background-image: url("~/assets/inventoryframe.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
 
-.inventoryWindow .text {
+.inventoryWindow .inventoryGrid {
     position: absolute;
-    top: 53px;
-    left: 212px;
-    width: 200px;
-    height: 80px;
+    z-index: 40 !important;
+    top: calc(var(--inventory-width) * 25/127);
+    left: calc(var(--inventory-width) * 7/127);
+    background-image: url("~/assets/inventorygrid.png");
+    height: calc(var(--inventory-width) * 1138/1270);
+    width: calc(var(--inventory-width) * 1138/1270);
+    background-size: contain;
+}
+
+.inventoryWindow .text {
+    z-index: 39;
+    position: absolute;
+    top: calc(var(--inventory-width) * 106/1270);
+    left: calc(var(--inventory-width) * 424/1270);
+    width: calc(var(--inventory-width) * 40/127);
+    height: calc(var(--inventory-width) * 16/127);
     color: #000;
-    font-size: 24px;
+    font-size: calc(var(--inventory-width) * 48 /1270);
 }
 
 .inventoryWindow .currency {
+    z-index: 38;
     position: absolute;
-    top: 708px;
-    left: 212px;
-    width: 200px;
-    height: 80px;
+    top: calc(var(--inventory-width) * 1416/1270);
+    left: calc(var(--inventory-width) * 424/1270);
+    width: calc(var(--inventory-width) * 40/127);
+    height: calc(var(--inventory-width) * 16/127);
     color: #fff;
-    font-size: 24px;
+    font-size: calc(var(--inventory-width) * 48 /1270);
 }
 
 .inventoryWindow .currency img {
     display: inline;
-    height: 24px;
-    width: 24px;
+    height: calc(var(--inventory-width) * 48 /1270);
+    width: calc(var(--inventory-width) * 48 /1270);
     vertical-align: center;
 }
 
 .inventoryWindow .bottomframe {
-    z-index: 38 !important;
+    z-index: 37 !important;
     position: absolute;
     bottom: 0px;
-    width: 635px;
-    height: 259px;
-    background-image: url("~/assets/inventoryframebottom.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    width: var(--inventory-width);
+    height: calc(100vh - calc(var(--inventory-width) * 1436/1270));
+    background: url("~/assets/inventoryframebottom_top.png") center top no-repeat, url("~/assets/inventoryframebottom_bottom.png") center bottom no-repeat, url("~/assets/inventoryframebottom_middle.png") center center repeat-y;
+    background-size: contain;
+}
+
+.inventoryWindow .divStackText {
+    position: relative;
+    font-size: calc(var(--inventory-width) * 12 /500);
+    bottom: calc(var(--inventory-width) * 8 /105);
+    right: calc(var(--inventory-width) * 3 /112);
 }
 
 .uibar {
@@ -158,7 +179,7 @@ html {
     width: 2.3%;
     height: 5%;
     z-index: 40;
-    font-size: 1em;
+    font-size: 0.8vw;
     color: #fec076;
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-user-select: none;
@@ -171,12 +192,13 @@ html {
 
 .hortistation {
     text-align: center;
-    width: 1160px;
-    height: 857px;
+    --hortistation-width: calc(1160 *100vw/2500);
+    width: var(--hortistation-width);
+    height: calc(var(--hortistation-width) * 1714/2320);
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: absolute;
-    top: 10vh;
-    left: 18vw;
+    top: calc(var(--hortistation-width) * 5/58);
+    left: calc(var(--hortistation-width) * 15/50);
     -webkit-user-select: none;
     /* Safari */
     -ms-user-select: none;
@@ -213,8 +235,8 @@ html {
     z-index: 0;
     position: absolute;
     top: 0px;
-    width: 1160px;
-    height: 857px;
+    width: var(--hortistation-width);
+    height: calc(var(--hortistation-width) * 1714/2320);
     background-image: url("~/assets/horticraftstation.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -222,27 +244,27 @@ html {
 
 .hortistation .topbar {
     position: absolute;
-    left: 304px;
-    top: 99px;
-    height: 45px;
-    width: 250px;
-    line-height: 24px;
+    left: calc(var(--hortistation-width) * 38/145);
+    top: calc(var(--hortistation-width) * 198/2320);
+    height: calc(var(--hortistation-width) * 9/232);
+    width: calc(var(--hortistation-width) * 25/116);
+    line-height: calc(var(--hortistation-width) * 3/145);
 }
 
 .hortistation .topbar .text {
     font-family: "Fontin Smallcaps";
     font-weight: lighter;
     color: #000;
-    font-size: 34px;
+    font-size: calc(var(--hortistation-width) * 17/580);
     font-stretch: expanded;
 }
 
 .hortistation .button {
     position: absolute;
-    left: 824px;
-    top: 568px;
-    height: 50px;
-    width: 160px;
+    left: calc(var(--hortistation-width) * 103/145);
+    top: calc(var(--hortistation-width) * 71 /145);
+    height: calc(var(--hortistation-width) * 5 /116);
+    width: calc(var(--hortistation-width) * 4 /29);
 }
 
 .hortistation .button .craftButton {
@@ -251,13 +273,13 @@ html {
     background-image: url("~/assets/buttons/horti_active.png");
     background-size: cover;
     background-repeat: no-repeat;
-    width: 160px;
-    height: 50px;
+    width: calc(var(--hortistation-width) * 4 /29);
+    height: calc(var(--hortistation-width) * 5 /116);
     border: 0px;
     padding: 0px;
     margin: 0;
     color: #9dadd2;
-    font-size: 24px;
+    font-size: calc(var(--hortistation-width) * 3/145);
 }
 
 .hortistation .button .craftButton:active {
@@ -275,10 +297,10 @@ html {
 
 .hortistation .crafts {
     position: absolute;
-    left: 100px;
-    top: 200px;
-    height: 550px;
-    width: 625px;
+    left: calc(var(--hortistation-width) * 5 /58);
+    top: calc(var(--hortistation-width) * 5 /29);
+    height: calc(var(--hortistation-width) * 55 /116);
+    width: calc(var(--hortistation-width) * 125 /232);
     overflow-y: auto;
 }
 
@@ -286,8 +308,8 @@ html {
     background-image: url("~/assets/horti/horti_craftnormal.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    height: 110px;
-    width: 625px;
+    height: calc(var(--hortistation-width) * 11 /116);
+    width: calc(var(--hortistation-width) * 125 /232);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -296,17 +318,17 @@ html {
 
 .hortistation .crafts .craft .text {
     color: #7f7f7f;
-    font-size: 20px;
+    font-size: calc(var(--hortistation-width) * 1 /58);
     text-align: left;
     font-family: "Fontin Regular";
-    padding: 15px;
+    padding: calc(var(--hortistation-width) * 2 /232);
     width: 80%;
 }
 
 .hortistation .crafts .craft .cost {
-    padding-top: 50px;
+    padding-top: calc(var(--hortistation-width) * 5 /116);
     color: #dedcfe;
-    font-size: 18px;
+    font-size: calc(var(--hortistation-width) * 9 /580);
 }
 
 .hortistation .crafts .craft .cost.red {
@@ -314,7 +336,7 @@ html {
 }
 
 .hortistation .crafts .craft .cost img {
-    height: 32px;
+    height: calc(var(--hortistation-width) * 5/145);
     vertical-align: middle;
     border: none;
     display: inline;
@@ -330,23 +352,23 @@ html {
 
 .hortistation .itemSlot {
     position: absolute;
-    left: 842px;
-    top: 288px;
-    height: 242px;
-    width: 120px;
+    left: calc(var(--hortistation-width) * 421 /580);
+    top: calc(var(--hortistation-width) * 36 /145);
+    height: calc(var(--hortistation-width) * 121 /580);
+    width: calc(var(--hortistation-width) * 3 /29);
 }
 
 .hortistation .lifeforce {
     position: absolute;
-    left: 1086px;
-    top: 324px;
-    height: 60px;
-    width: 60px;
+    left: calc(var(--hortistation-width) * 543 /580);
+    top: calc(var(--hortistation-width) * 81/290);
+    height: calc(var(--hortistation-width) * 3 /58);
+    width: calc(var(--hortistation-width) * 3 /58);
 }
 
 .hortistation .lifeforce .text {
-    font-size: 18px;
-    padding-top: 18px;
+    font-size: calc(var(--hortistation-width) * 9 /580);
+    padding-top: calc(var(--hortistation-width) * 9 /580);
     color: white;
 }
 
@@ -630,93 +652,11 @@ html {
     background-color: #2d3136 !important;
 }
 
-@media screen and (max-height: 1440px) {
-    .hortistation {
-        transform: scale(0.8);
-        transform-origin: top left;
-    }
-
+@media screen and (max-height:600px) {
     .inventoryWindow {
-        transform: scale(1.4);
-        transform-origin: top right;
+        --inventory-width: calc(635 *100vw/2400) !important;
     }
 
-}
-
-@media screen and (max-height: 1200px) {
-    .hortistation {
-        transform: scale(0.75);
-        transform-origin: top left;
-    }
-
-    .inventoryWindow {
-        transform: scale(1);
-        transform-origin: top right;
-    }
-
-}
-
-@media screen and (max-height: 1000px) {
-    .hortistation {
-        transform: scale(0.7);
-        transform-origin: top left;
-    }
-
-    .inventoryWindow {
-        transform: scale(0.93);
-        transform-origin: top right;
-    }
-
-}
-
-@media screen and (max-height: 900px) {
-    .hortistation {
-        transform: scale(0.65);
-        transform-origin: top left;
-    }
-
-    .inventoryWindow {
-        transform: scale(0.9);
-        transform-origin: top right;
-    }
-
-}
-
-@media screen and (max-height: 800px) {
-    .hortistation {
-        transform: scale(0.6);
-        transform-origin: top left;
-    }
-
-    .inventoryWindow {
-        transform: scale(0.85);
-        transform-origin: top right;
-    }
-
-}
-
-@media screen and (max-height: 750px) {
-    .hortistation {
-        transform: scale(0.6);
-        transform-origin: top left;
-    }
-
-    .inventoryWindow {
-        transform: scale(0.7);
-        transform-origin: top right;
-    }
-}
-
-@media screen and (max-height: 600px) {
-    .hortistation {
-        transform: scale(0.6);
-        transform-origin: top left;
-    }
-
-    .inventoryWindow {
-        transform: scale(0.55);
-        transform-origin: top right;
-    }
 }
 
 @media screen and (max-width: 600px) {
@@ -893,7 +833,8 @@ html {
 .divCard .topbar {
     height: calc(var(--card-width) * 11/ 72);
     line-height: calc(var(--card-width) * 1/6);
-    font-size:  calc(var(--card-width) *1/ 18);;
+    font-size: calc(var(--card-width) *1/ 18);
+    ;
 }
 
 .divCard .topbar .text {
@@ -908,7 +849,7 @@ html {
     height: calc(var(--card-width) * 1 / 15);
     width: calc(var(--card-width) * 5 / 36);
     line-height: calc(var(--card-width) * 1 / 15);
-    font-size:  calc(var(--card-width) *1/ 24);
+    font-size: calc(var(--card-width) *1/ 24);
     color: white;
 }
 
@@ -926,7 +867,7 @@ html {
     vertical-align: middle;
     display: table-cell;
     line-height: calc(var(--card-width) * 2 / 45);
-    font-size:  calc(var(--card-width) *1/ 23);
+    font-size: calc(var(--card-width) *1/ 23);
 }
 
 .divCard .Stats .FlavourText {
@@ -936,7 +877,7 @@ html {
     display: table-cell;
     line-height: calc(var(--card-width) * 2 / 45);
     font-size: calc(var(--card-width) * 2 / 45);
-    font-size:  calc(var(--card-width) *1/ 18);
+    font-size: calc(var(--card-width) *1/ 18);
     color: #af6025;
 }
 

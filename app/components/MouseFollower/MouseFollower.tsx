@@ -2,7 +2,7 @@ import { atom } from "jotai";
 import { useAtom } from "jotai/react";
 import type Item from "~/Types/Item";
 import type ItemInventory from "~/Types/ItemInventory";
-import { cellSideLength } from "../SlotCell/SlotCell";
+import { cellSideLengthVar } from "../SlotCell/SlotCell";
 import useMousePosition from "./UseMousePosition";
 
 interface slotLocation {
@@ -18,6 +18,7 @@ export { mouseItem, hoveredSlotLocationVar };
 const MouseFollower = () => {
 	const [currentItem] = useAtom(mouseItem);
 	const mousePosition = useMousePosition();
+	const [cellSideLength] = useAtom<number>(cellSideLengthVar);
 
 	const calcWidth = () => {
 		if (currentItem) {

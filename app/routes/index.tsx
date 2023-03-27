@@ -18,6 +18,7 @@ import ContextMenu from "~/components/contextMenu";
 import BGMPlayer, { bgmVolumeVar } from "~/components/bgmPlayer";
 import { bgmVar } from "../components/bgmPlayer";
 import playSound, { AudioFile } from "~/components/audioPlayer";
+import { cellSideLengthVar } from "~/components/SlotCell/SlotCell";
 
 export const links: LinksFunction = () => {
 	return [{ rel: "stylesheet", href: stylesUrl }];
@@ -47,6 +48,32 @@ export default function Index() {
 	const [tradeWindowOpen, setTradeWindowOpen] = useState(false);
 	const setBgmMute = useSetAtom(bgmVar)
 	const [bgmVolume, setBgmVolume] = useAtom(bgmVolumeVar)
+	const setCellSideLength = useSetAtom(cellSideLengthVar);
+	const [windowSize, setWindowSize] = useState({
+		width: undefined,
+		height: undefined,
+	});
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			const handleResize = () => {
+				setCellSideLength((569 * window.innerWidth / 2000) / 12)
+			};
+
+			  if (window.innerWidth && window.innerHeight) {
+				handleResize();
+			  } else {
+				window.addEventListener('load', handleResize);
+			  }
+		  
+			  window.addEventListener('resize', handleResize);
+		  
+			  return () => {
+				window.removeEventListener('resize', handleResize);
+				window.removeEventListener('load', handleResize);
+			  };
+		}
+	}, []);
 	useEffect(() => {
 
 	}, [bgmVolume]);

@@ -11,7 +11,7 @@ const InventoryWindow = () => {
 			<div className="text">
 				Inventory
 			</div>
-			<div className="inventorygrid">
+			<div>
 				<Inventory />
 			</div>
 			<div className="currency">

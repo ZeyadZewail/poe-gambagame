@@ -1,4 +1,4 @@
-import { useAtom, useSetAtom } from "jotai";
+import { atom, useAtom, useSetAtom } from "jotai";
 import { FC, useRef } from "react";
 import { useState } from "react";
 import { contextMenuVar, hoveredSlotVar, hoverItemVar, renderVar, unStackVar } from "~/routes";
@@ -15,7 +15,7 @@ import {
 	UnStackWindowLocationVar,
 } from "../UnstackWindow/UnstackWindow";
 
-const cellSideLength = 47.4;
+const cellSideLengthVar = atom<number>(50);
 
 interface SlotInterface {
 	item: Item | null;
@@ -39,7 +39,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 	const SetUnstackWindowItem = useSetAtom(unStackWindowItemVar);
 	const SetUnstackWindowLocation = useSetAtom(UnStackWindowLocationVar);
 	const SetUnstackWindowItemParent = useSetAtom(unStackWindowItemParentVar);
-
+	const [cellSideLength] = useAtom<number>(cellSideLengthVar);
 
 	const SetContextMenu = useSetAtom(contextMenuVar);
 
@@ -301,13 +301,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 	};
 
 	const getImageStyle = () => {
-		if (horti) {
-			return {
-				width: `${calcWidth()}px`,
-				height: `${calcLength()}px`,
-				scale: "1.5",
-			};
-		} else if (isPrimary) {
+		if (isPrimary) {
 			return { width: `${calcWidth()}px`, height: `${calcLength()}px` };
 		} else {
 			return { width: "0px", height: "0px" };
@@ -339,7 +333,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 					{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
 					{item.maxStack > 1 ? (
 						<div
-							className={`relative bottom-[105%] right-[30%] text-s stroke-black ${item.count == item.maxStack ? "text-blue-600" : "text-white"
+							className={`divStackText relative bottom-[105%] right-[30%] text-s stroke-black ${item.count == item.maxStack ? "text-blue-600" : "text-white"
 								}`}>
 							{item.count}
 						</div>
@@ -352,7 +346,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 
 export default SlotCell;
 
-export { cellSideLength };
+export { cellSideLengthVar };
 
 export function findAvailableSpace(inventory: ItemInventory, itemWidth: number, itemLength: number
 ): { x: number; y: number } | null {

@@ -71,12 +71,11 @@ const Inventory = () => {
 
 	return (
 		<div
-			className="flex flex-col w-fit h-fit z-40  fixed top-[13%] left-[4.5%]"
+			className="inventoryGrid"
 			onMouseLeave={() => {
 				SetMouseHoveredSlot(null);
 				SetMouseHoveredItem(null);
 			}}>
-			<img src={inventoryGrid} alt="grid" className="absolute" />
 			{rows}
 		</div>
 	);
