@@ -11,7 +11,9 @@
     font-weight: normal;
     font-style: normal;
 }
-
+:root{
+    --inventory-width: calc(635 *100vw/2000);
+}
 html {
     background-color: #000;
 }
@@ -59,7 +61,6 @@ html {
 }
 
 .inventoryWindow {
-    --inventory-width: calc(635 *100vw/2000);
     text-align: center;
     width: var(--inventory-width);
     height: 100vh;
@@ -136,13 +137,18 @@ html {
     background-size: contain;
 }
 
-.inventoryWindow .divStackText {
+.divStackText {
     position: relative;
     font-size: calc(var(--inventory-width) * 12 /500);
     bottom: calc(var(--inventory-width) * 8 /105);
     right: calc(var(--inventory-width) * 3 /112);
 }
-
+.divStackTextHover{
+    position: relative;
+    font-size: calc(var(--inventory-width)  * 12 /500);
+    bottom: calc(var(--inventory-width) * 8 /105);
+    right: 0px; 
+}
 .uibar {
     z-index: 39;
     position: absolute;

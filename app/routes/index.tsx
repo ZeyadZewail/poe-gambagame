@@ -74,10 +74,6 @@ export default function Index() {
 			  };
 		}
 	}, []);
-	useEffect(() => {
-
-	}, [bgmVolume]);
-
 	const DivHover = () => {
 		if (hoverItem != null) {
 			if (hoverItem.type == "divcard") {

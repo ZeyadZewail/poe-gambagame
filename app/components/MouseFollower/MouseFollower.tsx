@@ -49,7 +49,7 @@ const MouseFollower = () => {
 
 			{currentItem != null && currentItem.maxStack > 1 ? (
 				<div
-					className={`relative bottom-[105%] left-[7%] text-s stroke-black ${
+					className={`divStackTextHover text-s stroke-black ${
 						currentItem.count == currentItem.maxStack ? "text-blue-600" : "text-white"
 					}`}>
 					{currentItem.count}
