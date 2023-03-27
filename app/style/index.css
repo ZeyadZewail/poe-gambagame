@@ -597,7 +597,7 @@ html {
     line-height: 1em;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px 4.5%;
+    gap: 20px calc(36vh * 1/ 20);
 }
 
 .tradewindow .itemSelection .lifeforce {
@@ -613,7 +613,7 @@ html {
 
 .tradewindow .itemSelection .divcards .card {
     border: 1px solid #1e2124;
-    max-width: 36vh;
+    max-width: var(--card-width);
 }
 
 .tradewindow .itemSelection .divcards .card:hover {
@@ -852,24 +852,23 @@ html {
     margin: 0.8px;
 }
 
+
 .divCard {
+    --card-width: calc(360 *100vw/2000);
     text-align: center;
-    /*
-    width: 360px;
-    height: 549px;
-    */
-    width: 36vh;
-    height: calc(36vh * 61/ 40);
+    width: var(--card-width);
+    height: calc(var(--card-width) * 61/ 40);
     font-family: "Fontin Smallcaps", "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: relative;
+    user-select: none;
 }
 
 .divCard .image {
     position: absolute;
-    width: calc(36vh * 8/ 9);
-    height: calc(36vh * 11/ 18);
-    top: calc(36vh * 5/ 36);
-    left: calc(36vh *1/ 18);
+    width: calc(var(--card-width) * 8/ 9);
+    height: calc(var(--card-width) * 11/ 18);
+    top: calc(var(--card-width) * 5/ 36);
+    left: calc(var(--card-width) *1/ 18);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -879,8 +878,8 @@ html {
     z-index: 0;
     position: absolute;
     top: 0px;
-    width: 36vh;
-    height: calc(36vh * 61/ 40);
+    width: var(--card-width);
+    height: calc(var(--card-width) * 61/ 40);
     background-image: url("~/assets/divination-card.webp");
     background-size: cover;
     background-repeat: no-repeat;
@@ -888,9 +887,9 @@ html {
 }
 
 .divCard .topbar {
-    height: calc(36vh * 11/ 72);
-    line-height: calc(36vh * 1/6);
-    font-size: calc(36vh * 1/ 18);
+    height: calc(var(--card-width) * 11/ 72);
+    line-height: calc(var(--card-width) * 1/6);
+    font-size: calc(var(--card-width) * 1/ 18);
 }
 
 .divCard .topbar .text {
@@ -900,44 +899,46 @@ html {
 
 .divCard .stackSize {
     position: absolute;
-    left: calc(36vh * 19 / 180);
-    top: calc(36vh * 13 / 18);
-    height: calc(36vh * 1 / 15);
-    width: calc(36vh * 5 / 36);
-    line-height: calc(36vh * 1 / 15);
-    font-size: calc(36vh * 2 / 45);
+    left: calc(var(--card-width) * 19 / 180);
+    top: calc(var(--card-width) * 13 / 18);
+    height: calc(var(--card-width) * 1 / 15);
+    width: calc(var(--card-width) * 5 / 36);
+    line-height: calc(var(--card-width) * 1 / 15);
+    font-size: calc(var(--card-width) * 2 / 45);
     color: white;
 }
 
 .divCard .Stats {
     position: absolute;
-    top: calc(36vh * 3 / 4);
-    height: calc(36vh * 31 / 40);
-    padding-left: calc(36vh * 1/ 12);
-    padding-right: calc(36vh * 1/ 12);
+    top: calc(var(--card-width) * 3 / 4);
+    height: calc(var(--card-width) * 31 / 40);
+    padding-left: calc(var(--card-width) * 1/ 12);
+    padding-right: calc(var(--card-width) * 1/ 12);
 }
 
 .divCard .Stats .explicitArea {
-    height: calc(36vh * 5 / 18);
-    width: calc(36vh * 8 / 9);
+    height: calc(var(--card-width) * 5 / 18);
+    width: calc(var(--card-width) * 8 / 9);
     vertical-align: middle;
     display: table-cell;
-    font-size: calc(36vh * 2 / 45);
+    line-height: calc(var(--card-width) * 2 / 45);
+    font-size: calc(var(--card-width) * 2 / 45);
 }
 
 .divCard .Stats .FlavourText {
-    height: calc(36vh * 53 / 120);
-    width: calc(36vh * 8 / 9);
+    height: calc(var(--card-width) * 53 / 120);
+    width: calc(var(--card-width) * 8 / 9);
     vertical-align: middle;
     display: table-cell;
-    font-size: calc(36vh * 2 / 45);
+    line-height: calc(var(--card-width) * 2 / 45);
+    font-size: calc(var(--card-width) * 2 / 45);
     color: #af6025;
 }
 
 .FlavourText {
     font-style: italic;
-    padding-left: calc(36vh * 1 /72);
-    padding-right: calc(36vh * 1 /72);
+    padding-left: calc(var(--card-width) * 1 /72);
+    padding-right: calc(var(--card-width) * 1 /72);
 }
 
 .itemContextMenu {
