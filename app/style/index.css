@@ -720,6 +720,10 @@ html {
 }
 
 @media screen and (max-width: 600px) {
+    .divCard {
+        --card-width: calc(360 *100vh/600) !important;
+    }
+
     .tradewindow .itemSelection .divcards .cards {
         zoom: 0.55;
         display: flex;
@@ -889,7 +893,7 @@ html {
 .divCard .topbar {
     height: calc(var(--card-width) * 11/ 72);
     line-height: calc(var(--card-width) * 1/6);
-    font-size: 1vw;
+    font-size:  calc(var(--card-width) *1/ 18);;
 }
 
 .divCard .topbar .text {
@@ -904,7 +908,7 @@ html {
     height: calc(var(--card-width) * 1 / 15);
     width: calc(var(--card-width) * 5 / 36);
     line-height: calc(var(--card-width) * 1 / 15);
-    font-size: 0.8vw;
+    font-size:  calc(var(--card-width) *1/ 24);
     color: white;
 }
 
@@ -922,7 +926,7 @@ html {
     vertical-align: middle;
     display: table-cell;
     line-height: calc(var(--card-width) * 2 / 45);
-    font-size: 0.9vw;
+    font-size:  calc(var(--card-width) *1/ 23);
 }
 
 .divCard .Stats .FlavourText {
@@ -932,7 +936,7 @@ html {
     display: table-cell;
     line-height: calc(var(--card-width) * 2 / 45);
     font-size: calc(var(--card-width) * 2 / 45);
-    font-size: 1vw;
+    font-size:  calc(var(--card-width) *1/ 18);
     color: #af6025;
 }
 
