@@ -91,11 +91,12 @@ export default function Index() {
 					const slotWidth = rect["width"];
 					const slotHeight = rect["height"];
 					const xTranslate = hoveredSlotLocation.x < 7 ? x / 0.7 + slotWidth * 1.8 : (x - 200) / 0.7 - slotWidth * 1.8;
+					const yTranslate = (y - 140) / 0.7 + slotHeight / 2;
 					return (
 						<div
 							className="fixed z-50 pointer-events-none"
 							style={{
-								transform: `translate(${xTranslate}px,${(y - 110) / 0.7 + slotHeight / 2}px)`,
+								transform: `translate(${xTranslate}px,${yTranslate > 0 ? yTranslate : 5}px)`,
 								scale: "0.7",
 								transformOrigin: "top left",
 							}}>
