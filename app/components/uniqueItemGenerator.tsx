@@ -15,7 +15,7 @@ const UniqueItemGenerator: React.FC<UniqueItemGeneratorProps> = ({ unique, item 
         <div className="uniqueItem" style={{ maxWidth: `${unique.tooltipWidth}px` }}>
             <div className="header">
                 <div className="itemName">
-                    {unique.itemName}
+                    {unique.displayName}
                 </div>
                 <div className="baseName">
                     {unique.baseName}

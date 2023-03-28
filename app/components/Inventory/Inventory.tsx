@@ -59,7 +59,7 @@ const farrulsfur: Item = {
 };
 
 const inventoryVar = atom<ItemInventory>(() => {
-	return new ItemInventory(12, 12, [TheApothecary, { ...TheApothecary, x: 1 }, mageblood, farrulsfur], false, 1000, 15000);
+	return new ItemInventory(12, 12, [TheApothecary, { ...TheApothecary, x: 1 }, mageblood, farrulsfur], false, 100000, 15000);
 });
 
 export { inventoryVar };

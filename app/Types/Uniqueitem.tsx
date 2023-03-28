@@ -1,4 +1,5 @@
 export default interface Uniqueitem {
+    displayName:string,
     itemName: string,
     baseName: string,
     itemFlavourText: string,
