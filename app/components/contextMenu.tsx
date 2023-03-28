@@ -23,10 +23,10 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ }) => {
         if (parentInventory != null && item != null) {
             parentInventory.removeItem(item);
             SetContextMenu(false)
-            if (item.price.type == "currency")
-                parentInventory.currency = parentInventory.currency + item.price.value * item.count;
-            else if (item.price.type == "lifeforce")
-                parentInventory.lifeforce = parentInventory.lifeforce + (item.price.value * item.count * LIFEFORCESWAPVALUE);
+            if (item.type == "item")
+                parentInventory.currency = parentInventory.currency + item.price * item.count;
+            else if (item.type == "divcard")
+                parentInventory.lifeforce = parentInventory.lifeforce + (item.price * item.count * LIFEFORCESWAPVALUE);
         }
     }
     const turnItemIn = () => {

@@ -361,10 +361,22 @@
             "width": 2,
             "name": "Mageblood",
             "imgSrc": "item_mageblood.png",
-            "price": {
-                "type" : "currency",
-                "value" : 210
-            },
+            "price": 210,
+            "type": "item",
+            "x": 0,
+            "y": 0,
+            "maxStack": 1,
+            "pickUpSound": 1,
+            "dropSound": 0
+        },
+        {
+            "id": 7,
+            "count": 1,
+            "length": 1,
+            "width": 2,
+            "name": "Mageblood",
+            "imgSrc": "item_mageblood.png",
+            "price": 210,
             "type": "item",
             "x": 0,
             "y": 0,

@@ -12,10 +12,7 @@ interface Item {
 	hovered?: boolean;
 	maxStack: number;
 	count: number;
-	price: {
-		type: "currency" | "lifeforce";
-		value: number;
-	};
+	price: number;
 	dropSound: AudioFile;
 	pickUpSound: AudioFile;
 }

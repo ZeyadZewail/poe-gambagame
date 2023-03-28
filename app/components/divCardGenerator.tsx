@@ -56,7 +56,7 @@ const DivCardGenerator: React.FC<DivCardGeneratorProps> = ({ divcard, item }) =>
 			{item != null && (
 					<div className="price">
 						<div className="exact">Exact Price:</div>
-						{lifeForceFormatter(item.price.value * LIFEFORCESWAPVALUE * item.count)} <img src={vividicon} alt="vivid-lifeforce" title="vivid-lifeforce" />
+						{lifeForceFormatter(item.price * LIFEFORCESWAPVALUE * item.count)} <img src={vividicon} alt="vivid-lifeforce" title="vivid-lifeforce" />
 					Vivid-Lifeforce
 					</div>
 			)}

@@ -20,10 +20,7 @@ const TheApothecary: Item = {
 	maxStack: 5,
 	count: 2,
 	type: "divcard",
-	price: {
-		type: "lifeforce",
-		value: 41.5
-	},
+	price: 41.5,
 	pickUpSound: AudioFile.itemPickUp,
 	dropSound: AudioFile.itemDDiv
 };
@@ -39,10 +36,7 @@ const mageblood: Item = {
 	maxStack: 1,
 	count: 1,
 	type: "item",
-	price: {
-		type: "currency",
-		value: 210
-	},
+	price: 210,
 	pickUpSound: AudioFile.itemPickUp,
 	dropSound: AudioFile.itemDDiv
 };
@@ -58,10 +52,8 @@ const farrulsfur: Item = {
 	maxStack: 1,
 	count: 1,
 	type: "item",
-	price: {
-		type: "currency",
-		value: 10
-	},
+	price: 10
+	,
 	pickUpSound: AudioFile.itemPickUp,
 	dropSound: AudioFile.itemDDiv
 };

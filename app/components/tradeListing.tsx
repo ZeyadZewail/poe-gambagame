@@ -60,7 +60,7 @@ const TradeListing: React.FC<TradeListingProps> = ({ items, tradeItem, onRemove 
                     let newItem: Item;
                     const spaceFound = findAvailableSpace(mainInventory, 1, 1)
                     if (spaceFound != null) {
-                        newItem = { count: maxStackSize, length: 1, width: 1, imgSrc: divCardImage, dropSound: 0, pickUpSound: 1, name: tradeItem.itemName, maxStack: maxStackSize, price: { type: "lifeforce", value: foundDivCard.itemPrice }, type: "divcard", x: spaceFound.x, y: spaceFound.y, id: foundDivCard.itemRewardId }
+                        newItem = { count: maxStackSize, length: 1, width: 1, imgSrc: divCardImage, dropSound: 0, pickUpSound: 1, name: tradeItem.itemName, maxStack: maxStackSize, price: foundDivCard.itemPrice, type: "divcard", x: spaceFound.x, y: spaceFound.y, id: foundDivCard.itemRewardId }
 
                         mainInventory.items.push(newItem);
                     }
@@ -70,7 +70,7 @@ const TradeListing: React.FC<TradeListingProps> = ({ items, tradeItem, onRemove 
                     let newItem: Item;
                     const spaceFound = findAvailableSpace(mainInventory, 1, 1)
                     if (spaceFound != null) {
-                        newItem = { count: tradeItem.stock, length: 1, width: 1, imgSrc: divCardImage, dropSound: 0, pickUpSound: 1, name: tradeItem.itemName, maxStack: maxStackSize, price: { type: "lifeforce", value: foundDivCard.itemPrice }, type: "divcard", x: spaceFound.x, y: spaceFound.y, id: foundDivCard.itemRewardId }
+                        newItem = { count: tradeItem.stock, length: 1, width: 1, imgSrc: divCardImage, dropSound: 0, pickUpSound: 1, name: tradeItem.itemName, maxStack: maxStackSize, price: foundDivCard.itemPrice, type: "divcard", x: spaceFound.x, y: spaceFound.y, id: foundDivCard.itemRewardId }
                         mainInventory.items.push(newItem);
                     }
                 }
