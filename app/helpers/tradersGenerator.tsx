@@ -96,7 +96,6 @@ const priceList: { [key: string]: number } = {
     "Choking Guilt": 3.4,
     "Seven Years Bad Luck": 2.1,
     "The Soul": 1.7,
-    "The Cheater": 1.4,
     "The Nurse": 1,
     "The Sephirot": 0.8,
     "Divine Beauty": 0.5,

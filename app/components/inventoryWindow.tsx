@@ -15,7 +15,10 @@ const InventoryWindow = () => {
 				<Inventory />
 			</div>
 			<div className="currency">
-				{mainInventory.currency} <img src={divineicon} alt="divine" title="divine" />
+
+				{mainInventory.currency % 1 === 0
+					? mainInventory.currency.toFixed(0)
+					: mainInventory.currency.toFixed(1)} <img src={divineicon} alt="divine" title="divine" />
 			</div>
 			<div className="bottomframe"></div>
 		</div>

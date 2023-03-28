@@ -116,10 +116,8 @@ const HorticraftStation: React.FC = () => {
 };
 
 export default HorticraftStation;
-function lifeForceFormatter(lifeforce: number): string {
-
+export function lifeForceFormatter(lifeforce: number): string {
 	return lifeforce >= 10000 ? lifeforce / 1000 + "k" : lifeforce + "";
-
 }
 function gambleLogic(currentValue: number, maxValue: number): number {
 	if (currentValue > maxValue / 2) {

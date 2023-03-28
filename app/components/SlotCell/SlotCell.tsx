@@ -381,3 +381,37 @@ export function findAvailableSpace(inventory: ItemInventory, itemWidth: number, 
 
 	return null;
 };
+
+export function availableSpaces(inventory: ItemInventory, itemWidth: number, itemLength: number
+): number {
+	const takenSpaces: boolean[][] = Array.from({ length: inventory.length }, () =>
+		new Array(inventory.width).fill(false)
+	);
+
+	for (const item of inventory.items) {
+		for (let y = item.y; y < item.y + item.length; y++) {
+			for (let x = item.x; x < item.x + item.width; x++) {
+				takenSpaces[y][x] = true;
+			}
+		}
+	}
+	let spaces = 0;
+	for (let x = 0; x <= inventory.width - itemWidth; x++) {
+		for (let y = 0; y <= inventory.length - itemLength; y++) {
+			if (!takenSpaces[y].slice(x, x + itemWidth).includes(true)) {
+				let canPlace = true;
+				for (let i = y + 1; i < y + itemLength; i++) {
+					if (takenSpaces[i].slice(x, x + itemWidth).includes(true)) {
+						canPlace = false;
+						break;
+					}
+				}
+				if (canPlace) {
+					spaces++;
+				}
+			}
+		}
+	}
+
+	return spaces;
+};

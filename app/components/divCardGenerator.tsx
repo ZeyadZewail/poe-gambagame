@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import placeHolderCardImage from "~/assets/blankcard.png";
+import { LIFEFORCESWAPVALUE } from "~/routes";
+import vividicon from "~/assets/vividlf.png"
 import type Divcard from "~/Types/Divcard";
 import type Item from "~/Types/Item";
+import { lifeForceFormatter } from "./horticraftStation";
 
 export interface DivCardGeneratorProps {
 	divcard: Divcard;
@@ -14,7 +17,7 @@ const DivCardGenerator: React.FC<DivCardGeneratorProps> = ({ divcard, item }) =>
 		setDivCard(divcard);
 	}, [divcard]);
 	return (
-		<div className="divCard">
+		<div className={`divCard ${item != null ? "hover" : ""}`}>
 			{divCard.itemIconUrl == "" ? (
 				<div className="image" style={{ backgroundImage: `url(${placeHolderCardImage})` }}></div>
 			) : (
@@ -50,6 +53,11 @@ const DivCardGenerator: React.FC<DivCardGeneratorProps> = ({ divcard, item }) =>
 				{item != null && <span>{item.count}/</span>}
 				{divCard.itemStackSize}
 			</div>
+			{item != null && (
+				<div className="price">
+					{lifeForceFormatter(item.price.value * LIFEFORCESWAPVALUE * item.count)}   <img src={vividicon} alt="vivid-lifeforce" title="vivid-lifeforce" />
+				</div>
+			)}
 		</div>
 	);
 };

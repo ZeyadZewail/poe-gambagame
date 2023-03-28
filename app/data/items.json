@@ -10,7 +10,8 @@
                     "currencyitem": "Mirror of Kalandra"
                 }
             ],
-            "itemRewardId": 0
+            "itemRewardId": 0,
+            "itemPrice": 72
         },
         {
             "itemName": "The Apothecary",
@@ -22,7 +23,8 @@
                     "uniqueitem": "Mageblood"
                 }
             ],
-            "itemRewardId": 1
+            "itemRewardId": 1,
+            "itemPrice": 41.5
         },
         {
             "itemName": "The Price of Devotion",
@@ -55,7 +57,8 @@
                     "corrupted": "Corrupted"
                 }
             ],
-            "itemRewardId": 2
+            "itemRewardId": 2,
+            "itemPrice": 35
         },
         {
             "itemName": "Unrequited Love",
@@ -67,7 +70,8 @@
                     "currencyitem": "19x Mirror Shard"
                 }
             ],
-            "itemRewardId": 3
+            "itemRewardId": 3,
+            "itemPrice": 32
         },
         {
             "itemName": "The Insane Cat",
@@ -94,7 +98,8 @@
                     "corrupted": "Corrupted"
                 }
             ],
-            "itemRewardId": 4
+            "itemRewardId": 4,
+            "itemPrice": 16.2
         },
         {
             "itemName": "The Doctor",
@@ -106,7 +111,8 @@
                     "uniqueitem": "Headhunter"
                 }
             ],
-            "itemRewardId": 5
+            "itemRewardId": 5,
+            "itemPrice": 7.2
         },
         {
             "itemName": "The Demon",
@@ -130,7 +136,8 @@
                     "corrupted": "Corrupted"
                 }
             ],
-            "itemRewardId": 6
+            "itemRewardId": 6,
+            "itemPrice": 7.2
         },
         {
             "itemName": "The Immortal",
@@ -141,7 +148,9 @@
                 {
                     "divination": "House of Mirrors"
                 }
-            ]
+            ],
+            "itemRewardId": 7,
+            "itemPrice": 6.9
         },
         {
             "itemName": "The Fiend",
@@ -159,7 +168,8 @@
                     "corrupted": "Corrupted"
                 }
             ],
-            "itemRewardId": 7
+            "itemRewardId": 8,
+            "itemPrice": 5
         },
         {
             "itemName": "Love Through Ice",
@@ -183,7 +193,8 @@
                     "corrupted": "Corrupted"
                 }
             ],
-            "itemRewardId": 8
+            "itemRewardId": 9,
+            "itemPrice": 3
         },
         {
             "itemName": "The Shieldbearer",
@@ -195,7 +206,8 @@
                     "uniqueitem": "The Squire"
                 }
             ],
-            "itemRewardId": 9
+            "itemRewardId": 10,
+            "itemPrice": 3
         },
         {
             "itemName": "Choking Guilt",
@@ -207,7 +219,8 @@
                     "uniqueitem": "Stranglegasp"
                 }
             ],
-            "itemRewardId": 10
+            "itemRewardId": 11,
+            "itemPrice": 3.4
         },
         {
             "itemName": "Seven Years Bad Luck",
@@ -219,7 +232,8 @@
                     "currencyitem": "Mirror Shard"
                 }
             ],
-            "itemRewardId": 11
+            "itemRewardId": 12,
+            "itemPrice": 2.1
         },
         {
             "itemName": "The Soul",
@@ -231,19 +245,8 @@
                     "uniqueitem": "Soul Taker"
                 }
             ],
-            "itemRewardId": 12
-        },
-        {
-            "itemName": "The Cheater",
-            "itemIconUrl": "https://web.poecdn.com/image/divination-card/TheCheater.png",
-            "itemFlavourText": "Sometimes the best way to achieve greatness is to use a shortcut.",
-            "itemStackSize": "3",
-            "itemReward": [
-                {
-                    "gemitem": "Level 6 Awakened Support Gem"
-                }
-            ],
-            "itemRewardId": 13
+            "itemRewardId": 13,
+            "itemPrice": 1.7
         },
         {
             "itemName": "The Nurse",
@@ -255,7 +258,8 @@
                     "divination": "The Doctor"
                 }
             ],
-            "itemRewardId": 14
+            "itemRewardId": 14,
+            "itemPrice": 1
         },
         {
             "itemName": "The Sephirot",
@@ -267,7 +271,8 @@
                     "currencyitem": "10x Divine Orb"
                 }
             ],
-            "itemRewardId": 15
+            "itemRewardId": 15,
+            "itemPrice": 0.8
         },
         {
             "itemName": "Divine Beauty",
@@ -279,7 +284,8 @@
                     "currencyitem": "7x Divine Orb"
                 }
             ],
-            "itemRewardId": 16
+            "itemRewardId": 16,
+            "itemPrice": 0.5
         },
         {
             "itemName": "Succor of the Sinless",
@@ -291,7 +297,8 @@
                     "uniqueitem": "Bottled Faith"
                 }
             ],
-            "itemRewardId": 17
+            "itemRewardId": 17,
+            "itemPrice": 0.3
         },
         {
             "itemName": "The Patient",
@@ -303,7 +310,8 @@
                     "divination": "The Nurse"
                 }
             ],
-            "itemRewardId": 18
+            "itemRewardId": 18,
+            "itemPrice": 0.1
         }
     ],
     "uniqueItems": [
@@ -323,7 +331,8 @@
                 "Leftmost 4 Magic Utility Flasks constantly apply their Flask Effects to you",
                 "Magic Utility Flask Effects cannot be removed"
             ],
-            "tooltipWidth": 580
+            "tooltipWidth": 580,
+            "itemPrice": 210
         },
         {
             "itemName": "Headhunter",
@@ -340,7 +349,8 @@
                 "30% increased Damage with Hits against Rare monsters",
                 "When you Kill a Rare monster, you gain its Modifiers for 60 seconds"
             ],
-            "tooltipWidth": 541
+            "tooltipWidth": 541,
+            "itemPrice": 68
         }
     ],
     "itemRewards": [
@@ -351,7 +361,10 @@
             "width": 2,
             "name": "Mageblood",
             "imgSrc": "item_mageblood.png",
-            "price": 210,
+            "price": {
+                "type" : "currency",
+                "value" : 210
+            },
             "type": "item",
             "x": 0,
             "y": 0,

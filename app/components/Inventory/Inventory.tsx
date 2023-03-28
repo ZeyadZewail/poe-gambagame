@@ -20,7 +20,10 @@ const TheApothecary: Item = {
 	maxStack: 5,
 	count: 2,
 	type: "divcard",
-	price: 41,
+	price: {
+		type: "lifeforce",
+		value: 41.5
+	},
 	pickUpSound: AudioFile.itemPickUp,
 	dropSound: AudioFile.itemDDiv
 };
@@ -36,7 +39,10 @@ const mageblood: Item = {
 	maxStack: 1,
 	count: 1,
 	type: "item",
-	price: 210,
+	price: {
+		type: "currency",
+		value: 210
+	},
 	pickUpSound: AudioFile.itemPickUp,
 	dropSound: AudioFile.itemDDiv
 };
@@ -52,13 +58,16 @@ const farrulsfur: Item = {
 	maxStack: 1,
 	count: 1,
 	type: "item",
-	price: 10,
+	price: {
+		type: "currency",
+		value: 10
+	},
 	pickUpSound: AudioFile.itemPickUp,
 	dropSound: AudioFile.itemDDiv
 };
 
 const inventoryVar = atom<ItemInventory>(() => {
-	return new ItemInventory(12, 12, [TheApothecary, { ...TheApothecary, x: 1 }, mageblood, farrulsfur], false, 10, 15000);
+	return new ItemInventory(12, 12, [TheApothecary, { ...TheApothecary, x: 1 }, mageblood, farrulsfur], false, 1000, 15000);
 });
 
 export { inventoryVar };

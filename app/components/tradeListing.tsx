@@ -1,11 +1,21 @@
 import TradeItem from "~/Types/TradeItem";
 import divineicon from "~/assets/divineorb.png"
 import vividicon from "~/assets/vividlf.png"
+import { useAtom } from "jotai";
+import ItemInventory from "~/Types/ItemInventory";
+import { inventoryVar } from "./Inventory/Inventory";
+import Item from "~/Types/Item";
+import divCardImage from "../assets/item_divcard.png";
+import Divcard from "~/Types/Divcard";
+import { availableSpaces, findAvailableSpace } from "./SlotCell/SlotCell";
+import { LIFEFORCESWAPVALUE } from "~/routes";
 export interface TradeListingProps {
+    items: Divcard[];
     tradeItem: TradeItem;
+    onRemove: () => void;
 }
-const TradeListing: React.FC<TradeListingProps> = ({ tradeItem }) => {
-
+const TradeListing: React.FC<TradeListingProps> = ({ items, tradeItem, onRemove }) => {
+    const [mainInventory] = useAtom<ItemInventory>(inventoryVar)
     var itemOnePrice = parseFloat((tradeItem.price / tradeItem.stock).toFixed(3));
     var divOnePrice = parseFloat((1 / itemOnePrice).toFixed(3));
     if (tradeItem.stock > tradeItem.price) {
@@ -16,7 +26,61 @@ const TradeListing: React.FC<TradeListingProps> = ({ tradeItem }) => {
             divOnePrice = parseFloat((tradeItem.stock / tradeItem.price).toFixed(4));
     }
     const buyItem = () => {
-        console.log(tradeItem);
+        if (tradeItem.price > mainInventory.currency) {
+            throw Error("Not enough currency")
+        }
+        else if (tradeItem.afk) {
+            throw Error("AFK")
+        }
+        else if (tradeItem.lifeForce) {
+            lifeForceTransaction();
+            onRemove();
+        } else {
+            itemTransaction();
+            onRemove();
+        }
+    }
+    const lifeForceTransaction = () => {
+        if (tradeItem.price <= mainInventory.currency) {
+            mainInventory.currency = mainInventory.currency - tradeItem.price;
+            mainInventory.lifeforce = mainInventory.lifeforce + tradeItem.stock;
+        }
+    }
+    const itemTransaction = () => {
+        let foundDivCard = items.find((d) => {
+            return d.itemName === tradeItem.itemName;
+        });
+        if (foundDivCard != undefined) {
+            const MAX_SPACE_AVAILABLE = availableSpaces(mainInventory, 1, 1);
+            let maxStackSize = parseInt(foundDivCard.itemStackSize);
+            let slotsNeeded = Math.ceil(tradeItem.stock / maxStackSize);
+            if (slotsNeeded <= MAX_SPACE_AVAILABLE) {
+                mainInventory.currency = mainInventory.currency - tradeItem.price;
+                while (tradeItem.stock - maxStackSize >= 0) {
+                    let newItem: Item;
+                    const spaceFound = findAvailableSpace(mainInventory, 1, 1)
+                    if (spaceFound != null) {
+                        newItem = { count: maxStackSize, length: 1, width: 1, imgSrc: divCardImage, dropSound: 0, pickUpSound: 1, name: tradeItem.itemName, maxStack: maxStackSize, price: { type: "lifeforce", value: foundDivCard.itemPrice }, type: "divcard", x: spaceFound.x, y: spaceFound.y, id: foundDivCard.itemRewardId }
+
+                        mainInventory.items.push(newItem);
+                    }
+                    tradeItem.stock -= maxStackSize;
+                }
+                if( tradeItem.stock > 0){
+                    let newItem: Item;
+                    const spaceFound = findAvailableSpace(mainInventory, 1, 1)
+                    if (spaceFound != null) {
+                        newItem = { count: tradeItem.stock, length: 1, width: 1, imgSrc: divCardImage, dropSound: 0, pickUpSound: 1, name: tradeItem.itemName, maxStack: maxStackSize, price: { type: "lifeforce", value: foundDivCard.itemPrice }, type: "divcard", x: spaceFound.x, y: spaceFound.y, id: foundDivCard.itemRewardId }
+                        mainInventory.items.push(newItem);
+                    }
+                }
+            } else {
+                throw Error("No Space")
+            }
+
+        } else {
+            throw Error("No Div Source Found!")
+        }
     }
     return (
         <div className="tradeListing">

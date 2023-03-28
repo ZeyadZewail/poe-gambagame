@@ -5,5 +5,6 @@ export default interface Uniqueitem {
     itemRequirement: number,
     itemImplicit: [],
     itemExplicit: [],
-    tooltipWidth: number
+    tooltipWidth: number,
+    itemPrice:number
 }

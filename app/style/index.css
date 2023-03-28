@@ -807,6 +807,9 @@ html {
     position: relative;
     user-select: none;
 }
+.divCard.hover{
+    height: calc(var(--card-width) * 63/ 40); 
+}
 
 .divCard .image {
     position: absolute;
@@ -887,7 +890,19 @@ html {
     padding-left: calc(var(--card-width) * 1 /72);
     padding-right: calc(var(--card-width) * 1 /72);
 }
-
+.divCard .price{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    margin-left: auto;
+    font-size: 18px;
+    color:white;
+}
+.divCard .price img{
+    display: inline;
+    vertical-align: middle;
+    height: 18px;
+}
 .itemContextMenu {
     z-index: 50;
     position: fixed;

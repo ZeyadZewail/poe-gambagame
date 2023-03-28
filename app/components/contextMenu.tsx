@@ -1,7 +1,7 @@
 import { useLoaderData } from "@remix-run/react";
 import { useAtom, useSetAtom } from "jotai";
 import imageOuputter from "~/helpers/imageOutputter";
-import { contextMenuVar, loader, unStackVar } from "~/routes";
+import { contextMenuVar, LIFEFORCESWAPVALUE, loader, unStackVar } from "~/routes";
 import playSound, { AudioFile } from "./audioPlayer";
 import { findAvailableSpace } from "./SlotCell/SlotCell";
 import { unStackWindowItemParentVar, unStackWindowItemVar, UnStackWindowLocationVar } from "./UnstackWindow/UnstackWindow";
@@ -23,7 +23,10 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ }) => {
         if (parentInventory != null && item != null) {
             parentInventory.removeItem(item);
             SetContextMenu(false)
-            parentInventory.currency = parentInventory.currency + item.price * item.count;
+            if (item.price.type == "currency")
+                parentInventory.currency = parentInventory.currency + item.price.value * item.count;
+            else if (item.price.type == "lifeforce")
+                parentInventory.lifeforce = parentInventory.lifeforce + (item.price.value * item.count * LIFEFORCESWAPVALUE);
         }
     }
     const turnItemIn = () => {
@@ -37,7 +40,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ }) => {
                     return r.id === foundDivCard?.itemRewardId;
                 });
                 if (foundReward != null) {
-                    foundReward = {... foundReward};
+                    foundReward = { ...foundReward };
                     foundReward.imgSrc = imageOuputter(foundReward.imgSrc)
                     let availableSpace = findAvailableSpace(parentInventory, foundReward.width, foundReward.length)
                     if (availableSpace != null) {

@@ -5,4 +5,5 @@ export default interface Divcard {
     itemStackSize: string;
     itemReward: [];
     itemRewardId: number;
+    itemPrice:number;
 }

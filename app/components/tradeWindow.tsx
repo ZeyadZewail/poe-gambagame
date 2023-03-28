@@ -14,7 +14,7 @@ import { inventoryVar } from "./Inventory/Inventory";
 import { useAtom } from "jotai";
 
 export interface TradeWindowProps {
-	divcards: any;
+	divcards: Divcard[];
 	modalIsOpen: boolean;
 	setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -51,6 +51,10 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ divcards, modalIsOpen, setMod
 		}
 	};
 
+	const removeItem = (accountName: string) => {
+		setItemsFound((prevItems) => prevItems.filter((item) => item.trader.accountName !== accountName));
+	};
+
 	const filteredDivCards = divcards.filter((divcard: any) =>
 		divcard.itemName.toLowerCase().includes(searchValue.toLowerCase())
 	);
@@ -84,7 +88,9 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ divcards, modalIsOpen, setMod
 							<img src={tradeLogo} />
 						</div>
 						<div className="currency">
-							{mainInventory.currency} <img src={divineicon} alt="divine" title="divine" />
+							{mainInventory.currency % 1 === 0
+								? mainInventory.currency.toFixed(0)
+								: mainInventory.currency.toFixed(1)} <img src={divineicon} alt="divine" title="divine" />
 						</div>
 					</div>
 					<div className="searchbar">
@@ -144,7 +150,7 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ divcards, modalIsOpen, setMod
 					) : (
 						<div className="searchListings">
 							{itemsFound.map((itemListing) => (
-								<TradeListing tradeItem={itemListing} key={itemListing.trader.accountName} />
+								<TradeListing items={divcards} tradeItem={itemListing} key={itemListing.trader.accountName} onRemove={() => removeItem(itemListing.trader.accountName)} />
 							))}
 						</div>
 					)}

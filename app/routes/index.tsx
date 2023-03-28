@@ -33,8 +33,9 @@ const unStackVar = atom(false);
 const contextMenuVar = atom(false);
 const hoverItemVar = atom<Item | null>(null);
 const hoveredSlotVar = atom<MutableRefObject<null> | null>(null);
+const LIFEFORCESWAPVALUE = 5000;
 
-export { renderVar, unStackVar, hoverItemVar, hoveredSlotVar, contextMenuVar };
+export { renderVar, unStackVar, hoverItemVar, hoveredSlotVar, contextMenuVar, LIFEFORCESWAPVALUE };
 
 export default function Index() {
 	const items = useLoaderData<typeof loader>();
@@ -60,18 +61,18 @@ export default function Index() {
 				setCellSideLength((569 * window.innerWidth / 2000) / 12)
 			};
 
-			  if (window.innerWidth && window.innerHeight) {
+			if (window.innerWidth && window.innerHeight) {
 				handleResize();
-			  } else {
+			} else {
 				window.addEventListener('load', handleResize);
-			  }
-		  
-			  window.addEventListener('resize', handleResize);
-		  
-			  return () => {
+			}
+
+			window.addEventListener('resize', handleResize);
+
+			return () => {
 				window.removeEventListener('resize', handleResize);
 				window.removeEventListener('load', handleResize);
-			  };
+			};
 		}
 	}, []);
 	const DivHover = () => {
@@ -107,53 +108,50 @@ export default function Index() {
 	};
 
 	return (
-		<div
-			className="select-none"
-			onClick={() => {
-				if (spawnUnstack) {
-					SetSpawnUnstack(false);
-					SetSpawnContextMenu(false);
-				}
-			}}>
-			<div className="hideoutWindow" onClick={() => { setBgmMute(false); }}>
+		<ClientOnly>
+			{() => {
+				return (
+					<div
+						className="select-none"
+						onClick={() => {
+							if (spawnUnstack) {
+								SetSpawnUnstack(false);
+								SetSpawnContextMenu(false);
+							}
+						}}>
+						<div className="hideoutWindow" onClick={() => { setBgmMute(false); }}>
 
-				<MouseFollower />
-				{spawnUnstack ? <UnstackWindow /> : null}
-				{spawnContextMenu ? <ContextMenu /> : null}
-				{DivHover()}
-				<ClientOnly>
-					{() => {
-						return (
+							<MouseFollower />
+							{spawnUnstack ? <UnstackWindow /> : null}
+							{spawnContextMenu ? <ContextMenu /> : null}
+							{DivHover()}
+
 							<Fragment>
 								<BGMPlayer>
 									<HorticraftStation />
 									<InventoryWindow />
 								</BGMPlayer>
 							</Fragment>
-						);
-					}}
-				</ClientOnly>
-				{
-					<TradeWindow
-						divcards={items.divcards}
-						modalIsOpen={tradeWindowOpen}
-						setModalIsOpen={setTradeWindowOpen}
-					/>
-				}
-			</div>
-			<div className="uibar">
-				<button className="openTradeButton" onClick={() => setTradeWindowOpen(true)} onMouseDown={() => playSound(AudioFile.ButtonDown)} onMouseUp={() => { playSound(AudioFile.ButtonUp) }}>
-					Open Trade
-				</button>
-				<ClientOnly>
-					{() => {
-						return (
+
+							{
+								<TradeWindow
+									divcards={items.divcards}
+									modalIsOpen={tradeWindowOpen}
+									setModalIsOpen={setTradeWindowOpen}
+								/>
+							}
+						</div>
+						<div className="uibar">
+							<button className="openTradeButton" onClick={() => setTradeWindowOpen(true)} onMouseDown={() => playSound(AudioFile.ButtonDown)} onMouseUp={() => { playSound(AudioFile.ButtonUp) }}>
+								Open Trade
+							</button>
 							<div className={`bgmButton ${bgmVolume == 0 ? "muted" : ""}`} onClick={() => { if (bgmVolume > 0) setBgmVolume(0); else setBgmVolume(0.3); }}></div>
-						)
-					}}
-				</ClientOnly>
-				<div className="bgmButtonText">BGM</div>
-			</div>
-		</div>
+							<div className="bgmButtonText">BGM</div>
+						</div>
+
+					</div>
+				);
+			}}
+		</ClientOnly>
 	);
 }
