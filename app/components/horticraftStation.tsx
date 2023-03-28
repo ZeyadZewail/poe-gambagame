@@ -104,7 +104,7 @@ const HorticraftStation: React.FC = () => {
 			</div>
 			<div className="itemSlot">{hortiInv.generateFirstItem()}</div>
 			<div className="button">
-				<button className="craftButton" onClick={craftSelected} onMouseDown={() => playSound(AudioFile.ButtonDown)} onMouseUp={() => { playSound(AudioFile.ButtonUp) }} disabled={hortiInv.items.length == 0}>
+				<button className="craftButton" onClick={craftSelected} onMouseDown={() => playSound(AudioFile.ButtonDown)} onMouseUp={() => { playSound(AudioFile.ButtonUp) }} disabled={hortiInv.items.length == 0 || hortiInv.items[0].type != "divcard"}>
 					Craft
 				</button>
 			</div>

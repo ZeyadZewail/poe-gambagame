@@ -3,7 +3,7 @@ export default interface Divcard {
     itemIconUrl: string;
     itemFlavourText: string;
     itemStackSize: string;
-    itemReward: [];
+    itemReward: (any)[];
     itemRewardId: number;
     itemPrice:number;
 }
