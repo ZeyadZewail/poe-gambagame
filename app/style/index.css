@@ -11,9 +11,11 @@
     font-weight: normal;
     font-style: normal;
 }
-:root{
+
+:root {
     --inventory-width: calc(635 *100vw/2000);
 }
+
 html {
     background-color: #000;
 }
@@ -143,12 +145,14 @@ html {
     bottom: calc(var(--inventory-width) * 8 /105);
     right: calc(var(--inventory-width) * 3 /112);
 }
-.divStackTextHover{
+
+.divStackTextHover {
     position: relative;
-    font-size: calc(var(--inventory-width)  * 12 /500);
+    font-size: calc(var(--inventory-width) * 12 /500);
     bottom: calc(var(--inventory-width) * 8 /105);
-    right: 0px; 
+    right: 0px;
 }
+
 .uibar {
     z-index: 39;
     position: absolute;
@@ -231,9 +235,11 @@ html {
     opacity: 0;
     transition: opacity 0.8s;
 }
-.hortistation .hortiWarning.nocurrency{
+
+.hortistation .hortiWarning.nocurrency {
     font-size: calc(var(--hortistation-width) * 3/145);
 }
+
 .hortistation .hortiWarning.visible {
     opacity: 1;
     transition: opacity 0.2s;
@@ -807,8 +813,9 @@ html {
     position: relative;
     user-select: none;
 }
-.divCard.hover{
-    height: calc(var(--card-width) * 63/ 40); 
+
+.divCard.hover {
+    height: calc(var(--card-width) * 68/ 40);
 }
 
 .divCard .image {
@@ -837,7 +844,7 @@ html {
 .divCard .topbar {
     height: calc(var(--card-width) * 11/ 72);
     line-height: calc(var(--card-width) * 1/6);
-    font-size: calc(var(--card-width) *1/ 18);
+    font-size: calc(var(--card-width) *1/ 16);
     ;
 }
 
@@ -853,7 +860,7 @@ html {
     height: calc(var(--card-width) * 1 / 15);
     width: calc(var(--card-width) * 5 / 36);
     line-height: calc(var(--card-width) * 1 / 15);
-    font-size: calc(var(--card-width) *1/ 24);
+    font-size: calc(var(--card-width) *1/ 18);
     color: white;
 }
 
@@ -870,8 +877,8 @@ html {
     width: calc(var(--card-width) * 8 / 9);
     vertical-align: middle;
     display: table-cell;
-    line-height: calc(var(--card-width) * 2 / 45);
-    font-size: calc(var(--card-width) *1/ 23);
+    line-height: calc(var(--card-width) * 2 / 34);
+    font-size: calc(var(--card-width) *1/ 18);
 }
 
 .divCard .Stats .FlavourText {
@@ -879,9 +886,8 @@ html {
     width: calc(var(--card-width) * 8 / 9);
     vertical-align: middle;
     display: table-cell;
-    line-height: calc(var(--card-width) * 2 / 45);
-    font-size: calc(var(--card-width) * 2 / 45);
-    font-size: calc(var(--card-width) *1/ 18);
+    line-height: calc(var(--card-width) * 2 / 34);
+    font-size: calc(var(--card-width) *1/ 16);
     color: #af6025;
 }
 
@@ -890,19 +896,29 @@ html {
     padding-left: calc(var(--card-width) * 1 /72);
     padding-right: calc(var(--card-width) * 1 /72);
 }
-.divCard .price{
+
+.divCard .price {
+    background-color: black;
     width: 100%;
+    height: auto;
     position: fixed;
     bottom: 0;
     margin-left: auto;
-    font-size: 18px;
-    color:white;
+    font-size: calc(var(--card-width) * 1 /15);;
+    padding-bottom: calc(var(--card-width) *1/ 36);
+    color: #aa9e82;
 }
-.divCard .price img{
+
+.divCard .price .exact {
+    color: #7f7f7f;
+}
+
+.divCard .price img {
     display: inline;
     vertical-align: middle;
-    height: 18px;
+    height: calc(var(--card-width) * 4 / 45);
 }
+
 .itemContextMenu {
     z-index: 50;
     position: fixed;
@@ -1033,7 +1049,9 @@ html {
 .divination {
     color: #0ebaff;
 }
-
+.augmented {
+    color:white;
+}
 .tradeListing {
     line-height: 1.3;
     align-items: center;

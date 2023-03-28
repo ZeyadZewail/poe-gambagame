@@ -90,13 +90,13 @@ export default function Index() {
 					const y = rect["y"];
 					const slotWidth = rect["width"];
 					const slotHeight = rect["height"];
-					const xTranslate = hoveredSlotLocation.x < 7 ? x / 0.6 + slotWidth * 1.8 : (x - 170) / 0.6 - slotWidth * 1.8;
+					const xTranslate = hoveredSlotLocation.x < 7 ? x / 0.7 + slotWidth * 1.8 : (x - 200) / 0.7 - slotWidth * 1.8;
 					return (
 						<div
 							className="fixed z-50 pointer-events-none"
 							style={{
-								transform: `translate(${xTranslate}px,${(y - 110) / 0.6 + slotHeight / 2}px)`,
-								scale: "0.6",
+								transform: `translate(${xTranslate}px,${(y - 110) / 0.7 + slotHeight / 2}px)`,
+								scale: "0.7",
 								transformOrigin: "top left",
 							}}>
 							<DivCardGenerator divcard={foundDivCard} item={hoverItem} />

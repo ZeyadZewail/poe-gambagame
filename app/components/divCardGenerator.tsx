@@ -54,9 +54,11 @@ const DivCardGenerator: React.FC<DivCardGeneratorProps> = ({ divcard, item }) =>
 				{divCard.itemStackSize}
 			</div>
 			{item != null && (
-				<div className="price">
-					{lifeForceFormatter(item.price.value * LIFEFORCESWAPVALUE * item.count)}   <img src={vividicon} alt="vivid-lifeforce" title="vivid-lifeforce" />
-				</div>
+					<div className="price">
+						<div className="exact">Exact Price:</div>
+						{lifeForceFormatter(item.price.value * LIFEFORCESWAPVALUE * item.count)} <img src={vividicon} alt="vivid-lifeforce" title="vivid-lifeforce" />
+					Vivid-Lifeforce
+					</div>
 			)}
 		</div>
 	);
