@@ -266,7 +266,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 	const handleRightClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		SetUnstackWindow(false);
 		e.preventDefault();
-		if (window != null && item != null && !horti) {
+		if (window != null && item != null && !horti && currentMouseItem === null) {
 			const maxScreenWidth = window.innerWidth;
 			const maxScreenHeight = window.innerHeight;
 			let spawnX = e.clientX;
