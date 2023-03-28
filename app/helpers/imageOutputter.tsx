@@ -4,6 +4,8 @@ export default function imageOuputter(imageSrc: string) : string {
     switch (imageSrc) {
         case "item_mageblood.png":
             return mageBloodImage;
+        case "item_divcard.png":
+            return divCardImage;
         default:
             return divCardImage;
     }
