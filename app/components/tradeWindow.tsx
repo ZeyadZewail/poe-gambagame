@@ -98,8 +98,8 @@ const TradeWindow: React.FC<TradeWindowProps> = ({ divcards, modalIsOpen, setMod
 							<li className="searchTextLi">
 								<span className="searchText">Search Listed Items</span>
 							</li>
-							<li className="resetButtonLi">
-								<span className="resetButton" onClick={resetSearch}>
+							<li className="resetButtonLi"  onClick={resetSearch}>
+								<span className="resetButton">
 									Reset
 								</span>
 							</li>
