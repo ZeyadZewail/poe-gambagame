@@ -803,6 +803,26 @@ html {
     margin: 0.8px;
 }
 
+.uniqueItem .price {
+    background-color: black;
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    font-size: 110%;
+    padding-bottom: 2%;
+    color: #aa9e82;
+}
+
+.uniqueItem .price .exact {
+    color: #7f7f7f;
+}
+
+.uniqueItem .price img {
+    display: inline;
+    vertical-align: middle;
+    height: 24px;
+}
+
 
 .divCard {
     --card-width: calc(360 *100vw/2000);
@@ -904,7 +924,8 @@ html {
     position: fixed;
     bottom: 0;
     margin-left: auto;
-    font-size: calc(var(--card-width) * 1 /15);;
+    font-size: calc(var(--card-width) * 1 /15);
+    ;
     padding-bottom: calc(var(--card-width) *1/ 36);
     color: #aa9e82;
 }
@@ -1049,9 +1070,11 @@ html {
 .divination {
     color: #0ebaff;
 }
+
 .augmented {
-    color:white;
+    color: white;
 }
+
 .tradeListing {
     line-height: 1.3;
     align-items: center;

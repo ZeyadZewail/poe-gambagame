@@ -3,9 +3,15 @@ export default interface Uniqueitem {
     itemName: string,
     baseName: string,
     itemFlavourText: string,
+    itemFlask?:{
+        lastsSeconds:number,
+        consumesCharges:number,
+        maxCharges:number,
+        baseEffect:string
+    }
     itemRequirement: number,
-    itemImplicit: [],
-    itemExplicit: [],
+    itemImplicit: string[],
+    itemExplicit: string[],
     tooltipWidth: number,
     itemPrice:number
 }

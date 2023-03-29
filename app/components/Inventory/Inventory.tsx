@@ -28,7 +28,7 @@ const TheApothecary: Item = {
 
 const mageblood: Item = {
 	imgSrc: mageBloodImage,
-	name: "mageblood",
+	name: "Mageblood",
 	width: 2,
 	length: 1,
 	x: 1,
@@ -59,7 +59,7 @@ const farrulsfur: Item = {
 };
 
 const bottledfaith: Item = {
-	name: "bottledfaith",
+	name: "Bottled Faith",
 	imgSrc: bottledFaithImage,
 	type: "item",
 	width: 1,
@@ -68,7 +68,7 @@ const bottledfaith: Item = {
 	y: 4,
 	maxStack: 1,
 	count: 1,
-	price: 0,
+	price: 10,
 	pickUpSound: AudioFile.itemPickUp,
 	dropSound: AudioFile.itemDDiv,
 };

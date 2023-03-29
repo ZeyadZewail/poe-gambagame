@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Item from "~/Types/Item";
 import Uniqueitem from "~/Types/Uniqueitem";
+import divineicon from "~/assets/divineorb.png"
 export interface UniqueItemGeneratorProps {
     unique: Uniqueitem;
     item?: Item;
@@ -22,6 +23,16 @@ const UniqueItemGenerator: React.FC<UniqueItemGeneratorProps> = ({ unique, item 
                 </div>
             </div>
             <div className="stats">
+                {unique.itemFlask != undefined && (
+                    <div>
+                        <div className="flask">
+                            <div>Lasts <span className="magicitem">{unique.itemFlask.lastsSeconds}</span> Seconds</div>
+                            <div>Consumes <span className="normal">{unique.itemFlask.consumesCharges}</span> of <span className="normal">{unique.itemFlask.maxCharges}</span> charges on use</div>
+                            <div>Currently has <span className="normal">{unique.itemFlask.maxCharges}</span> charges</div>
+                            <div><span className="magicitem">{unique.itemFlask.baseEffect}</span></div>
+                        </div>
+                        <div className="separator"></div>
+                    </div>)}
                 {unique.itemRequirement > 0 && (<div><div className="requirement">
                     Requires Level <span className="normal">{unique.itemRequirement}</span>
                 </div><div className="separator"></div></div>)}
@@ -42,7 +53,15 @@ const UniqueItemGenerator: React.FC<UniqueItemGeneratorProps> = ({ unique, item 
                 </div>
                 <div className="separator"></div>
                 <div className="FlavourText">{unique.itemFlavourText}</div>
+                <div className="separator"></div>
             </div>
+            {item != null && (
+                <div className="price">
+                    <div className="exact">Exact Price:</div>
+                    {item.price}x<img src={divineicon} alt="div" title="div" />
+                    Divine Orbs
+                </div>
+            )}
         </div>
     )
 }

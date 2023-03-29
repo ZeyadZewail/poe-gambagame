@@ -332,7 +332,7 @@
                 "Leftmost 4 Magic Utility Flasks constantly apply their Flask Effects to you",
                 "Magic Utility Flask Effects cannot be removed"
             ],
-            "tooltipWidth": 580,
+            "tooltipWidth": 590,
             "itemPrice": 210
         },
         {
@@ -353,6 +353,30 @@
             ],
             "tooltipWidth": 541,
             "itemPrice": 68
+        },
+        {
+            "displayName":"Bottled Faith",
+            "itemName": "Bottled Faith",
+            "baseName": "Sulphur Flask",
+            "itemFlavourText": "A tourniquet for the soul, squeezing ethereal into physical.",
+            "itemRequirement": 35,
+            "itemFlask":{
+                "lastsSeconds":12,
+                "consumesCharges":40,
+                "maxCharges":60,
+                "baseEffect":"40% increased Damage"
+            },
+            "itemImplicit": [
+                "Creates Consecrated Ground on Use"
+            ],
+            "itemExplicit": [
+                "40% increased Duration",
+                "Consecrated Ground created by this Flask has Tripled Radius",
+                "Consecrated Ground created during Effect applies 10% increased Damage taken to Enemies",
+                "150% increased Critical Strike Chance against Enemies on Consecrated Ground during Flask effect"
+            ],
+            "tooltipWidth":700,
+            "itemPrice": 10
         }
     ],
     "itemRewards": [
