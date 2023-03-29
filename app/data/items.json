@@ -316,7 +316,7 @@
     ],
     "uniqueItems": [
         {
-            "displayName":"Mageblood",
+            "displayName": "Mageblood",
             "itemName": "Mageblood",
             "baseName": "Heavy Belt",
             "itemFlavourText": "Rivers of power course through your veins.",
@@ -336,7 +336,50 @@
             "itemPrice": 210
         },
         {
-            "displayName":"Headhunter",
+            "displayName": "Mageblood",
+            "itemName": "MagebloodTwoImplicit",
+            "baseName": "Heavy Belt",
+            "itemFlavourText": "Rivers of power course through your veins.",
+            "itemRequirement": 60,
+            "itemImplicit": [
+                "+20% to Critical Strike Multiplier during any Flask Effect",
+                "Hatred has 20% increased Aura Effect"
+            ],
+            "itemExplicit": [
+                "+50 to Dexterity",
+                "+25% to Fire Resistance",
+                "+25% to Cold Resistance",
+                "Magic Utility Flasks cannot be Used",
+                "Leftmost 4 Magic Utility Flasks constantly apply their Flask Effects to you",
+                "Magic Utility Flask Effects cannot be removed"
+            ],
+            "tooltipWidth": 590,
+            "itemPrice": 250,
+            "corrupted": true
+        },
+        {
+            "displayName": "Mageblood",
+            "itemName": "MagebloodCorrupted",
+            "baseName": "Heavy Belt",
+            "itemFlavourText": "Rivers of power course through your veins.",
+            "itemRequirement": 44,
+            "itemImplicit": [
+                "+35 to Strength"
+            ],
+            "itemExplicit": [
+                "+50 to Dexterity",
+                "+25% to Fire Resistance",
+                "+25% to Cold Resistance",
+                "Magic Utility Flasks cannot be Used",
+                "Leftmost 2 Magic Utility Flasks constantly apply their Flask Effects to you",
+                "Magic Utility Flask Effects cannot be removed"
+            ],
+            "tooltipWidth": 590,
+            "itemPrice": 155,
+            "corrupted": true
+        },
+        {
+            "displayName": "Headhunter",
             "itemName": "Headhunter",
             "baseName": "Leather Belt",
             "itemFlavourText": "\"A man's soul rules from a cavern of bone, learns and judges through flesh-born windows. The heart is meat.The head is where the Man is\".   - Lavianga, Advisor to Kaom",
@@ -355,16 +398,57 @@
             "itemPrice": 68
         },
         {
-            "displayName":"Bottled Faith",
+            "displayName": "Headhunter",
+            "itemName": "HeadhunterCorrupted",
+            "baseName": "Leather Belt",
+            "itemFlavourText": "\"A man's soul rules from a cavern of bone, learns and judges through flesh-born windows. The heart is meat.The head is where the Man is\".   - Lavianga, Advisor to Kaom",
+            "itemRequirement": 40,
+            "itemImplicit": [
+                "8% increased Area of Effect"
+            ],
+            "itemExplicit": [
+                "+45 to Strength",
+                "+45 to Dexterity",
+                "+50 to maximum Life",
+                "20% increased Damage with Hits against Rare monsters",
+                "When you Kill a Rare monster, you gain its Modifiers for 60 seconds"
+            ],
+            "tooltipWidth": 541,
+            "itemPrice": 60,
+            "corrupted": true
+        },
+        {
+            "displayName": "Headhunter",
+            "itemName": "HeadhunterTwoImplicit",
+            "baseName": "Leather Belt",
+            "itemFlavourText": "\"A man's soul rules from a cavern of bone, learns and judges through flesh-born windows. The heart is meat.The head is where the Man is\".   - Lavianga, Advisor to Kaom",
+            "itemRequirement": 40,
+            "itemImplicit": [
+                "14% increased Skill Effect Duration",
+                "Hatred has 20% increased Aura Effect"
+            ],
+            "itemExplicit": [
+                "+45 to Strength",
+                "+45 to Dexterity",
+                "+50 to maximum Life",
+                "20% increased Damage with Hits against Rare monsters",
+                "When you Kill a Rare monster, you gain its Modifiers for 60 seconds"
+            ],
+            "tooltipWidth": 541,
+            "itemPrice": 75,
+            "corrupted": true
+        },
+        {
+            "displayName": "Bottled Faith",
             "itemName": "Bottled Faith",
             "baseName": "Sulphur Flask",
             "itemFlavourText": "A tourniquet for the soul, squeezing ethereal into physical.",
             "itemRequirement": 35,
-            "itemFlask":{
-                "lastsSeconds":12,
-                "consumesCharges":40,
-                "maxCharges":60,
-                "baseEffect":"40% increased Damage"
+            "itemFlask": {
+                "lastsSeconds": 12,
+                "consumesCharges": 40,
+                "maxCharges": 60,
+                "baseEffect": "40% increased Damage"
             },
             "itemImplicit": [
                 "Creates Consecrated Ground on Use"
@@ -375,19 +459,19 @@
                 "Consecrated Ground created during Effect applies 10% increased Damage taken to Enemies",
                 "150% increased Critical Strike Chance against Enemies on Consecrated Ground during Flask effect"
             ],
-            "tooltipWidth":700,
+            "tooltipWidth": 700,
             "itemPrice": 10
         },
         {
-            "displayName":"The Squire",
+            "displayName": "The Squire",
             "itemName": "The Squire",
             "baseName": "Elegant Round Shield",
             "itemFlavourText": "Judge not the weak, for they empower the strong.",
             "itemRequirement": 70,
-            "itemArmour":{
-                "chanceToBlock":30,
-                "armour":425,
-                "evasion":425
+            "itemArmour": {
+                "chanceToBlock": 30,
+                "armour": 425,
+                "evasion": 425
             },
             "itemImplicit": [
                 "120% increased Block Recovery"
@@ -400,8 +484,73 @@
                 "150% increased Armour and Evasion",
                 "5% Chance to Block"
             ],
-            "tooltipWidth":540,
+            "tooltipWidth": 540,
             "itemPrice": 25
+        },
+        {
+            "displayName": "Unnatural Instinct",
+            "itemName": "Unnatural Instinct TwoImplicit",
+            "baseName": "Viridian Jewel",
+            "itemFlavourText": "\"I don't know how I know, I just know that I know.\"",
+            "itemRequirement": 85,
+            "itemJewel": {
+                "limit": 1,
+                "radius": "Small"
+            },
+            "itemImplicit": [
+                "2% increased Reservation Efficiency of Skills",
+                "Damage Penetrates 1% Elemental Resistances"
+            ],
+            "itemExplicit": [
+                "Allocated Small Passive Skills in Radius grant nothing",
+                "Grants all bonuses of Unallocated Small Passive Skills in Radius"
+            ],
+            "tooltipWidth": 450,
+            "itemPrice": 13,
+            "corrupted": true
+        },
+        {
+            "displayName": "Stranglegasp",
+            "itemName": "Stranglegasp",
+            "baseName": "Onyx Amulet",
+            "itemFlavourText": "Death's approach brings clarity.",
+            "itemRequirement": 52,
+            "itemImplicit": [
+                "+16 to all Attributes"
+            ],
+            "itemExplicit": [
+                "Can have 3 additional Enchantment Modifiers"
+            ],
+            "tooltipWidth": 400,
+            "itemPrice": 21
+        },
+        {
+            "displayName": "Soul Taker",
+            "itemName": "Soul Taker",
+            "baseName": "Siege Axe",
+            "itemWeapon": {
+                "base": "One Handed Axe",
+                "physDmgMin": 190.4,
+                "physDmgMax": 308,
+                "crit": 5.00,
+                "aps": 1.88,
+                "weaponrange": 11
+            },
+            "itemFlavourText": "It is too easy for the soul to escape from an open heart.",
+            "itemRequirement": 59,
+            "itemImplicit": [
+                "+16 to all Attributes"
+            ],
+            "itemExplicit": [
+                "180% increased Physical Damage",
+                "Adds 30 to 40 Physical Damage",
+                "25% increased Attack Speed",
+                "25% to Cold Resistance",
+                "Insufficient Mana doesn't prevent your Melee Attacks",
+                "Your Physical Damage can Chill"
+            ],
+            "tooltipWidth": 500,
+            "itemPrice": 16
         }
     ],
     "itemRewards": [
@@ -435,7 +584,6 @@
             "pickUpSound": 1,
             "dropSound": 0
         },
-        
         {
             "id": 2,
             "count": 1,
@@ -608,7 +756,7 @@
             "width": 2,
             "name": "Soul Taker",
             "imgSrc": "item_soultaker.png",
-            "price": 210,
+            "price": 16,
             "type": "item",
             "x": 0,
             "y": 0,

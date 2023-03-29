@@ -39,7 +39,7 @@ const mageblood: Item = {
 	type: "item",
 	price: 210,
 	pickUpSound: AudioFile.itemPickUp,
-	dropSound: AudioFile.itemDDiv,
+	dropSound: AudioFile.itemDDiv
 };
 
 const squire: Item = {
@@ -79,7 +79,7 @@ const inventoryVar = atom<ItemInventory>(() => {
 		12,
 		[],
 		false,
-		10,
+		1000,
 		15000
 	);
 });

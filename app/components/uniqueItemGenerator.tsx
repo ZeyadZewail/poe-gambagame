@@ -23,6 +23,19 @@ const UniqueItemGenerator: React.FC<UniqueItemGeneratorProps> = ({ unique, item 
                 </div>
             </div>
             <div className="stats">
+
+                {unique.itemWeapon != undefined && (
+                    <div>
+                        <div className="weapon">
+                            {unique.itemWeapon.base != undefined && (<div>{unique.itemWeapon.base}</div>)}
+                            {(unique.itemWeapon.physDmgMin != undefined && uniuqeItem.itemWeapon?.physDmgMax != undefined) && (<div>Physical Damage: <span className="magicitem">{unique.itemWeapon.physDmgMin} to {unique.itemWeapon.physDmgMax}</span></div>)}
+                            {unique.itemWeapon.crit != undefined && (<div>Critical Strike Chance: <span className="normal">{unique.itemWeapon.crit}%</span></div>)}
+                            {unique.itemWeapon.aps != undefined && (<div>Attacks per Second: <span className="magicitem">{unique.itemWeapon.aps}</span></div>)}
+                            {unique.itemWeapon.weaponrange != undefined && (<div>Weapon Range: <span className="normal">{unique.itemWeapon.weaponrange}</span></div>)}
+                        </div>
+                        <div className="separator"></div>
+                    </div>
+                )}
                 {unique.itemArmour != undefined && (
                     <div>
                         <div className="armour">
@@ -67,6 +80,14 @@ const UniqueItemGenerator: React.FC<UniqueItemGeneratorProps> = ({ unique, item 
                 <div className="separator"></div>
                 <div className="FlavourText">{unique.itemFlavourText}</div>
                 <div className="separator"></div>
+                {unique.corrupted && (
+                    <div>
+                        <div className="corruptedText">
+                            <span className="corrupted">Corrupted</span>
+                        </div>
+                        <div className="separator"></div>
+                    </div>
+                )}
             </div>
             {item != null && (
                 <div className="price">

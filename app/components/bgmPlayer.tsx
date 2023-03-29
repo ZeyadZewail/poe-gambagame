@@ -1,6 +1,6 @@
-import bgm1 from "~/assets/audio/HarvestBoss.wav"
-import bgm2 from "~/assets/audio/HarvestCombat.wav"
-import bgm3 from "~/assets/audio/HarvestGarden.wav"
+import bgm1 from "~/assets/audio/HarvestBoss.mp3"
+import bgm2 from "~/assets/audio/HarvestCombat.mp3"
+import bgm3 from "~/assets/audio/HarvestGarden.mp3"
 import { FC, useEffect, useRef, useState } from "react"
 import { atom, useAtomValue } from "jotai";
 import { get, set } from "local-storage";

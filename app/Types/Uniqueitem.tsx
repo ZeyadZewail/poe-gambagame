@@ -16,9 +16,22 @@ export default interface Uniqueitem {
         energyshield?: number;
         chanceToBlock?: number;
     }
+    itemJewel?:{
+        limit:number;
+        radius:string;
+    }
+    itemWeapon?:{
+        base?:string,
+        physDmgMin?:number,
+        physDmgMax?:number,
+        crit?:number,
+        aps?:number,
+        weaponrange?:number
+    }
     itemRequirement: number,
     itemImplicit: string[],
     itemExplicit: string[],
     tooltipWidth: number,
     itemPrice: number
+    corrupted?:boolean;
 }
