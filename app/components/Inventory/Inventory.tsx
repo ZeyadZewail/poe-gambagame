@@ -79,7 +79,7 @@ const inventoryVar = atom<ItemInventory>(() => {
 		12,
 		[],
 		false,
-		1000,
+		10,
 		15000
 	);
 });
