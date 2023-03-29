@@ -2,7 +2,7 @@ import inventoryGrid from "../../assets/inventorygrid.png";
 import type Item from "~/Types/Item";
 import divCardImage from "../../assets/item_divcard.png";
 import mageBloodImage from "../../assets/item_mageblood.png";
-import farrulsFurImage from "../../assets/item_farrulfur.png";
+import squireImage from "../../assets/item_squire.png";
 import bottledFaithImage from "../../assets/item_bottledfaith.png";
 import ItemInventory from "~/Types/ItemInventory";
 import { atom, useAtomValue, useSetAtom } from "jotai";
@@ -42,9 +42,9 @@ const mageblood: Item = {
 	dropSound: AudioFile.itemDDiv,
 };
 
-const farrulsfur: Item = {
-	imgSrc: farrulsFurImage,
-	name: "farrulsfur",
+const squire: Item = {
+	imgSrc: squireImage,
+	name: "The Squire",
 	width: 2,
 	length: 3,
 	x: 3,
@@ -53,7 +53,7 @@ const farrulsfur: Item = {
 	maxStack: 1,
 	count: 1,
 	type: "item",
-	price: 10,
+	price: 25,
 	pickUpSound: AudioFile.itemPickUp,
 	dropSound: AudioFile.itemDDiv,
 };
@@ -77,7 +77,7 @@ const inventoryVar = atom<ItemInventory>(() => {
 	return new ItemInventory(
 		12,
 		12,
-		[TheApothecary, { ...TheApothecary, x: 1 }, mageblood, farrulsfur, bottledfaith],
+		[TheApothecary, { ...TheApothecary, x: 1 }, mageblood, squire, bottledfaith],
 		false,
 		100000,
 		15000

@@ -104,10 +104,10 @@ export default function Index() {
 				let xTranslate = hoveredSlotLocation.x < 7 ? x / 0.7 + slotWidth * 1.8 : (x - 200) / 0.7 - slotWidth * 1.8;
 				let yTranslate = (y - 140) / 0.7 + slotHeight / 2;
 				let scale = 0.7;
-				if (foundItem.itemRequirement != undefined) {
+				if (foundItem.baseName != undefined) {
 					scale = 0.9;
 					xTranslate = ((x - (foundItem.tooltipWidth / 2.5)) / scale) - ((hoveredSlotLocation.x - hoverItem.x) * slotWidth / scale);
-					yTranslate = hoveredSlotLocation.y < 9 ? y / scale + (hoverItem.length * slotHeight * 1.2) - ((hoveredSlotLocation.y - hoverItem.y) * slotHeight / scale) : y / scale - slotHeight * 7 - (hoverItem.length * slotHeight * 1.2) - ((hoveredSlotLocation.y - hoverItem.y) * slotHeight / scale) ;
+					yTranslate = hoveredSlotLocation.y < 7 ? y / scale + (hoverItem.length * slotHeight * 1.2) - ((hoveredSlotLocation.y - hoverItem.y) * slotHeight / scale) : y / scale - slotHeight * 7 - (hoverItem.length * slotHeight * 1.2) - ((hoveredSlotLocation.y - hoverItem.y) * slotHeight / scale) ;
 
 				}
 				return (

@@ -377,6 +377,31 @@
             ],
             "tooltipWidth":700,
             "itemPrice": 10
+        },
+        {
+            "displayName":"The Squire",
+            "itemName": "The Squire",
+            "baseName": "Elegant Round Shield",
+            "itemFlavourText": "Judge not the weak, for they empower the strong.",
+            "itemRequirement": 70,
+            "itemArmour":{
+                "chanceToBlock":30,
+                "armour":425,
+                "evasion":425
+            },
+            "itemImplicit": [
+                "120% increased Block Recovery"
+            ],
+            "itemExplicit": [
+                "Has 3 Sockets",
+                "All Sockets are White",
+                "8% to Quality of Socketed Support Gems",
+                "Socketed Support Gems can also Support Skills from your Main Hand",
+                "150% increased Armour and Evasion",
+                "5% Chance to Block"
+            ],
+            "tooltipWidth":540,
+            "itemPrice": 25
         }
     ],
     "itemRewards": [

@@ -23,6 +23,19 @@ const UniqueItemGenerator: React.FC<UniqueItemGeneratorProps> = ({ unique, item 
                 </div>
             </div>
             <div className="stats">
+                {unique.itemArmour != undefined && (
+                    <div>
+                        <div className="armour">
+                            {unique.itemArmour.quality != undefined && (<div>Quality: <span className="magicitem">{unique.itemArmour.quality}%</span></div>)}
+                            {unique.itemArmour.chanceToBlock != undefined && (<div>Chance to Block: <span className="magicitem">{unique.itemArmour.chanceToBlock}%</span></div>)}
+                            {unique.itemArmour.armour != undefined && (<div>Armour: <span className="magicitem">{unique.itemArmour.armour}</span></div>)}
+                            {unique.itemArmour.evasion != undefined && (<div>Evasion: <span className="magicitem">{unique.itemArmour.evasion}</span></div>)}
+                            {unique.itemArmour.energyshield != undefined && (<div>Energy Shield: <span className="magicitem">{unique.itemArmour.energyshield}</span></div>)}
+                        </div>
+                        <div className="separator"></div>
+                    </div>)}
+
+
                 {unique.itemFlask != undefined && (
                     <div>
                         <div className="flask">
