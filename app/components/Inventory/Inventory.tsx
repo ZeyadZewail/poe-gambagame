@@ -77,9 +77,9 @@ const inventoryVar = atom<ItemInventory>(() => {
 	return new ItemInventory(
 		12,
 		12,
-		[TheApothecary, { ...TheApothecary, x: 1 }, mageblood, squire, bottledfaith],
+		[],
 		false,
-		100000,
+		10,
 		15000
 	);
 });
