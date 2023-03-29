@@ -340,7 +340,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			}}>
 			{item ? (
 				<div
-					className={`pointer-events-none m-0 ${item.type == "item" ? "flex justify-center" : null}`}
+					className={`pointer-events-none m-0 ${item.count <= 1 ? "flex justify-center" : null}`}
 					style={getImageStyle()}>
 					{isPrimary ? <img style={{ maxHeight: calcLength() }} src={item.imgSrc} alt="grid" /> : null}
 					{item.maxStack > 1 ? (
