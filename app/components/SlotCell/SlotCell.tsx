@@ -76,7 +76,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 		}
 
 		if (item != null && currentMouseItem === null) {
-			playSound(AudioFile.itemPickUp)
+			playSound(AudioFile.itemPickUp);
 			SetCurrentMouseItem(item);
 			parentInventory.removeItem(item);
 		} else if (currentMouseItem != null && item === null) {
@@ -85,13 +85,13 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				currentMouseItem.x = x;
 				currentMouseItem.y = y;
 				parentInventory.items.push(currentMouseItem);
-				playSound(currentMouseItem.dropSound)
+				playSound(currentMouseItem.dropSound);
 				SetCurrentMouseItem(null);
 			} else if (CheckViableForItem(x, y, currentMouseItem)) {
 				currentMouseItem.x = x;
 				currentMouseItem.y = y - Math.floor(currentMouseItem.length / 2);
 				parentInventory.items.push(currentMouseItem);
-				playSound(currentMouseItem.dropSound)
+				playSound(currentMouseItem.dropSound);
 				SetCurrentMouseItem(null);
 			}
 		} else if (currentMouseItem != null && item != null) {
@@ -101,7 +101,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				const remainder = currentMouseItem.count - possibleToGive;
 				item.count += possibleToGive;
 				remainder == 0 ? SetCurrentMouseItem(null) : (currentMouseItem.count = remainder);
-				playSound(item.dropSound)
+				playSound(item.dropSound);
 			}
 
 			// if (CheckViableForItem(x, y, currentMouseItem)) {
@@ -179,14 +179,29 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			const dx = x - mouseHoveredSlotLocation.x;
 			const withinX = x >= mouseHoveredSlotLocation.x && dx <= currentMouseItem.width - 1;
 
-			const withinY =
-				y <= mouseHoveredSlotLocation.y + Math.floor(currentMouseItem.length / 2) &&
-				y >= mouseHoveredSlotLocation.y - Math.floor(currentMouseItem.length / 2);
+			let withinY = false;
+
+			if (y == mouseHoveredSlotLocation.y) {
+				withinY = true;
+			} else if (currentMouseItem.length % 2 == 0) {
+				if (y > mouseHoveredSlotLocation.y) {
+					withinY =
+						y <= mouseHoveredSlotLocation.y + (currentMouseItem.length - 1) / 2 &&
+						y >= mouseHoveredSlotLocation.y - (currentMouseItem.length - 1) / 2;
+				} else {
+					withinY =
+						y <= mouseHoveredSlotLocation.y + currentMouseItem.length / 2 &&
+						y >= mouseHoveredSlotLocation.y - currentMouseItem.length / 2;
+				}
+			} else {
+				withinY =
+					y <= mouseHoveredSlotLocation.y + (currentMouseItem.length - 1) / 2 &&
+					y >= mouseHoveredSlotLocation.y - (currentMouseItem.length - 1) / 2;
+			}
+
 			return withinX && withinY && mouseHoveredSlotLocation.parentInventory == parentInventory;
 		}
 	};
-
-
 
 	const HandleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		if (e.shiftKey && currentMouseItem === null && item != null && item.maxStack > 1 && item.count > 1) {
@@ -205,14 +220,14 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				const possibleToGive = Math.min(spaceToTake, 1);
 				const remainder = currentMouseItem.count - possibleToGive;
 				item.count += possibleToGive;
-				playSound(item.dropSound)
+				playSound(item.dropSound);
 				remainder == 0 ? SetCurrentMouseItem(null) : (currentMouseItem.count = remainder);
 			} else {
 				currentMouseItem.x = x;
 				currentMouseItem.y = y - Math.floor(currentMouseItem.length / 2);
 				parentInventory.items.push({ ...currentMouseItem, count: 1 });
 				const remainder = currentMouseItem.count - 1;
-				playSound(currentMouseItem.dropSound)
+				playSound(currentMouseItem.dropSound);
 				remainder == 0 ? SetCurrentMouseItem(null) : (currentMouseItem.count = remainder);
 				ForceRender();
 			}
@@ -221,13 +236,13 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			if (hortiInv.itemCount() == 0) {
 				hortiInv.items.push(item);
 				parentInventory.removeItem(item);
-				playSound(item.dropSound)
+				playSound(item.dropSound);
 			} else if (hortiInv.items[0].name == item.name && hortiInv.items[0].count != hortiInv.items[0].maxStack) {
 				const spaceToTake = hortiInv.items[0].maxStack - hortiInv.items[0].count;
 				const possibleToGive = Math.min(spaceToTake, item.count);
 				const remainder = item.count - possibleToGive;
 				hortiInv.items[0].count += possibleToGive;
-				playSound(item.dropSound)
+				playSound(item.dropSound);
 				remainder == 0 ? parentInventory.removeItem(item) : (item.count = remainder);
 			}
 
@@ -243,7 +258,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 					const remainder = item.count - possibleToGive;
 					sameItems[i].count += possibleToGive;
 					remainder == 0 ? (breakEarly = true) : (item.count = remainder);
-					playSound(item.dropSound)
+					playSound(item.dropSound);
 					if (breakEarly) break;
 				}
 			}
@@ -252,7 +267,7 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				item.x = availableSpace.x;
 				item.y = availableSpace.y;
 				mainInventory.items.push(item);
-				playSound(item.dropSound)
+				playSound(item.dropSound);
 			}
 			ForceRender();
 		} else {
@@ -271,18 +286,13 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 			const maxScreenHeight = window.innerHeight;
 			let spawnX = e.clientX;
 			let spawnY = e.clientY;
-			if (spawnX + 210 > maxScreenWidth)
-				spawnX = spawnX - 210;
-			if (spawnY + 210 > maxScreenHeight)
-				spawnY = spawnY - 210;
+			if (spawnX + 210 > maxScreenWidth) spawnX = spawnX - 210;
+			if (spawnY + 210 > maxScreenHeight) spawnY = spawnY - 210;
 			SetUnstackWindowItem(item);
 			SetUnstackWindowItemParent(parentInventory);
 			SetUnstackWindowLocation({ x: spawnX, y: spawnY });
 			SetContextMenu(true);
-
 		}
-
-
 	};
 
 	const handleHover = () => {
@@ -329,12 +339,13 @@ const SlotCell: FC<SlotInterface> = ({ item, x, y, parentInventory, isPrimary, h
 				ForceRender();
 			}}>
 			{item ? (
-				<div className="pointer-events-none m-0" style={getImageStyle()}>
-					{isPrimary ? <img src={item.imgSrc} alt="grid" /> : null}
+				<div className="pointer-events-none m-0 flex justify-center" style={getImageStyle()}>
+					{isPrimary ? <img style={{ maxHeight: calcLength() }} src={item.imgSrc} alt="grid" /> : null}
 					{item.maxStack > 1 ? (
 						<div
-							className={`divStackText relative bottom-[105%] right-[30%] text-s stroke-black ${item.count == item.maxStack ? "text-blue-600" : "text-white"
-								}`}>
+							className={`divStackText relative bottom-[105%] right-[30%] text-s stroke-black ${
+								item.count == item.maxStack ? "text-blue-600" : "text-white"
+							}`}>
 							{item.count}
 						</div>
 					) : null}
@@ -348,7 +359,10 @@ export default SlotCell;
 
 export { cellSideLengthVar };
 
-export function findAvailableSpace(inventory: ItemInventory, itemWidth: number, itemLength: number
+export function findAvailableSpace(
+	inventory: ItemInventory,
+	itemWidth: number,
+	itemLength: number
 ): { x: number; y: number } | null {
 	const takenSpaces: boolean[][] = Array.from({ length: inventory.length }, () =>
 		new Array(inventory.width).fill(false)
@@ -380,10 +394,9 @@ export function findAvailableSpace(inventory: ItemInventory, itemWidth: number, 
 	}
 
 	return null;
-};
+}
 
-export function availableSpaces(inventory: ItemInventory, itemWidth: number, itemLength: number
-): number {
+export function availableSpaces(inventory: ItemInventory, itemWidth: number, itemLength: number): number {
 	const takenSpaces: boolean[][] = Array.from({ length: inventory.length }, () =>
 		new Array(inventory.width).fill(false)
 	);
@@ -414,4 +427,4 @@ export function availableSpaces(inventory: ItemInventory, itemWidth: number, ite
 	}
 
 	return spaces;
-};
+}

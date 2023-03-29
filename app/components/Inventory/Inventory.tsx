@@ -3,6 +3,7 @@ import type Item from "~/Types/Item";
 import divCardImage from "../../assets/item_divcard.png";
 import mageBloodImage from "../../assets/item_mageblood.png";
 import farrulsFurImage from "../../assets/item_farrulfur.png";
+import bottledFaithImage from "../../assets/item_bottledfaith.png";
 import ItemInventory from "~/Types/ItemInventory";
 import { atom, useAtomValue, useSetAtom } from "jotai";
 import { hoveredSlotLocationVar } from "../MouseFollower/MouseFollower";
@@ -22,7 +23,7 @@ const TheApothecary: Item = {
 	type: "divcard",
 	price: 41.5,
 	pickUpSound: AudioFile.itemPickUp,
-	dropSound: AudioFile.itemDDiv
+	dropSound: AudioFile.itemDDiv,
 };
 
 const mageblood: Item = {
@@ -38,7 +39,7 @@ const mageblood: Item = {
 	type: "item",
 	price: 210,
 	pickUpSound: AudioFile.itemPickUp,
-	dropSound: AudioFile.itemDDiv
+	dropSound: AudioFile.itemDDiv,
 };
 
 const farrulsfur: Item = {
@@ -52,14 +53,35 @@ const farrulsfur: Item = {
 	maxStack: 1,
 	count: 1,
 	type: "item",
-	price: 10
-	,
+	price: 10,
 	pickUpSound: AudioFile.itemPickUp,
-	dropSound: AudioFile.itemDDiv
+	dropSound: AudioFile.itemDDiv,
+};
+
+const bottledfaith: Item = {
+	name: "bottledfaith",
+	imgSrc: bottledFaithImage,
+	type: "item",
+	width: 1,
+	length: 2,
+	x: 1,
+	y: 4,
+	maxStack: 1,
+	count: 1,
+	price: 0,
+	pickUpSound: AudioFile.itemPickUp,
+	dropSound: AudioFile.itemDDiv,
 };
 
 const inventoryVar = atom<ItemInventory>(() => {
-	return new ItemInventory(12, 12, [TheApothecary, { ...TheApothecary, x: 1 }, mageblood, farrulsfur], false, 100000, 15000);
+	return new ItemInventory(
+		12,
+		12,
+		[TheApothecary, { ...TheApothecary, x: 1 }, mageblood, farrulsfur, bottledfaith],
+		false,
+		100000,
+		15000
+	);
 });
 
 export { inventoryVar };
