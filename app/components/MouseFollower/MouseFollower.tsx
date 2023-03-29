@@ -45,7 +45,9 @@ const MouseFollower = () => {
 				position: "fixed",
 				transform: `translate(${mousePosition.x - 0.5 * calcWidth()}px,${mousePosition.y - 0.5 * calcLength()}px)`,
 			}}>
-			{currentItem != null ? <img src={currentItem.imgSrc} className="z-30" alt="grid" /> : null}
+			{currentItem != null ? (
+				<img style={{ maxHeight: calcLength() }} src={currentItem.imgSrc} className="z-30" alt="grid" />
+			) : null}
 
 			{currentItem != null && currentItem.maxStack > 1 ? (
 				<div
